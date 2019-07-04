@@ -1,0 +1,91 @@
+ATTACHMENT III
+
+DISTRIBUTION FUNCTIONS IN GRIB
+
+Goal: representation of fields, which depends not only on space and time, but also on an additional continuous parameter, for example, diameter \emph{\textbf{d}} or particle mass \emph{\textbf{m}}. Such fields at the end are (density) distribution functions \emph{f}(\emph{x}, \emph{y}, \emph{z}, \emph{t}; \emph{d}) \(\equiv\) \emph{f}(\textbf{r}, \emph{t}; \emph{d}). They describe, for example, the distribution of particles with different particle sizes in the air. For simplicity, the time variable \emph{t} is omitted in the following; in GRIB this would be superfluous, because times are noted in the product definition section (PDS).
+
+Furthermore, this is an attempt to describe unimodal and multimodal distribution functions in a common GRIB2 framework.
+
+A GRIB file contains one or several fields, which describe the distribution function (concentrations, number densities, ...). The purpose of the GRIB template 4.57 analysis or forecast at a horizontal level or in a horizontal layer at a point in time for atmospheric chemical constituents based on a distribution function is to enable the user to calculate additional interesting variables (mostly integrals) from these fields, if the user knows the underlying distribution function. Examples are the mass density of cloud droplets:
+
+\begin{quote}
+\(\rho\left( \mathbf{r} \right) = \ \int_{0}^{\infty}{\frac{1}{6}\pi d^{3}}\rho_{w}f\left( \mathbf{r},d \right)\text{dd}\) (1.1)
+\end{quote}
+
+(with the density of water \emph{ρ\textsubscript{w}} = 1 000 kg/m\textsuperscript{3}) or the radar reflectivity of rain droplet distributions:
+
+\begin{quote}
+\(Z\left( \mathbf{r} \right) = const.\ \int_{0}^{\infty}d^{6}f\left( \mathbf{r},d \right)\text{dd}\) (1.2)
+\end{quote}
+
+These are examples of distribution functions:
+
+1. Bin model with concentrations \(c_{l}\left( \mathbf{r} \right)\) in the class (or mode) \emph{l}. A concentration distribution function is described by:
+
+\(f\left( \mathbf{r};d \right) = \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)}\delta(d - D_{l})\) (1.3)\\
+~\\
+In this model, the numbers \(D_{l}\) for the diameter in these \emph{N} classes are fixed and prescribed \((p1 = \ D_{l})\).\\
+Area of application: bin models in the cloud microphysics, volcanic ash, ...
+
+2. N-modal concentration distribution function, composed by a Gaussian function:\\
+~\\
+\(f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)\frac{1}{\sqrt{2\pi\sigma_{l}}}e^{- \left( \frac{d - D_{l}}{\sigma_{l}} \right)^{2}}}\) (1.4)\\
+~\\
+Again, N concentrations \(c_{l}\left( \mathbf{r} \right)\) must be stored. The \emph{N} modes are defined by fixed values for diameter \(D_{l}\) and width \(\sigma_{l}\) (therefore, \(p1 = \ D_{l}\ \) and \(p2 = \ \sigma_{l}).\)
+
+3. N-modal concentration distribution function, composed by Gaussian function, in which diameter and width can vary from grid point to grid point:\\
+~\\
+\(f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)\frac{1}{\sqrt{2\pi\sigma_{l}\left( \mathbf{r} \right)}}e^{- \left( \frac{d - D_{l}\left( \mathbf{r} \right)}{\sigma_{l}\left( \mathbf{r} \right)} \right)^{2}}}\) (1.5)\\
+~\\
+Now, \emph{3N} fields \(c_{l}\left( \mathbf{r} \right)\), \(D_{l}\left( \mathbf{r} \right)\) and \(\sigma_{l}\left( \mathbf{r} \right)\) must be stored.
+
+4. N-modal log-normal distribution for the number density:
+
+\(f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{\frac{n_{l}\left( \mathbf{r} \right)}{\sqrt{2\pi}\log{\sigma_{l}\left( \mathbf{r} \right)}}e}^{- \ \frac{\log^{2}\frac{d}{D_{l}\left( \mathbf{r} \right)}}{2\log^{2}\sigma_{l}\left( \mathbf{r} \right)}}\) (1.6)\\
+~\\
+It is described by \emph{3N} fields \(n_{l}\left( \mathbf{r} \right)\), \(D_{l}\left( \mathbf{r} \right)\) and \(\sigma_{l}\left( \mathbf{r} \right)\).
+
+5. N-modal log-normal distribution for the number density at fixed variance:\\
+~\\
+\(f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{\frac{n_{l}\left( \mathbf{r} \right)}{\sqrt{2\pi}\log\sigma_{l}}e}^{- \frac{\log^{2}\frac{d}{D_{l}\left( \mathbf{r} \right)}}{2\log^{2}\sigma_{l}}}\) (1.7)\\
+~\\
+It is described by \emph{2N} fields \(n_{l}\left( \mathbf{r} \right)\), \(D_{l}\left( \mathbf{r} \right)\) and \emph{N} fixed numbers \(\sigma_{l}\) (\emph{therefore}, \(p1 = \ \sigma_{l}\)).
+
+6. N-modal log-normal distribution for the number density at fixed variance and the prescription of number density and mass density. Again, equation 1.7 is used. However, the field \(D_{l}\left( \mathbf{r} \right)\) is not stored, but is expressed via:\\
+~\\
+\(D_{l} = \left( \frac{m_{l}\left( \mathbf{r} \right)}{n_{l}\left( \mathbf{r} \right)\frac{\pi}{6}\rho_{p,l}e^{\frac{9}{2}\log^{2}\sigma_{l}}} \right)^{\frac{1}{3}}\) (1.8)\\
+~\\
+by the mass density \(m_{l}\left( \mathbf{r} \right)\).\\
+~\\
+It is described by \emph{2N} fields number density \(n_{l}\left( \mathbf{r} \right)\) and mass density \(m_{l}\left( \mathbf{r} \right)\), \emph{N} values \(\sigma_{l}\) and \emph{N} values for the particle densities \(\rho_{p,l}\ (p1 = \ \sigma_{l}\text{\ and}\ p2 = \ \rho_{p,l})\).\\
+~\\
+(C. Hoose, 2004: master thesis, Univ. Karlsruhe)\\
+~\\
+Application area: aerosol fields
+
+7. N-modal exponential distribution function with prescribed specific mass \(q\left( \mathbf{r} \right)\):\\
+~\\
+\(f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}N_{0,l}e^{- \lambda_{l}\left( \mathbf{r} \right)d}\) (1.9)\\
+~\\
+with a fixed intercept-parameter \(N_{0,l}\) for the mode \emph{l}.\\
+~\\
+For the case of spherical particles and \(N = 1\ \)(cloud droplets, rain droplets), the inverse length\(\ \lambda\left( \mathbf{r} \right)\) depends on the specific mass \(q\left( \mathbf{r} \right)\) and the air density \(\rho\left( \mathbf{r} \right)\) by:\\
+~\\
+\(\lambda_{l}\left( \mathbf{r} \right) = \ \sqrt[4]{\frac{\pi\rho_{w,l}N_{0,l}}{\rho\left( \mathbf{r} \right)q(\mathbf{r})}}\) (1.10)\\
+~\\
+This formula also contains the density \(\rho_{w,l}\) (for example, density of liquid water. In general this value is the same for all modes \emph{l}) \(\left( p1 = N_{0,l}\ \text{and}\ p2 = \ \rho_{w,l} \right).\)\\
+~\\
+Application area: for\(\ N = 1,\ \)an exponential distribution is assumed for most cloud physics particles (cloud ice, graupel, ...).
+
+8. Skew Gaussian function (for example, for temperature distributions):\\
+~\\
+\(f\left( \mathbf{r};T \right) = \ \left\{ \begin{matrix}
+c_{r}e^{- \frac{{(T - T_{0}\left( \mathbf{r} \right))}^{2}}{\sigma_{r}^{2}(\mathbf{r})}},T\  > T_{0}\left( \mathbf{r} \right) \\
+c_{l}e^{- \frac{{(T - T_{0}\left( \mathbf{r} \right))}^{2}}{\sigma_{l}^{2}(\mathbf{r})}},T\  \leq T_{0}\left( \mathbf{r} \right) \\
+\end{matrix} \right.\ \) (1.11)\\
+~\\
+with three fields \(T_{0}\left( \mathbf{r} \right)\), \(\sigma_{r}\left( \mathbf{r} \right)\), \(\sigma_{l}\left( \mathbf{r} \right)\). The ``left-sided'' and ``right-sided'' variances \(\sigma_{l,r}\) have the same physical dimension (temperature). To distinguish them, it is recommended to define two different GRIB elements; \(c_{l}\)~and \(c_{r}\) are appropriate norms (not given here).
+
+9. . . .
+
+Though there is an extremely large amount of possible functional forms of distribution functions, in practice, only a few are used. However, the examples shown indicate that even for the same underlying distribution function, the parameters and fields that are prescribed or derived by others, as well as the independent variable, can differ significantly. In these examples, this was the diameter \emph{d}; the particle mass \emph{m} could be another. Consequently, this list can become quite large during the lifetime of GRIB2. In the end, this GRIB template is an attempt to deliver a minimum of order together with complete information for users of GRIB data.

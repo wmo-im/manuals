@@ -1,0 +1,630 @@
+\textbf{B/C32} -- \textbf{Regulations for reporting CLIMAT SHIP data in TDCF}
+
+\textbf{TM 308013 -- BUFR template for reports of monthly values from an ocean weather station suitable for CLIMAT SHIP data}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & \textbf{Representation of CLIMAT SHIP data of the actual month and for monthly normals}\tabularnewline
+\textbf{3 08 013} & \textbf{3 08 011} & Monthly values from an ocean weather station -- CLIMAT SHIP\tabularnewline
+& \textbf{3 08 012} & Monthly normals for an ocean weather station\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+& Unit, scale & &\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{Monthly values from an ocean weather station (data of CLIMAT SHIP Section 1)}
+
+Sequence BUFR descriptor \textbf{\textless3~08~011\textgreater{}} expands as shown in the leftmost column below.\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+& & \textbf{Station identification, date/time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{0 01 011} & & Ship or mobile land station identifier & CCITT IA5, 0\tabularnewline
+\textbf{0 02 001} & & Type of station & Code table, 0\tabularnewline
+\textbf{3 01 011} & 0 04 001 & Year (see Note~1) & Year, 0\tabularnewline
+& 0 04 002 & Month (see Note~1) & Month, 0\tabularnewline
+& 0 04 003 & Day (= 1) (see Note~1) & Day, 0\tabularnewline
+\textbf{3 01 012} & 0 04 004 & Hour (= 0) (see Note~1) & Hour, 0\tabularnewline
+& 0 04 005 & Minute (= 0) (see Note~1) & Minute, 0\tabularnewline
+\textbf{3 01 023} & 0 05 002 & Latitude (coarse accuracy) L\textsubscript{a}L\textsubscript{a}L\textsubscript{a} & Degree, 2\tabularnewline
+& 0 06 002 & Longitude (coarse accuracy) L\textsubscript{o}L\textsubscript{o}L\textsubscript{o}L\textsubscript{o} & Degree, 2\tabularnewline
+\textbf{0 07 030} & & Height of station ground (platform) above mean sea level & m, 1\tabularnewline
+\textbf{0 07 031} & & Height of barometer above mean sea level & m, 1\tabularnewline
+& & \textbf{Monthly mean values of pressure, temperature, vapour pressure and sea/water temperature} &\tabularnewline
+\textbf{0 04 074} & & \vtop{\hbox{\strut Short time period or displacement (= UTC -- LT)}\hbox{\strut (see Note~1)}} & Hour, 0\tabularnewline
+\textbf{0 04 023} & & Time period or displacement (= number of days in the month) & Day, 0\tabularnewline
+\textbf{0 08 023} & & First-order statistics (= 4; mean value) & Code table, 0\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 10 051}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pressure reduced to mean sea level \_\_\_\_\_
+
+PPPP\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pa, --1\strut
+\end{minipage}\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (for temperature measurement) (see Note~2)}} & m, 2\tabularnewline
+\textbf{0 07 033} & & \vtop{\hbox{\strut Height of sensor above water surface}\hbox{\strut (for temperature measurement) (see Note~2)}} & m, 1\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 12 101}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Temperature/air temperature \_\_\_\_
+
+s\textsubscript{n}TTT\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+K, 2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 13 004}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Vapour pressure \_\_\_
+
+eee\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pa, --1\strut
+\end{minipage}\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+\textbf{0 07 033} & & \vtop{\hbox{\strut Height of sensor above water surface}\hbox{\strut (set to missing to cancel the previous value)}} & m, 1\tabularnewline
+& & \emph{\textbf{Sea-surface temperature, method of measurement,\\
+and depth below sea surface}} &\tabularnewline
+\textbf{3 02 056} & 0 02 038 & Method of water temperature and/or salinity measurement (see Note~2) & Code table, 0\tabularnewline
+& 0 07 063 & \vtop{\hbox{\strut Depth below sea/water surface (cm)}\hbox{\strut (for sea-surface temperature measurement) (see Note~2)}} & m, 2\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+0 22 043\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Sea/water temperature \_\_\_\_\_\_
+
+s\textsubscript{n}T\textsubscript{w}T\textsubscript{w}T\textsubscript{w}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+K, 2\strut
+\end{minipage}\tabularnewline
+& 0 07 063 & \vtop{\hbox{\strut Depth below sea/water surface (cm)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+\textbf{0 08 023} & & \vtop{\hbox{\strut First-order statistics}\hbox{\strut (set to missing to cancel the previous value)}} & Code table, 0\tabularnewline
+& & \textbf{Monthly precipitation data} &\tabularnewline
+\textbf{0 04 003} & & Day (= 1) (see Note~3) & Day, 0\tabularnewline
+\textbf{0 04 004} & & Hour (= 6) (see Note~3) & Hour, 0\tabularnewline
+\textbf{0 04 023} & & Time period or displacement (= number of days in the month) (see Note~3) & Day, 0\tabularnewline
+\textbf{0 07 032} & & Height of sensor above local ground (or deck of marine platform) (see Note~2) & m, 2\tabularnewline
+\textbf{0 13 060} & & Total accumulated precipitation R\textsubscript{1}R\textsubscript{1}R\textsubscript{1}R\textsubscript{1} & kg m\textsuperscript{--2}, 1\tabularnewline
+\textbf{0 13 051} & & Frequency group, precipitation R\textsubscript{d} & Code table, 0\tabularnewline
+\textbf{0 04 053} & & Number of days with precipitation equal to or more than 1 mm n\textsubscript{r}n\textsubscript{r} & Numeric, 0\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{Monthly normals for an ocean weather station (data of CLIMAT SHIP Section 2)}
+
+Sequence BUFR descriptor \textbf{\textless3~08~012\textgreater{}} expands as shown in the leftmost column below.\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+& & \textbf{Normals of pressure, temperature, vapour pressure and sea/water temperature} & Unit, scale\tabularnewline
+\textbf{0 04 001} & & Year (of beginning of the reference period) & Year, 0\tabularnewline
+\textbf{0 04 001} & & Year (of ending of the reference period) & Year, 0\tabularnewline
+\textbf{0 04 002} & & Month & Month, 0\tabularnewline
+\textbf{0 04 003} & & Day (= 1) (see Note~1) & Day, 0\tabularnewline
+\textbf{0 04 004} & & Hour (= 0) (see Note~1) & Hour, 0\tabularnewline
+\textbf{0 04 074} & & Short time period or displacement (= UTC -- LT) \textsuperscript{\\
+}(see Note~1) & Hour, 0\tabularnewline
+\textbf{0 04 022} & & Time period or displacement (= 1) & Month, 0\tabularnewline
+\textbf{0 08 023} & & First-order statistics (= 4; mean value) & Code table, 0\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 10 051}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pressure reduced to mean sea level \_\_\_\_\_
+
+PPPP\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pa, --1\strut
+\end{minipage}\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (for temperature measurement) (see Note~2)}} & m, 2\tabularnewline
+\textbf{0 07 033} & & \vtop{\hbox{\strut Height of sensor above water surface}\hbox{\strut (for temperature measurement) (see Note~2)}} & m, 1\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 12 101}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Temperature/air temperature \_\_\_\_
+
+s\textsubscript{n}TTT\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+K, 2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 13 004}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Vapour pressure \_\_\_
+
+eee\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Pa, --1\strut
+\end{minipage}\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+\textbf{0 07 033} & & \vtop{\hbox{\strut Height of sensor above water surface}\hbox{\strut (set to missing to cancel the previous value)}} & m, 1\tabularnewline
+& & \emph{\textbf{Sea-surface temperature, method of measurement,\\
+and depth below sea}} \emph{\textbf{surface}} &\tabularnewline
+\textbf{3 02 056} & 0 02 038 & Method of water temperature and/or salinity measurement (see Note~2) & Code table, 0\tabularnewline
+& 0 07 063 & \vtop{\hbox{\strut Depth below sea/water surface (cm)}\hbox{\strut (for sea-surface temperature measurement) (see Note~2)}} & m, 2\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+0 22 043\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Sea/water temperature \_\_\_\_\_\_
+
+s\textsubscript{n}T\textsubscript{w}T\textsubscript{w}T\textsubscript{w}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+K, 2\strut
+\end{minipage}\tabularnewline
+& 0 07 063 & \vtop{\hbox{\strut Depth below sea/water surface (cm)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+\textbf{0 08 023} & & \vtop{\hbox{\strut First-order statistics}\hbox{\strut (set to missing to cancel the previous value)}} & Code table, 0\tabularnewline
+& & \textbf{Normals of precipitation} &\tabularnewline
+\textbf{0 04 001} & & Year (of beginning of the reference period) & Year, 0\tabularnewline
+\textbf{0 04 001} & & Year (of ending of the reference period) & Year, 0\tabularnewline
+\textbf{0 04 002} & & Month & Month, 0\tabularnewline
+\textbf{0 04 003} & & Day (= 1) (see Note~3) & Day, 0\tabularnewline
+\textbf{0 04 004} & & Hour (= 6) (see Note~3) & Hour, 0\tabularnewline
+\textbf{0 04 022} & & Time period or displacement (= 1) & Month, 0\tabularnewline
+\textbf{0 07 032} & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (for precipitation measurement) (see Note~2)}} & m, 2\tabularnewline
+\textbf{0 08 023} & & First-order statistics (= 4; mean value) & Code table, 0\tabularnewline
+\textbf{0 13 060} & & Total accumulated precipitation R\textsubscript{1}R\textsubscript{1}R\textsubscript{1}R\textsubscript{1} & kg m\textsuperscript{--2}, 1\tabularnewline
+\textbf{0 04 053} & & Number of days with precipitation equal to or more than 1 mm n\textsubscript{r}n\textsubscript{r} & Numeric, 0\tabularnewline
+\textbf{0 08 023} & & \vtop{\hbox{\strut First-order statistics}\hbox{\strut (set to missing to cancel the previous value)}} & Code table, 0\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes:
+
+(1) The time identification refers to the beginning of the one-month period. Except for precipitation measurements, the one-month period is recommended to correspond to the local time (LT) month.
+
+(2) If the heights/depth of sensors or method of sea/water temperature measurement were changed during the period specified, the value shall be that which existed for the greater part of the period.
+
+(3) In case of precipitation measurements, the one-month period begins at 06 UTC on the first day of the month and ends at 06 UTC on the first day of the following month.
+
+\textbf{\\
+Regulations:}
+
+\textbf{B/C32.1 Section 1 of BUFR or CREX}
+
+\textbf{B/C32.2} Monthly values from an ocean weather station -- CLIMAT SHIP
+
+\textbf{B/C32.2.1 Station identification, date/time, h}orizontal and vertical coordinates
+
+\textbf{B/C32.2.2} Monthly mean values of pressure, temperature, vapour pressure and sea/water temperature
+
+B/C32.2.3 Monthly precipitation data
+
+\textbf{B/C32.3} Monthly normals for an ocean weather station
+
+\textbf{B/C32.3.1} Normals of pressure, temperature, vapour pressure and sea/water temperature
+
+\textbf{B/C32.3.2} Normals of precipitation
+
+\textbf{B/C32.4 Regional or national reporting practices}
+
+\textbf{B/C32.1 Section 1 of BUFR or CREX}
+
+\textbf{B/C32.1.1 Entries required in Section 1 of BUFR}
+
+\begin{quote}
+\textbf{The following entries shall be included in BUFR Section 1:}
+
+-- \textbf{BUFR master table;}
+
+-- \textbf{Identification of originating/generating centre;}
+
+-- \textbf{Identification of originating/generating sub-centre;}
+
+-- \textbf{Update sequence number;}
+
+-- \textbf{Identification of inclusion of optional section;}
+
+-- \textbf{Data category (= 001 for CLIMAT SHIP data);}
+
+-- \textbf{International data sub-category (see Notes 1 and 2);}
+
+-- \textbf{Local data sub-category;}
+
+-- \textbf{Version number of master table;}
+
+-- \textbf{Version number of local tables;}
+
+-- \textbf{Year (year of the century up to BUFR edition 3) (see Note 3);}
+
+-- \textbf{Month (for which the monthly values are reported) (see Note 3);}
+
+-- \textbf{Day (= 1}) \textbf{(see Note 3);}
+
+-- \textbf{Hour (= 0}) \textbf{(see Note 3)};
+
+-- \textbf{Minute (= 0) (see Note 3);}
+
+-- \textbf{Second (= 0) (see Notes 1 and 3).}
+
+\textbf{Notes:}
+
+\textbf{(1) Inclusion of this entry is required starting with BUFR edition 4.}
+
+\textbf{(2) If} required\textbf{, the international data sub-category shall be included for CLIMAT SHIP data as 020.}
+
+(3) The time identification refers to the beginning of the month \textbf{for which the monthly mean values are reported}.
+
+\textbf{(4) If an NMHS performs conversion of CLIMAT SHIP data produced by another NMHS, o}riginating centre in Section 1 shall indicate \textbf{the converting centre and o}riginating sub-centre shall indicate the \textbf{producer of CLIMAT SHIP bulletins. Producer of CLIMAT SHIP bulletins shall be specified in Common Code table C-12 as a sub-centre of the originating centre, i.e. of the NMHS executing the conversion.}
+\end{quote}
+
+\textbf{B/C32.1.2 Entries required in Section 1 of CREX}
+
+\begin{quote}
+\textbf{The following entries shall be included in CREX Section 1:}
+
+-- \textbf{CREX master table;}
+
+-- \textbf{CREX edition number;}
+
+-- \textbf{CREX table version number;}
+
+-- \textbf{Version number of BUFR master table (see Note 1);}
+
+-- \textbf{Version number of local tables (see Note 1);}
+
+-- \textbf{Data category (= 001 for CLIMAT SHIP data);}
+
+-- \textbf{International data sub-category (see Notes 1 and 2);}
+
+-- \textbf{Identification of originating/generating centre (see Note 1);}
+
+-- \textbf{Identification of originating/generating sub-centre (see Note 1);}
+
+-- \textbf{Update sequence number (see Note 1);}
+
+-- \textbf{Number of subsets (see Note 1);}
+
+-- \textbf{Year (see Notes 1 and 3);}
+
+-- \textbf{Month (for which the monthly values are reported) (see Notes 1 and 3);}
+
+-- \textbf{Day (= 1}) \textbf{(see Notes 1 and 3);}
+
+-- \textbf{Hour (= 0}) \textbf{(see Notes 1 and 3)};
+
+-- \textbf{Minute (= 0) (see Notes 1 and 3).}
+
+\textbf{Notes:}
+
+\textbf{(1) Inclusion of these entries is required starting with CREX edition 2.}
+
+\textbf{(2) If inclusion of international data sub-category is required, Note 2 under Regulation B/C32.1.1 applies.}
+
+\textbf{(3) Note 3 under Regulation B/C32.1.1 applies.}
+
+\textbf{(4) If an NMHS performs conversion of CLIMAT SHIP data produced by another NMHS, Note 4 under Regulation B/C32.1.1 applies.}
+\end{quote}
+
+\textbf{B/C32.2 Monthly values from an ocean weather station -- CLIMAT SHIP \textless3~08~011\textgreater{}}
+
+\textbf{B/C32.2.1 Station identification, date/time, horizontal and vertical coordinates}
+
+\textbf{B/C32.2.1.1 Station identification}
+
+\begin{quote}
+Ship identifier (0~01~011) shall be always reported as a non-missing value.
+
+Type of station (0~02~001) shall be reported to indicate the type of the station operation (manned, automatic or hybrid).
+\end{quote}
+
+\textbf{B/C32.2.1.2 Date/time (of beginning of the month)}
+
+\begin{quote}
+Date \textless3~01~011\textgreater{} and time \textless3~01~012\textgreater{} shall be reported, i.e. year (0~04~001), month (0~04~002), day (0~04~003) and hour (0~04~004), minute (0~04~005) of beginning of the month \textbf{for which the monthly values are reported.} Day (0~04~003) shall be set to 1 and both hour (0~04~004) and minute (0~04~005) shall be set to 0.
+\end{quote}
+
+\textbf{B/C32.2.1.3 Horizontal and vertical coordinates}
+
+\begin{quote}
+\textbf{Latitude (0}~\textbf{05~002) and longitude} (0~06~002) of the station shall be reported in degrees with precision in hundredths of a degree.
+
+Height of station platform above mean sea level (0~07~030) and height of barometer above mean sea level (0~07~031) shall be reported in metres with precision in tenths of a metre.
+\end{quote}
+
+\textbf{B/C32.2.2 Monthly mean values of pressure, temperature, vapour pressure and sea/water temperature}
+
+\begin{quote}
+The monthly mean values of pressure reduced to mean sea level, temperature, vapour pressure and sea/water temperature shall be reported. Any missing element shall be reported as a missing value.
+\end{quote}
+
+\textbf{B/C32.2.2.1 Reference period for the data of the month}
+
+\begin{quote}
+Monthly data (with the exception of precipitation data) are recommended to be reported for one-month period, corresponding to the local time (LT) month {[}\emph{Handbook on CLIMAT and CLIMAT TEMP Reporting} (WMO/TD-No.1188){]}. In that case, short time displacement (0~04~074) shall specify the difference between UTC and LT (set to \emph{non-positive values in the eastern hemisphere, non-negative values in the western hemisphere}).
+
+Time period (0~04~023) represents the number of days in the month for which the data are reported, and shall be expressed as a \emph{positive value} in days.
+
+Note: A BUFR (or CREX) message shall contain reports for one specific month only. {[}72.1.3{]}
+\end{quote}
+
+\textbf{B/C32.2.2.2 First-order statistics} -- Code table 0~08~023
+
+\begin{quote}
+This datum shall be set to 4 (mean value) to indicate that the following entries represent mean values of the elements (pressure reduced to mean sea level, temperature, vapour pressure and sea/water temperature) averaged over the one-month period.
+\end{quote}
+
+\textbf{B/C32.2.2.3 Monthly mean value of pressure reduced to mean sea level}
+
+\begin{quote}
+\textbf{Monthly mean value of} pressure reduced to mean sea level shall be reported using 0~10~051 (Pressure reduced to mean sea level) in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C32.2.2.4 Height of sensor above marine deck platform and height of sensor above water surface}
+
+\begin{quote}
+Height of sensor above marine deck platform (0~07~032) for temperature and humidity measurement shall be reported in metres (with precision in hundredths of a metre). This datum represents the actual height of temperature and humidity sensors above marine deck platform at the point where the sensors are located.
+
+Height of sensor above water surface (0~07~033) for temperature and humidity measurement shall be reported in metres (with precision in tenths of a metre). This datum represents the actual height of temperature and humidity sensors above water surface of sea or lake.
+
+Note: If the heights of the sensors were changed during the period specified, the value shall be that which existed for the greater part of the period.
+\end{quote}
+
+\textbf{B/C32.2.2.5 Monthly mean value of temperature}
+
+\begin{quote}
+\textbf{Monthly mean value of} temperature shall be reported using 0~12~101 (Temperature/air temperature) in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius). Temperature data shall be reported with precision in hundredths of a degree even if they are available with the accuracy in tenths of a degree.
+
+Notes:
+
+(1) This requirement is based on the fact that conversion from the Kelvin to the Celsius scale has often resulted into distortion of the data values.
+
+(2) Temperature t (in degrees Celsius) shall be converted into temperature T (in kelvin) using equation: T = t + 273.15.
+\end{quote}
+
+\textbf{B/C32.2.2.6 Monthly mean value of vapour pressure}
+
+\begin{quote}
+\textbf{Monthly mean value of vapour} pressure shall be reported using 0~13~004 (\textbf{Vapour} pressure) in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C32.2.2.7 Monthly mean value of sea-surface temperature, method of its measurement} \textbf{and depth below} \textbf{sea/water surface}
+
+\begin{quote}
+Method of sea/water temperature measurement shall be reported by Code table 0~02~038; depth below sea/water surface (0~07~063) shall be reported in metres (with precision in hundredths of a metre).
+
+Monthly mean value of sea-surface temperature shall be reported using 0~22~043 (Sea/water temperature) in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius). Sea/water temperature data shall be reported with precision in hundredths of a degree even if they are available with the accuracy in tenths of a degree.
+
+Notes:
+
+(1) If the method of sea/water temperature measurement or the depth of the sensor below sea/water surface was changed during the period specified, the value shall be that which existed for the greater part of the period.
+
+(2) Notes 1 and 2 under Regulation B/C32.2.2.5 shall apply.
+\end{quote}
+
+\textbf{B/C32.2.2.8 First-order statistics} -- Code table 0~08~023
+
+\begin{quote}
+This datum shall be set to missing to indicate that the following entries do not represent the monthly mean values.
+\end{quote}
+
+\textbf{B/C32.2.3 Monthly precipitation data}
+
+\textbf{B/C32.2.3.1 Date/time (of beginning of the one-month period for precipitation data)}
+
+\begin{quote}
+Day (0~04~003) and hour (0~04~004) of the beginning of the one-month period \textbf{for monthly precipitation data are reported.} Day (0~04~003) shall be set to 1 and hour (0~04~004) \emph{shall be set to 6}.
+
+Notes:
+
+(1) In case of precipitation measurements, a month begins at 0600 hours UTC on the first day of the month and ends at 0600 hours UTC on the first day of the following month {[}\emph{Handbook on CLIMAT and CLIMAT TEMP Reporting} (WMO/TD-No.1188){]}.
+
+(2) Year (0~04~001), month (0~04~002) and minute (0~04~005) of the beginning of the month specified in Regulation B/C32.2.1.2 apply.
+\end{quote}
+
+\textbf{B/C32.2.3.2 Period of reference for precipitation data of the month}
+
+\begin{quote}
+Time period (0~04~023) represents the number of days in the month for which the monthly mean data are reported, and shall be expressed as a \emph{positive value} in days.
+
+Note: A BUFR (or CREX) message shall contain reports for one specific month only. {[}72.1.3{]}
+\end{quote}
+
+\textbf{B/C32.2.3.3 Height of sensor above marine deck platform}
+
+\begin{quote}
+Height of sensor above marine deck platform (0~07~032) for precipitation measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of the rain gauge rim above marine deck platform at the point where the rain gauge is located.
+
+Note: If the height of the sensor was changed during the period specified, the value shall be that which existed for the greater part of the period.
+\end{quote}
+
+\textbf{B/C32.2.3.4 Total amount of precipitation of the month}
+
+\begin{quote}
+Total accumulated precipitation (0~13~060) which has fallen during the month shall be reported in kilograms per square metre (with precision in tenths of a kilogram per square metre).
+
+Note: Trace shall be reported as ``--0.1 kg m\textsuperscript{--2}''.
+\end{quote}
+
+\textbf{B/C32.2.3.5 Indication of frequency group}
+
+\begin{quote}
+\textbf{Frequency group in which} the total amount of precipitation \textbf{of the month falls shall be reported using Code table 0}~\textbf{13~051 (Frequency group; precipitation).}
+
+\textbf{Note: If for a particular month the total amount of precipitation is zero, the code figure for 0}~\textbf{13~051 shall be given by the highest number of quintile which has 0.0 as lower limit (e.g. in months with no rainfall in the 30-year period, 0}~\textbf{13~051 shall be set to 5). {[}72.1.4.2{]}}
+\end{quote}
+
+\textbf{B/C32.2.3.6 Number of days with precipitation equal to or greater than 1 mm}
+
+\begin{quote}
+Number of days in the month with precipitation equal to or greater than 1 kilogram per square metre shall be reported using 0~04~053 (Number of days in the month with precipitation equal to or greater than 1 mm).
+
+Note: When the monthly total precipitation is not available, both \textbf{0~13~060 and 0~04~053 shall be set to missing. {[}72.1.4.1{]}}
+\end{quote}
+
+\textbf{B/C32.3 Monthly normals for an ocean weather station \textless3~08~012\textgreater{}}
+
+\begin{quote}
+\textbf{Meteorological Services shall submit to the Secretariat complete normal data of the elements for stations to be included in the CLIMAT SHIP bulletins. The same shall apply when Services consider it necessary to make amendments to previously published normal values. {[}72.2.1{]}}
+\end{quote}
+
+\textbf{B/C32.3.1 Normals of pressure, temperature, vapour pressure and sea/water temperature}
+
+\begin{quote}
+Normal values of pressure reduced to mean sea level, temperature, vapour pressure and sea/water temperature shall be reported. Any missing element shall be reported as a missing value.
+\end{quote}
+
+\textbf{B/C32.3.1.1 Reference period for normal data}
+
+\begin{quote}
+R\textbf{eference period for calculation of the normal values of the elements shall be reported using} two consecutive entries 0~04~001 (Year). The first 0~04~001 shall express the year of beginning of the reference period and the second 0~04~001 shall express the year of ending of the reference period.
+
+Note: The normal data of pressure, temperature and sea/water temperature reported shall be deduced from observations made over a 30-year normal period. {[}72.2.2{]}
+\end{quote}
+
+\textbf{B/C32.3.1.2 Specification of the one-month period for which normals are reported}
+
+\begin{quote}
+The one-month period for which the normal values are reported shall be specified by month (0~04~002), day (0~04~003) being set to 1, hour (0~04~004) being set to 0, short time displacement (0~04~074) being set to (UTC -- LT) and time period (0~04~022) being set to 1, i.e. 1 month.
+
+Short time displacement (0~04~074) shall be set to \emph{non-positive values in the eastern hemisphere, non-negative values in the western hemisphere}.
+\end{quote}
+
+\textbf{B/C32.3.1.3 First-order statistics} -- Code table 0~08~023
+
+\begin{quote}
+This datum shall be set to 4 (mean value) to indicate that the following entries represent mean values of the elements (pressure reduced to mean sea level, temperature, vapour pressure and sea/water temperature) averaged over the reference period specified in Regulation B/C32.3.1.1.
+\end{quote}
+
+\textbf{B/C32.3.1.4 Normal value of pressure reduced to mean sea level}
+
+\begin{quote}
+\textbf{Normal value of} pressure reduced to mean sea level shall be reported using 0~10~051 (Pressure reduced to mean sea level) in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C32.3.1.5 Height of sensor above marine deck platform and height of sensor above water surface}
+
+\begin{quote}
+Regulation B/C32.2.2.4 shall apply.
+\end{quote}
+
+\textbf{B/C32.3.1.6 Normal value of temperature}
+
+\begin{quote}
+\textbf{Normal value of} temperature shall be reported using 0~12~101 (Temperature/air temperature) in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Note: Notes 1 and 2 under Regulation B/C32.2.2.5 shall apply.
+\end{quote}
+
+\textbf{B/C32.3.1.7 Normal value of vapour pressure}
+
+\begin{quote}
+\textbf{Normal value of vapour} pressure shall be reported using 0~13~004 (\textbf{Vapour} pressure) in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C32.3.1.8 Normal value of sea-surface temperature, method of measurement and depth below sea/water surface}
+
+\begin{quote}
+Method of sea/water temperature measurement shall be reported by Code table 0~02~038; depth below sea/water surface (0~07~063) shall be reported in metres (with precision in hundredths of a metre).
+
+Normal value of sea-surface temperature shall be reported using 0~22~043 (Sea/water temperature) in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Notes:
+
+(1) Note 1 under Regulation B/C32.2.2.7 shall apply.
+
+(2) Notes 1 and 2 under Regulation B/C32.2.2.5 shall apply.
+\end{quote}
+
+\textbf{B/C32.3.2 Normals of precipitation}
+
+\begin{quote}
+Normal values of monthly amount of precipitation and of number \textbf{of days in the month with precipitation equal to or greater than 1 mm,} shall be reported. Any missing element shall be reported as a missing value.
+\end{quote}
+
+\textbf{B/C32.3.2.1 Reference period for normal values of precipitation}
+
+\begin{quote}
+R\textbf{eference period for calculation of the normal values of precipitation shall be reported using} two consecutive entries 0~04~001 (Year). The first 0~04~001 shall express the year of beginning of the reference period and the second 0~04~001 shall express the year of ending of the reference period.
+\end{quote}
+
+\textbf{B/C32.3.2.2 Specification of the one-month period for which normals are reported}
+
+\begin{quote}
+The one-month period for which the normals of precipitation are reported shall be specified by month (0~04~002), day (0~04~003) being set to 1, hour (0~04~004) \emph{being set to 6} and time period (0~04~022) being set to 1, i.e. 1 month.
+
+Note: Note 1 under Regulation B/C32.2.3.1 shall apply.
+\end{quote}
+
+\textbf{B/C32.3.2.3 Height of sensor above local marine deck platform}
+
+\begin{quote}
+Regulation B/C32.2.3.3 shall apply.
+\end{quote}
+
+\textbf{B/C32.3.2.4 First-order statistics} -- Code table 0~08~023
+
+\begin{quote}
+This datum shall be set to 4 (mean value) to indicate that the following entries represent mean values of precipitation data, averaged over the reference period specified in Regulation B/C32.3.2.1.
+\end{quote}
+
+\textbf{B/C32.3.2.5 Normal value of monthly amount of precipitation}
+
+\begin{quote}
+Normal value of monthly amount of precipitation shall be reported in kilograms per square metre (with precision in tenths of a kilogram per square metre) using 0~13~060 (Total accumulated precipitation).
+
+Note: Trace shall be reported as ``--0.1 kg m\textsuperscript{--2}''.
+\end{quote}
+
+\textbf{B/C32.3.2.6 Normal value of number of days with precipitation ≥ 1 mm}
+
+\begin{quote}
+\textbf{Normal value of number of days in the month with precipitation equal to or greater than} 1 kilogram per square metre \textbf{shall be reported using 0~04~053 (Number of days in the month with precipitation equal to or greater than 1 mm).}
+\end{quote}
+
+\textbf{B/C32.4 Regional or national reporting practices}
+
+\textbf{B/C32.4.1 Data required by regional or national reporting practices}
+
+\begin{quote}
+No additional data are currently required by regional or national reporting practices for CLIMAT SHIP data in the \emph{Manual on Codes} (WMO-No. 306), Volume II.
+\end{quote}
+
+\textbf{B/C32.4.2 Reference period for the data of the month}
+
+\begin{quote}
+If the regional or national reporting practices require reporting monthly data (with the exception of precipitation data) for one-month period different from the local time month as recommended in Regulation B/C32.2.2.1, short time displacement (0\textbf{~}04\textbf{~}074) shall be adjusted accordingly.
+\end{quote}
+
+\textbf{B/C32.4.3 Date/time (of beginning of the one-month period for precipitation data)}
+
+\begin{quote}
+If the regional or national reporting practices require reporting monthly precipitation data for one-month period different from the period recommended in Note 1 to Regulation B/C32.2.3.1, then hour (0\textbf{~}04\textbf{~}004) shall be adjusted accordingly. This regulation does not apply if the beginning of the period for monthly precipitation data starts on the last day of the previous month in UTC.
+\end{quote}
+
+\textbf{B/C32.4.4 Date/time (of beginning of the one-month period for precipitation data on the last day of the previous month)}
+
+\begin{quote}
+If the regional or national reporting practices require reporting monthly precipitation data for period which starts on the last day of the previous month in UTC, template TM 308023 should be used. The beginning of the period for monthly precipitation data shall be specified by short time displacement (0 04~074) set to a relevant negative value. The beginning of one-month period for which the normals of precipitation are reported, shall be specified in a similar way.
+\end{quote}
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_

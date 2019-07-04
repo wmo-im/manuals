@@ -1,0 +1,142 @@
+*BUFR Table C* _– Data description operators_
+
+[cols=",,,",options="header",]
+|===
+a|
+TABLE
+
+REFERENCE
+
+|OPERAND |OPERATOR NAME |OPERATION DEFINITION
+|F X | | |
+|2 01 |YYY |Change data width |Add (YYY–128) bits to the data width given for each +
+data element in Table B, other than CCITT IA5 (character) data, code or flag tables.
+|2 02 |YYY |Change scale |Add YYY–128 to the scale for each data element in +
+Table B, other than CCITT IA5 (character) data, code or flag tables.
+|2 03 |YYY |Change reference values |Subsequent element descriptors define new reference values for corresponding Table B entries. Each new reference value is represented by YYY bits in the Data section. Definition of new reference values is concluded by coding this operator with YYY = 255. Negative reference values shall be represented by a positive integer with the left-most bit (bit 1) set to 1.
+|2 04 |YYY |Add associated field |Precede each data element with YYY bits of information. This operation associates a data field (e.g. quality control information) of YYY bits with each data element.
+|2 05 |YYY |Signify character |YYY characters (CCITT International Alphabet No. 5) are inserted as a data field of YYY x 8 bits in length.
+|2 06 |YYY |Signify data width for the immediately following local descriptor |YYY bits of data are described by the immediately +
+following descriptor.
+|2 07 |YYY |Increase scale, reference value and data width a|
+For Table B elements, which are not CCITT IA5 (character data), code tables, or flag tables:
+
+{empty}1. Add YYY to the existing scale factor
+
+{empty}2. Multiply the existing reference value by 10^YYY^
+
+{empty}3. Calculate ((10 x YYY) + 2) ÷ 3, disregard any +
+fractional remainder and add the result to the +
+existing bit width.
+
+|2 08 |YYY |Change width of +
+CCITT IA5 field |YYY characters from CCITT International Alphabet +
+No. 5 (representing YYY x 8 bits in length) replace the specified data width given for each CCITT IA5 element in Table B.
+|2 21 |YYY |Data not present |Data values present in Section 4 (Data section) corresponding to the following YYY descriptors shall be limited to data from Classes 01–09, and Class 31.
+|2 22 |000 |Quality information follows |The values of Class 33 elements which follow relate to the data defined by the data present bit-map.
+|2 23 |000 |Substituted values operator |The substituted values which follow relate to the data defined by the data present bit-map.
+|===
+
+_(continued)_
+
+_(BUFR Table C – continued)_
+
+[cols=",,,",options="header",]
+|===
+a|
+TABLE
+
+REFERENCE
+
+|OPERAND |OPERATOR NAME |OPERATION DEFINITION
+|F X | | |
+|2 23 |255 |Substituted values marker operator |This operator shall signify a data item containing a substituted value; the element descriptor for the substituted value is obtained by the application of the data present bit-map associated with the substituted values operator.
+|2 24 |000 |First-order statistical values follow |The statistical values which follow relate to the data defined by the data present bit-map.
+|2 24 |255 |First-order statistical values marker operator |This operator shall signify a data item containing a first-order statistical value of the type indicated by the preceding 0 08 023 element descriptor; the element descriptor to which the first-order statistic relates is obtained by the application of the data present bit-map associated with the first-order statistical values follow operator; first-order statistical values shall be represented as defined by this element descriptor.
+|2 25 |000 |Difference statistical values follow |The statistical values which follow relate to the data +
+defined by the data present bit-map.
+|2 25 |255 |Difference statistical values marker operator |This operator shall signify a data item containing a difference statistical value of the type indicated by the preceding 0 08 024 element descriptor; the element descriptor to which the difference statistical value relates is obtained by the application of the data present bit-map associated with the difference statistical values follow operator; difference statistical values shall be represented as defined by this element descriptor, but with a reference value of –2__^n^__ and a data width of (__n__+1), where _n_ is the data width given by the original descriptor. This special reference value allows the statistical difference values to be centred around zero.
+|2 32 |000 |Replaced/retained values follow |The replaced/retained values which follow relate to the data defined by the data present bit-map.
+|2 32 |255 |Replaced/retained value marker operator |This operator shall signify a data item containing the original of an element which has been replaced by a substituted value. The element descriptor for the retained value is obtained by the application of the data present bit-map associated with the substituted values operator.
+|2 35 |000 |Cancel backward data reference |This operator terminates all previously defined back- ward reference and cancels any previously defined data present bit-map; it causes the next data present bit-map to refer to the data descriptors which immediately precede the operator to which it relates.
+|2 36 |000 |Define data present bit-map |This operator defines the data present bit-map which follows for possible re-use; only one data present bit-map may be defined between this operator and the cancel use defined data present bit-map operator.
+|===
+
+_(continued)_
+
+_(BUFR Table C – continued)_
+
+[cols=",,,",options="header",]
+|===
+a|
+TABLE
+
+REFERENCE
+
+|OPERAND |OPERATOR NAME |OPERATION DEFINITION
+|F X | | |
+|2 37 |000 |Use defined data present bit-map |This operator causes the defined data present bit- map to be used again.
+|2 37 |255 |Cancel use defined data present bit-map |This operator cancels the re-use of the defined data +
+present bit-map.
+|2 41 |000 |Define event |This operator denotes the beginning of the definition of an event (see Note 19).
+|2 41 |255 |Cancel define event |This operator denotes the conclusion of the event +
+definition that was begun via the previous 2 41 000 operator.
+|2 42 |000 |Define conditioning event |This operator denotes the beginning of the definition of a conditioning event (see Note 19).
+|2 42 |255 |Cancel define conditioning event |This operator denotes the conclusion of the conditioning event definition that was begun via the previous 2 42 000 operator.
+|2 43 |000 |Categorical forecast values follow |The values which follow are categorical forecast values (see Note 20).
+|2 43 |255 |Cancel categorical forecast values follow |This operator denotes the conclusion of the definition of categorical forecast values that was begun via the previous 2 43 000 operator.
+|===
+
+Notes:
+
+{empty}(1) The operations specified by operator descriptors 2 01, 2 02, 2 03, 2 04, 2 07 and 2 08 remain defined until cancelled or until the end of the data subset.
+
+{empty}(2) If change scale is used, then it may be necessary for the originator of the message to supply an appropriately rescaled reference value and data width.
+
+{empty}(3) Cancellation of the use of the redefined value shall be effected by the inclusion of the appropriate operand with Y set to 0. The value shall then revert to the original Table B value.
+
+{empty}(4) Nesting of operator descriptors must guarantee unambiguous interpretation. In particular, operators defined within a set of replicated descriptors must be cancelled or completed within that set, and the 2 07 operator may neither be nested within any of the 2 01, 2 02, and 2 03 operators, nor vice-versa.
+
+{empty}(5) Nesting of the operator descriptor 2 04 is defined such that:
+
+____
+{empty}(a) Each new definition adds to the currently defined associated field. The order of the included associated information shall correspond with the order in which the associated fields have been defined.
+
+{empty}(b) Each cancellation (2 04 000) cancels only the most recently defined addition to the associated field.
+____
+
+{empty}(6) When the descriptor 2 04 YYY is to be used, it shall precede the first of the data descriptors to which it applies.
+
+{empty}(7) The data description operator 2 04 YYY, other than 2 04 000, shall be followed immediately by the descriptor 0 31 021 to indicate the meaning of the associated field.
+
+{empty}(8) In the data stream, the 6 bits described by 0 31 021 shall precede the YYY bits.
+
+_(continued)_
+
+_(BUFR Table C – continued)_
+
+{empty}(9) Once an associated field has been established and given meaning, the meaning may be changed by a re-application of descriptor 0 31 021. The associated field needs not to be cancelled in order to change the meaning. Further, if an associated field is cancelled, and then re-established, it must be given a meaning by a proper application of the 0 31 021 descriptor, as described in Notes 5 to 8, i.e. a previous assignment of meaning does not remain in force when the associated field is cancelled.
+
+{empty}(10) Data description operators shall not be applied to Table B, Class 31 entries.
+
+{empty}(11) The operation 2 05 permits the inclusion of plain language.
+
+{empty}(12) The operator 2 06 YYY allows for the inclusion of local descriptors in a message, with their associated data, which can then be by-passed by a receiver of the message. It can be applied to element descriptors (F = 0) only.
+
+{empty}(13) If "replaced/retained" values are indicated, this shall imply that the data element in the original part of the message has been replaced with a (presumably) better value; the original value has been retained in the message following the replaced/retained operator. If multiple replacements for the same data element are to be included, they shall be ordered such that the original datum shall be last, the first replacement shall precede it, the next precede that, etc. Each (set of) replaced/retained data values shall be indicated by the inclusion of the 2 32 000 operator.
+
+{empty}(14) If "substituted values” are indicated, this shall imply that the data element in the original part of the message is thought to be of poor quality. However, it has been left in the original message as received; an improved value has been placed within the message following the substituted values operator. If multiple substitutions for the same data element are to be included, they shall be ordered such that the first substitution shall be first, the next substitution shall follow it, the next follow that, etc. Thus, the (presumed) “best” value will be found at the end of the collection of substituted values. Each (set of) substituted data values shall be indicated by the inclusion of the 2 23 000 operator.
+
+{empty}(15) Operator 2 21 YYY allows for the construction of a BUFR message containing only coordinate (Classes 01–09), delayed replication (Class 31) and quality control information. The message could be linked back to the original data-containing message by comparison of the coordinate information in the two messages, or, in a local context, through “database” information in Section 2.
+
+{empty}(16) First-order statistics have values with a similar range and the same dimensions as the corresponding reported values (e.g. maxima, minima, means).
+
+{empty}(17) Difference statistics are difference values; they have dimensions the same as the corresponding reported values with respect to units, but assume a range centred on zero (e.g. the difference between reported and analysed values, the difference between reported and forecast values).
+
+{empty}(18) No operator descriptors are reserved for local use.
+
+{empty}(19) An event, as defined for use with operators 2 41 000 and 2 42 000, is a set of one or more circumstances described using appropriate Table B descriptors along with their corresponding data values. The grouping of such descriptors together as a single “event” allows them to be collectively assigned as the target of a separate descriptor such as 0 33 045 or 0 33 046. When defining a circumstance within an event, descriptor 0 33 042 may be employed preceding the appropriate Table B descriptor in order to indicate that the corresponding value is actually a bound for a range of values.
+
+{empty}(20) A categorical forecast value represents a “best guess” from among a set of related, and often mutually exclusive, data values or categories. Operator 2 43 000 may be used to designate one or more values as categorical forecast values, and descriptor 0 33 042 may be employed preceding any such value in order to indicate that that value is actually a bound for a range of values.
+
+____________

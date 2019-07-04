@@ -1,0 +1,91 @@
+ATTACHMENT III
+
+DISTRIBUTION FUNCTIONS IN GRIB
+
+Goal: representation of fields, which depends not only on space and time, but also on an additional continuous parameter, for example, diameter *_d_* or particle mass *_m_*. Such fields at the end are (density) distribution functions _f_(_x_, _y_, _z_, _t_; _d_) latexmath:[$\equiv$] _f_(*r*, _t_; _d_). They describe, for example, the distribution of particles with different particle sizes in the air. For simplicity, the time variable _t_ is omitted in the following; in GRIB this would be superfluous, because times are noted in the product definition section (PDS).
+
+Furthermore, this is an attempt to describe unimodal and multimodal distribution functions in a common GRIB2 framework.
+
+A GRIB file contains one or several fields, which describe the distribution function (concentrations, number densities, ...). The purpose of the GRIB template 4.57 analysis or forecast at a horizontal level or in a horizontal layer at a point in time for atmospheric chemical constituents based on a distribution function is to enable the user to calculate additional interesting variables (mostly integrals) from these fields, if the user knows the underlying distribution function. Examples are the mass density of cloud droplets:
+
+____
+latexmath:[$\rho\left( \mathbf{r} \right) = \ \int_{0}^{\infty}{\frac{1}{6}\pi d^{3}}\rho_{w}f\left( \mathbf{r},d \right)\text{dd}$] (1.1)
+____
+
+(with the density of water _ρ~w~_ = 1 000 kg/m^3^) or the radar reflectivity of rain droplet distributions:
+
+____
+latexmath:[$Z\left( \mathbf{r} \right) = const.\ \int_{0}^{\infty}d^{6}f\left( \mathbf{r},d \right)\text{dd}$] (1.2)
+____
+
+These are examples of distribution functions:
+
+{empty}1. Bin model with concentrations latexmath:[$c_{l}\left( \mathbf{r} \right)$] in the class (or mode) _l_. A concentration distribution function is described by:
+
+latexmath:[$f\left( \mathbf{r};d \right) = \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)}\delta(d - D_{l})$] (1.3) +
+ +
+In this model, the numbers latexmath:[$D_{l}$] for the diameter in these _N_ classes are fixed and prescribed latexmath:[$(p1 = \ D_{l})$]. +
+Area of application: bin models in the cloud microphysics, volcanic ash, ...
+
+{empty}2. N-modal concentration distribution function, composed by a Gaussian function: +
+ +
+latexmath:[$f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)\frac{1}{\sqrt{2\pi\sigma_{l}}}e^{- \left( \frac{d - D_{l}}{\sigma_{l}} \right)^{2}}}$] (1.4) +
+ +
+Again, N concentrations latexmath:[$c_{l}\left( \mathbf{r} \right)$] must be stored. The _N_ modes are defined by fixed values for diameter latexmath:[$D_{l}$] and width latexmath:[$\sigma_{l}$] (therefore, latexmath:[$p1 = \ D_{l}\ $] and latexmath:[$p2 = \ \sigma_{l}).$]
+
+{empty}3. N-modal concentration distribution function, composed by Gaussian function, in which diameter and width can vary from grid point to grid point: +
+ +
+latexmath:[$f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{c_{l}\left( \mathbf{r} \right)\frac{1}{\sqrt{2\pi\sigma_{l}\left( \mathbf{r} \right)}}e^{- \left( \frac{d - D_{l}\left( \mathbf{r} \right)}{\sigma_{l}\left( \mathbf{r} \right)} \right)^{2}}}$] (1.5) +
+ +
+Now, _3N_ fields latexmath:[$c_{l}\left( \mathbf{r} \right)$], latexmath:[$D_{l}\left( \mathbf{r} \right)$] and latexmath:[$\sigma_{l}\left( \mathbf{r} \right)$] must be stored.
+
+{empty}4. N-modal log-normal distribution for the number density:
+
+latexmath:[$f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{\frac{n_{l}\left( \mathbf{r} \right)}{\sqrt{2\pi}\log{\sigma_{l}\left( \mathbf{r} \right)}}e}^{- \ \frac{\log^{2}\frac{d}{D_{l}\left( \mathbf{r} \right)}}{2\log^{2}\sigma_{l}\left( \mathbf{r} \right)}}$] (1.6) +
+ +
+It is described by _3N_ fields latexmath:[$n_{l}\left( \mathbf{r} \right)$], latexmath:[$D_{l}\left( \mathbf{r} \right)$] and latexmath:[$\sigma_{l}\left( \mathbf{r} \right)$].
+
+{empty}5. N-modal log-normal distribution for the number density at fixed variance: +
+ +
+latexmath:[$f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}{\frac{n_{l}\left( \mathbf{r} \right)}{\sqrt{2\pi}\log\sigma_{l}}e}^{- \frac{\log^{2}\frac{d}{D_{l}\left( \mathbf{r} \right)}}{2\log^{2}\sigma_{l}}}$] (1.7) +
+ +
+It is described by _2N_ fields latexmath:[$n_{l}\left( \mathbf{r} \right)$], latexmath:[$D_{l}\left( \mathbf{r} \right)$] and _N_ fixed numbers latexmath:[$\sigma_{l}$] (_therefore_, latexmath:[$p1 = \ \sigma_{l}$]).
+
+{empty}6. N-modal log-normal distribution for the number density at fixed variance and the prescription of number density and mass density. Again, equation 1.7 is used. However, the field latexmath:[$D_{l}\left( \mathbf{r} \right)$] is not stored, but is expressed via: +
+ +
+latexmath:[$D_{l} = \left( \frac{m_{l}\left( \mathbf{r} \right)}{n_{l}\left( \mathbf{r} \right)\frac{\pi}{6}\rho_{p,l}e^{\frac{9}{2}\log^{2}\sigma_{l}}} \right)^{\frac{1}{3}}$] (1.8) +
+ +
+by the mass density latexmath:[$m_{l}\left( \mathbf{r} \right)$]. +
+ +
+It is described by _2N_ fields number density latexmath:[$n_{l}\left( \mathbf{r} \right)$] and mass density latexmath:[$m_{l}\left( \mathbf{r} \right)$], _N_ values latexmath:[$\sigma_{l}$] and _N_ values for the particle densities latexmath:[$\rho_{p,l}\ (p1 = \ \sigma_{l}\text{\ and}\ p2 = \ \rho_{p,l})$]. +
+ +
+(C. Hoose, 2004: master thesis, Univ. Karlsruhe) +
+ +
+Application area: aerosol fields
+
+{empty}7. N-modal exponential distribution function with prescribed specific mass latexmath:[$q\left( \mathbf{r} \right)$]: +
+ +
+latexmath:[$f\left( \mathbf{r};d \right) = \ \sum_{l = 1}^{N}N_{0,l}e^{- \lambda_{l}\left( \mathbf{r} \right)d}$] (1.9) +
+ +
+with a fixed intercept-parameter latexmath:[$N_{0,l}$] for the mode _l_. +
+ +
+For the case of spherical particles and latexmath:[$N = 1\ $](cloud droplets, rain droplets), the inverse lengthlatexmath:[$\ \lambda\left( \mathbf{r} \right)$] depends on the specific mass latexmath:[$q\left( \mathbf{r} \right)$] and the air density latexmath:[$\rho\left( \mathbf{r} \right)$] by: +
+ +
+latexmath:[$\lambda_{l}\left( \mathbf{r} \right) = \ \sqrt[4]{\frac{\pi\rho_{w,l}N_{0,l}}{\rho\left( \mathbf{r} \right)q(\mathbf{r})}}$] (1.10) +
+ +
+This formula also contains the density latexmath:[$\rho_{w,l}$] (for example, density of liquid water. In general this value is the same for all modes _l_) latexmath:[$\left( p1 = N_{0,l}\ \text{and}\ p2 = \ \rho_{w,l} \right).$] +
+ +
+Application area: forlatexmath:[$\ N = 1,\ $]an exponential distribution is assumed for most cloud physics particles (cloud ice, graupel, ...).
+
+{empty}8. Skew Gaussian function (for example, for temperature distributions): +
+ +
+latexmath:[$f\left( \mathbf{r};T \right) = \ \left\{ \begin{matrix}
+c_{r}e^{- \frac{{(T - T_{0}\left( \mathbf{r} \right))}^{2}}{\sigma_{r}^{2}(\mathbf{r})}},T\  > T_{0}\left( \mathbf{r} \right) \\
+c_{l}e^{- \frac{{(T - T_{0}\left( \mathbf{r} \right))}^{2}}{\sigma_{l}^{2}(\mathbf{r})}},T\  \leq T_{0}\left( \mathbf{r} \right) \\
+\end{matrix} \right.\ $] (1.11) +
+ +
+with three fields latexmath:[$T_{0}\left( \mathbf{r} \right)$], latexmath:[$\sigma_{r}\left( \mathbf{r} \right)$], latexmath:[$\sigma_{l}\left( \mathbf{r} \right)$]. The “left-sided” and “right-sided” variances latexmath:[$\sigma_{l,r}$] have the same physical dimension (temperature). To distinguish them, it is recommended to define two different GRIB elements; latexmath:[$c_{l}$] and latexmath:[$c_{r}$] are appropriate norms (not given here).
+
+{empty}9. . . .
+
+Though there is an extremely large amount of possible functional forms of distribution functions, in practice, only a few are used. However, the examples shown indicate that even for the same underlying distribution function, the parameters and fields that are prescribed or derived by others, as well as the independent variable, can differ significantly. In these examples, this was the diameter _d_; the particle mass _m_ could be another. Consequently, this list can become quite large during the lifetime of GRIB2. In the end, this GRIB template is an attempt to deliver a minimum of order together with complete information for users of GRIB data.

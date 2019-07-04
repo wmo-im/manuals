@@ -1,0 +1,1934 @@
+\textbf{B/C1} -- \textbf{Regulations for reporting SYNOP data in TDCF}
+
+\textbf{TM}~\textbf{307080} -- \textbf{BUFR template for synoptic reports from fixed land stations suitable for SYNOP data}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & \textbf{Sequence for representation of synoptic reports from a fixed land station suitable for SYNOP data}\tabularnewline
+\textbf{3 07 080} & \textbf{3 01 090} & \textbf{Surface station identification; time, horizontal and vertical coordinates}\tabularnewline
+& \textbf{3 02 031} & \textbf{Pressure information}\tabularnewline
+& \textbf{3 02 035} & \textbf{Basic synoptic ``instantaneous'' data}\tabularnewline
+& \textbf{3 02 036} & \textbf{Clouds with bases below station level}\tabularnewline
+& \textbf{3 02 047} & \textbf{Direction of cloud drift}\tabularnewline
+& \textbf{0 08 002} & \textbf{Vertical significance (surface observations)}\tabularnewline
+& \textbf{3 02 048} & \textbf{Direction and elevation of cloud}\tabularnewline
+& \textbf{3 02 037} & \textbf{State of ground, snow depth, ground minimum temperature}\tabularnewline
+& \textbf{3 02 043} & \textbf{Basic synoptic ``period'' data}\tabularnewline
+& \textbf{3 02 044} & \textbf{Evaporation data}\tabularnewline
+& \textbf{1 01 002} & \textbf{Replicate 1 descriptor 2 times}\tabularnewline
+& \textbf{3 02 045} & \textbf{Radiation data (from 1 hour and 24-hour period)}\tabularnewline
+& \textbf{3 02 046} & \textbf{Temperature change}\tabularnewline
+\bottomrule
+\end{longtable}
+
+This BUFR template for synoptic reports from fixed land stations further expands as follows:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\endhead
+& & & & Unit, scale\tabularnewline
+& & & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 01 090} & 3 01 004 & 0 01 001 & WMO block number II & Numeric, 0\tabularnewline
+& & 0 01 002 & WMO station number iii & Numeric, 0\tabularnewline
+& & 0 01 015 & Station or site name & CCITT IA5, 0\tabularnewline
+& & 0 02 001 & Type of station i\textsubscript{x} & Code table, 0\tabularnewline
+& 3 01 011 & 0 04 001 & Year & Year, 0\tabularnewline
+& & 0 04 002 & Month & Month, 0\tabularnewline
+& & 0 04 003 & Day YY & Day, 0\tabularnewline
+& 3 01 012 & 0 04 004 & Hour GG & Hour, 0\tabularnewline
+& & 0 04 005 & Minute gg & Minute, 0\tabularnewline
+& 3 01 021 & 0 05 001 & Latitude (high accuracy) & Degree, 5\tabularnewline
+& & 0 06 001 & Longitude (high accuracy) & Degree, 5\tabularnewline
+& 0 07 030 & & Height of station ground above mean sea level & m, 1\tabularnewline
+& 0 07 031 & & Height of barometer above mean sea level & m, 1\tabularnewline
+& & & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 031} & 3 02 001 & 0 10 004 & Pressure P\textsubscript{0}P\textsubscript{0}P\textsubscript{0}P\textsubscript{0} & Pa, --1\tabularnewline
+& & 0 10 051 & Pressure reduced to mean sea level PPPP & Pa, --1\tabularnewline
+& & 0 10 061 & 3-hour pressure change ppp & Pa, --1\tabularnewline
+& & 0 10 063 & Characteristic of pressure tendency a & Code table, 0\tabularnewline
+& 0 10 062 & & 24-hour pressure change p\textsubscript{24}p\textsubscript{24}p\textsubscript{24} & Pa, --1\tabularnewline
+& 0 07 004 & & Pressure (standard level) a\textsubscript{3} & Pa, --1\tabularnewline
+& 0 10 009 & & Geopotential height of the standard level hhh & gpm, 0\tabularnewline
+& & & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+& & & \emph{Temperature and humidity data} &\tabularnewline
+\textbf{3 02 035} & \textbf{3 02 032} & 0 07 032 & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (for temperature and humidity measurement)}} & m, 2\tabularnewline
+& & 0 12 101 & Temperature/air temperature s\textsubscript{n}TTT & K, 2\tabularnewline
+& & 0 12 103 & Dewpoint temperature s\textsubscript{n}T\textsubscript{d}T\textsubscript{d}T\textsubscript{d} & K, 2\tabularnewline
+& & 0 13 003 & Relative humidity & \%, 0\tabularnewline
+& & & \emph{Visibility data} &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section}{%
+\subsection{3 02 033}\label{section}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-1}{%
+\subsection{0 07 032}\label{section-1}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Height of sensor above local ground (or deck of marine platform)\\
+(for visibility measurement)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+& & 0 20 001 & Horizontal visibility VV & m, --1\tabularnewline
+& & & \emph{Precipitation past 24 hours} &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{3 02 034}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 07 032\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{height-of-sensor-above-local-ground-or-deck-of-marine-platform-for-precipitation-measurement}{%
+\subparagraph{\texorpdfstring{Height of sensor above local ground (or deck of marine platform)\\
+(for precipitation measurement)}{Height of sensor above local ground (or deck of marine platform) (for precipitation measurement)}}\label{height-of-sensor-above-local-ground-or-deck-of-marine-platform-for-precipitation-measurement}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+& & 0 13 023 & Total precipitation past 24 hours R\textsubscript{24}R\textsubscript{24}R\textsubscript{24}R\textsubscript{24} & kg m\textsuperscript{--2}, 1\tabularnewline
+& 0 07 032 & & \vtop{\hbox{\strut Height of sensor above local ground (or deck of marine platform)}\hbox{\strut (set to missing to cancel the previous value)}} & m, 2\tabularnewline
+& & & \emph{General cloud information} &\tabularnewline
+& 3 02 004 & 0 20 010 & Cloud cover (total) N & \%, 0\tabularnewline
+& & 0 08 002 & Vertical significance (surface observations) & Code table, 0\tabularnewline
+& & 0 20 011 & Cloud amount (of low or middle clouds) N\textsubscript{h} & Code table, 0\tabularnewline
+& & 0 20 013 & Height of base of cloud h & m, --1\tabularnewline
+& & 0 20 012 & Cloud type (low clouds) C\textsubscript{L} & Code table, 0\tabularnewline
+& & 0 20 012 & Cloud type (middle clouds) C\textsubscript{M} & Code table, 0\tabularnewline
+& & 0 20 012 & Cloud type (high clouds) C\textsubscript{H} & Code table, 0\tabularnewline
+& & & \emph{Individual cloud layers or masses} &\tabularnewline
+& 1 01 000 & & Delayed replication of 1 descriptor &\tabularnewline
+& 0 31 001 & & Delayed descriptor replication factor & Numeric, 0\tabularnewline
+& 3 02 005 & 0 08 002 & Vertical significance (surface observations) & Code table, 0\tabularnewline
+& & 0 20 011 & Cloud amount N\textsubscript{s} & Code table, 0\tabularnewline
+& & 0 20 012 & Cloud type C & Code table, 0\tabularnewline
+& & 0 20 013 & Height of base of cloud h\textsubscript{s}h\textsubscript{s} & m, --1\tabularnewline
+& & & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{3 02 036} & 1 05 000 & & Delayed replication of 5 descriptors &\tabularnewline
+& 0 31 001 & & Delayed descriptor replication factor & Numeric, 0\tabularnewline
+& 0 08 002 & & Vertical significance (surface observations) & Code table, 0\tabularnewline
+& 0 20 011 & & Cloud amount N' & Code table, 0\tabularnewline
+& 0 20 012 & & Cloud type C' & Code table, 0\tabularnewline
+& 0 20 014 & & Height of top of cloud H'H' & m, --1\tabularnewline
+& 0 20 017 & & Cloud top description C\textsubscript{t} & Code table, 0\tabularnewline
+& & & \textbf{Direction of cloud drift} group 56D\textsubscript{L}D\textsubscript{M}D\textsubscript{H} &\tabularnewline
+\textbf{3 02 047} & 1 02 003 & & Replicate 2 descriptors 3 times &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 08 002\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Vertical significance (surface observations)
+
+= 7 (low cloud)
+
+= 8 (middle cloud)
+
+= 9 (high cloud)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Code table, 0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 20 054\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+True direction from which a phenomenon or clouds are moving or in which they are observed
+
+D\textsubscript{L}, D\textsubscript{M}, D\textsubscript{H}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Degree true, 0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{0 08 002}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Vertical significance (surface observations)
+
+(set to missing to cancel the previous value)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Code table, 0\strut
+\end{minipage}\tabularnewline
+& & & \textbf{Direction and elevation of cloud} gr. 57CD\textsubscript{a}e\textsubscript{C} &\tabularnewline
+\textbf{3 02 048} & 0 05 021 & & Bearing or azimuth D\textsubscript{a} & Degree true, 2\tabularnewline
+& 0 07 021 & & Elevation e\textsubscript{C} & Degree, 2\tabularnewline
+& 0 20 012 & & Cloud type C & Code table, 0\tabularnewline
+& 0 05 021 & & \vtop{\hbox{\strut Bearing or azimuth}\hbox{\strut (set to missing to cancel the previous value)}} & Degree true, 2\tabularnewline
+& 0 07 021 & & \vtop{\hbox{\strut Elevation}\hbox{\strut (set to missing to cancel the previous value)}} & Degree, 2\tabularnewline
+& & & \textbf{State of ground, snow depth, ground minimum temperature} &\tabularnewline
+\textbf{3 02 037} & \textbf{0 20 062} & & State of the ground (with or without snow) E or E' & Code table, 0\tabularnewline
+& \textbf{0 13 013} & & Total snow depth sss & m, 2\tabularnewline
+& \textbf{0 12 113} & & Ground minimum temperature, past 12 hours s\textsubscript{n}T\textsubscript{g}T\textsubscript{g} & K, 2\tabularnewline
+& & & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+& & & \emph{Present and past weather} &\tabularnewline
+\textbf{3 02 043} & \textbf{3 02 038} & 0 20 003 & Present weather ww & Code table, 0\tabularnewline
+& & 0 04 024 & Time period or displacement (in hours) & Hour, 0\tabularnewline
+& & 0 20 004 & Past weather (1) W\textsubscript{1} & Code table, 0\tabularnewline
+& & 0 20 005 & Past weather (2) W\textsubscript{2} & Code table, 0\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-2}{%
+\subsection{}\label{section-2}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-3}{%
+\subsection{}\label{section-3}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\emph{Sunshine data (from 1 hour and 24-hour period)}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+& \textbf{1 01 002} & & Replicate 1 descriptor 2 times &\tabularnewline
+& \textbf{3 02 039} & 0 04 024 & Time period or displacement (in hours) & Hour, 0\tabularnewline
+& & 0 14 031 & Total sunshine SS \textbf{and} SSS & Minute, 0\tabularnewline
+& & & \emph{Precipitation measurement} &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{3 02 040}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 07 032\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Height of sensor above local ground (or deck of marine platform)
+
+(for precipitation measurement)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+& & 1 02 002 & Replicate 2 descriptors 2 times &\tabularnewline
+& & 0 04 024 & Time period or displacement (in hours) t\textsubscript{R} & Hour, 0\tabularnewline
+& & 0 13 011 & Total precipitation/total water equivalent RRR & kg m\textsuperscript{--2}, 1\tabularnewline
+& & & \emph{Extreme temperature data} &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{3 02 041}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 07 032\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Height of sensor above local ground (or deck of marine platform)
+
+(for temperature measurement)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+& & 0 04 024 & Time period or displacement & Hour, 0\tabularnewline
+& & 0 04 024 & Time period or displacement (see Notes 1 and 2) & Hour, 0\tabularnewline
+& & 0 12 111 & Maximum temperature, at height and over period specified s\textsubscript{n}T\textsubscript{x}T\textsubscript{x}T\textsubscript{x} & K, 2\tabularnewline
+& & 0 04 024 & Time period or displacement & Hour, 0\tabularnewline
+& & 0 04 024 & Time period or displacement (see Note 2) & Hour, 0\tabularnewline
+& & 0 12 112 & Minimum temperature, at height and over period specified s\textsubscript{n}T\textsubscript{n}T\textsubscript{n}T\textsubscript{n} & K, 2\tabularnewline
+& & & \emph{Wind data} &\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{3 02 042}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 07 032\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Height of sensor above local ground (or deck of marine platform)
+
+(for wind measurement)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+& & 0 02 002 & \vtop{\hbox{\strut Type of instrumentation for wind measurement}\hbox{\strut i\textsubscript{w}}} & Flag table, 0\tabularnewline
+& & 0 08 021 & Time significance = 2 Time averaged & Code table, 0\tabularnewline
+& & 0 04 025 & Time period or displacement = --10 minutes, or number of minutes after a significant change of wind & Minute, 0\tabularnewline
+& & 0 11 001 & Wind direction dd & Degree true, 0\tabularnewline
+& & 0 11 002 & Wind speed ff & m s\textsuperscript{--1}, 1\tabularnewline
+& & 0 08 021 & Time significance = missing value & Code table, 0\tabularnewline
+& & 1 03 002 & Replicate 3 descriptors 2 times &\tabularnewline
+& & 0 04 025 & Time period or displacement (in minutes) & Minute, 0\tabularnewline
+& & 0 11 043 & Maximum wind gust direction & Degree true, 0\tabularnewline
+& & 0 11 041 & Maximum wind gust speed 910f\textsubscript{m}f\textsubscript{m}, 911f\textsubscript{x}f\textsubscript{x} & m s\textsuperscript{--1}, 1\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 07 032\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-4}{%
+\subsection{}\label{section-4}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Height of sensor above local ground (or deck of marine platform)\\
+(set to missing to cancel the previous value)\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+m, 2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-5}{%
+\subsection{}\label{section-5}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{Evaporation data}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\textbf{3 02 044} & 0 04 024 & & Time period or displacement (in hours) & Hour, 0\tabularnewline
+& 0 02 004 & & Type of instrumentation for evaporation measurement or type of crop for which evapotranspiration is reported i\textsubscript{E} & Code table, 0\tabularnewline
+& 0 13 033 & & Evaporation/evapotranspiration EEE & kg m\textsuperscript{--2}, 1\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-6}{%
+\subsection{}\label{section-6}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\textbf{Radiation data (from 1 hour and 24-hour period)}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\textbf{1 01 002} & & & Replicate 1 descriptor 2 times &\tabularnewline
+\textbf{3 02 045} & 0 04 024 & & Time period or displacement (in hours) & Hour, 0\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 14 002\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Long-wave radiation, integrated over period specified
+
+553SS 4FFFF or 553SS 5FFFF,
+
+\textbf{55SSS 4}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24} \textbf{or 55SSS 5}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+J m\textsuperscript{--2}, --3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-7}{%
+\subsection{0 14 004}\label{section-7}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\hypertarget{section-8}{%
+\subsection{}\label{section-8}}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Short-wave radiation, integrated over period specified\\
+553SS 6FFFF, \textbf{55SSS} 6F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+J m\textsuperscript{--2}, --3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+0 14 016\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+Net radiation, integrated over period specified
+
+553SS 0FFFF or 553SS 1FFFF,
+
+\textbf{55SSS 0}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24} \textbf{or 55SSS 1}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
+J m\textsuperscript{--2}, --4\strut
+\end{minipage}\tabularnewline
+& 0 14 028 & & \vtop{\hbox{\strut Global solar radiation (high accuracy), integrated over period specified}\hbox{\strut 553SS 2FFFF, \textbf{55SSS} 2F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}}} & J m\textsuperscript{--2}, --2\tabularnewline
+& 0 14 029 & & \vtop{\hbox{\strut Diffuse solar radiation (high accuracy), integrated over period specified}\hbox{\strut 553SS 3FFFF, \textbf{55SSS} 3F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}}} & J m\textsuperscript{--2}, --2\tabularnewline
+& 0 14 030 & & \vtop{\hbox{\strut Direct solar radiation (high accuracy), integrated over period specified}\hbox{\strut 55408 4FFFF, \textbf{55508} 5F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}F\textsubscript{24}}} & J m\textsuperscript{--2}, --2\tabularnewline
+& & & \textbf{Temperature change} group 54g\textsubscript{0}s\textsubscript{n}d\textsubscript{T} &\tabularnewline
+\textbf{3 02 046} & 0 04 024 & & Time period or displacement & Hour, 0\tabularnewline
+& 0 04 024 & & Time period or displacement (see Note 3) & Hour, 0\tabularnewline
+& 0 12 049 & & Temperature change over specified period s\textsubscript{n}d\textsubscript{T} & K, 0\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes:
+
+(1) Within RA IV, the maximum temperature at 1200 UTC is reported for the previous calendar day (i.e. the ending time of the period is not equal to the nominal time of the report). To construct the required time range, descriptor 0~04~024 has to be included two times. If the period ends at the nominal time of the report, value of the second 0~04~024 shall be set to 0.
+
+(2) Within RA III, the maximum daytime temperature and the minimum night-time temperature is reported (i.e. the ending time of the period may not be equal to the nominal time of the report). To construct the required time range, descriptor 0~04~024 has to be included two times. If the period ends at the nominal time of the report, value of the second 0~04~024 shall be set to 0.
+
+(3) To construct the required time range, descriptor 0~04~024 has to be included two times.
+
+(4) Maritime countries may use template TM~307079 (BUFR template for synoptic reports from fixed land stations suitable for SYNOP data and for maritime data from coastal and island stations) instead of template TM~307080 if preferable.
+
+(5) Template TM~307096 (BUFR template for representation of SYNOP data with supplementary information on one hour observations) may be used instead of template TM~307080 if reporting of synoptic data together with one hour AWS data is required.
+
+\textbf{\\
+Regulations:}
+
+\textbf{B/C1.1 Section 1 of BUFR or CREX}
+
+\textbf{B/C1.2 Surface station identification; time, horizontal and vertical coordinates}
+
+\textbf{B/C1.3 Pressure information}
+
+\textbf{B/C1.4 Basic synoptic ``instantaneous'' data}
+
+\textbf{B/C1.4.1 Temperature and humidity data}
+
+\textbf{B/C1.4.2 Visibility data}
+
+\textbf{B/C1.4.3 Precipitation past 24 hours}
+
+B/C1.4.4 General cloud information
+
+\textbf{B/C1.4.5 Individual cloud layers or masses}
+
+\textbf{B/C1.5 Clouds with bases below station level}
+
+\textbf{B/C1.6 Direction of cloud drift}
+
+\textbf{B/C1.7 Direction and elevation of cloud}
+
+\textbf{B/C1.8 State of ground, snow depth, ground minimum temperature}
+
+\textbf{B/C1.9 ``Instantaneous'' data required by regional or national reporting practices}
+
+\textbf{B/C1.10 Basic synoptic ``period'' data}
+
+\textbf{B/C1.10.1 Present and past weather}
+
+B/C1.10.2 Sunshine data \textbf{(from 1 hour and 24-hour period)}
+
+B/C1.10.3 Precipitation measurement
+
+\textbf{B/C1.10.4 Extreme temperature data}
+
+\textbf{B/C1.10.5 Wind data}
+
+\textbf{B/C1.11 Evaporation data}
+
+\textbf{B/C1.12 Radiation data (from 1 hour and 24-hour period)}
+
+\textbf{B/C1.13 Temperature change}
+
+B/C1.14 \textbf{``Period'' data required by regional or national reporting practices}
+
+Annex: Regional regulations for reporting SYNOP data in TDCF
+
+\textbf{B/C1.1 Section 1 of BUFR or CREX}
+
+\textbf{B/C1.1.1 Entries required in Section 1 of BUFR}
+
+\begin{quote}
+\textbf{The following entries shall be included in BUFR Section 1:}
+
+-- \textbf{BUFR master table;}
+
+-- \textbf{Identification of originating/generating centre;}
+
+-- \textbf{Identification of originating/generating sub-centre;}
+
+-- \textbf{Update sequence number;}
+
+-- \textbf{Identification of inclusion of optional section;}
+
+-- \textbf{Data category (= 000 for SYNOP data);}
+
+-- \textbf{International data sub-category (see Notes 1 and 2);}
+
+-- \textbf{Local data sub-category;}
+
+-- \textbf{Version number of master table;}
+
+-- \textbf{Version number of local tables;}
+
+-- \textbf{Year (year of the century up to BUFR edition 3);}
+
+-- \textbf{Month (standard time);}
+
+-- \textbf{Day (standard time = YY in the} abbreviated telecommunication header \textbf{for SYNOP data});
+
+-- \textbf{Hour (standard time = GG in the} abbreviated telecommunication header \textbf{for SYNOP data});
+
+-- \textbf{Minute (standard time = 00 for SYNOP data);}
+
+-- \textbf{Second (= 0) (see Note 1).}
+
+\textbf{Notes:}
+
+\textbf{(1) Inclusion of this entry is required starting with BUFR edition 4.}
+\end{quote}
+
+\textbf{\\
+}
+
+\begin{quote}
+\textbf{(2) If required, the international data sub-category shall be included for SYNOP data as:}
+
+\textbf{= 002 at main synoptic times 00, 06, 12, 18 UTC;}
+
+\textbf{= 001 at intermediate synoptic times 03, 09, 15, 21 UTC;}
+
+\textbf{= 000 at observation times 01, 02, 04, 05, 07, 08, 10, 11, 13, 14, 16, 17, 19, 20, 22 and 23 UTC.}
+
+\textbf{(3) If an NMHS performs conversion of SYNOP data produced by another NMHS, o}riginating centre in Section 1 shall indicate \textbf{the converting centre and o}riginating sub-centre shall indicate the \textbf{producer of SYNOP bulletins. Producer of SYNOP bulletins shall be specified in Common Code table C-12 as a sub-centre of the originating centre, i.e. of the NMHS executing the conversion.}
+\end{quote}
+
+\textbf{B/C1.1.2 Entries required in Section 1 of CREX}
+
+\begin{quote}
+\textbf{The following entries shall be included in CREX Section 1:}
+
+-- \textbf{CREX master table;}
+
+-- \textbf{CREX edition number;}
+
+-- \textbf{CREX table version number;}
+
+-- \textbf{Version number of BUFR master table (see Note 1);}
+
+-- \textbf{Version number of local tables (see Note 1);}
+
+-- \textbf{Data category (= 000 for SYNOP data);}
+
+-- \textbf{International data sub-category (see Notes 1 and 2);}
+
+-- \textbf{Identification of originating/generating centre (see Note 1);}
+
+-- \textbf{Identification of originating/generating sub-centre (see Note 1);}
+
+-- \textbf{Update sequence number (see Note 1);}
+
+-- \textbf{Number of subsets (see Note 1);}
+
+-- \textbf{Year (standard time) (see Note 1);}
+
+-- \textbf{Month (standard time) (see Note 1);}
+
+-- \textbf{Day (standard time = YY in the} abbreviated telecommunication header \textbf{for SYNOP data}) \textbf{(see Note 1);}
+
+-- \textbf{Hour (standard time = GG in the} abbreviated telecommunication header \textbf{for SYNOP data}) \textbf{(see Note 1);}
+
+-- \textbf{Minute (standard time = 00 for SYNOP data) (see Note 1).}
+
+\textbf{Notes:}
+
+\textbf{(1) Inclusion of these entries is required starting with CREX edition 2.}
+
+\textbf{(2) If inclusion of international data sub-category is required, Note 2 under Regulation B/C1.1.1 applies.}
+
+\textbf{(3) If an NMHS performs conversion of SYNOP data produced by another NMHS, Note~3 under Regulation B/C1.1.1 applies.}
+\end{quote}
+
+\textbf{B/C1.2 Surface station identification; time, horizontal and vertical coordinates \textless3}~\textbf{01}~\textbf{090\textgreater{}}
+
+\textbf{B/C1.2.1 Fixed station identification}
+
+\begin{quote}
+WMO block number (0~01~001) and WMO station number (0~01~002) shall be always reported as a non-missing value.
+
+Station or site name (0~01~015) shall be reported as published in \emph{Weather Reporting} (WMO-No. 9), Volume A -- Observing Stations, provided that the station name does not exceed 20 characters. A shortened version of the name shall be reported otherwise.
+
+Type of station (0~02~001) shall be reported to indicate the type of the station operation (manned, automatic or hybrid).
+
+Note: If a station operates as a manned station for a part of the day and as an automatic station for the rest of the day, code figure 2 (Hybrid) may be used in all reports. It is preferable, however, to use code figure 1 (Manned) in reports produced under the supervision of an observer, and a code figure 0 (Automatic) in reports produced while the station operates in the automatic mode.
+\end{quote}
+
+\textbf{B/C1.2.2 Time of observation}
+
+\begin{quote}
+Year (0~04~001), month (0~04~002), day (0~04~003), hour (0~04~004) and minute (0~04~005) of the actual time of observation shall be reported.
+
+Note: The actual time of observation shall be the time at which the barometer is read. {[}12.1.6{]}
+\end{quote}
+
+\textbf{B/C1.2.2.1} If the actual time of observation differs by 10 minutes or less from the standard time reported in Section 1, the standard time may be reported instead of the actual time of observation. {[}12.2.8{]}
+
+\textbf{B/C1.2.3 Horizontal and vertical coordinates}
+
+\begin{quote}
+\textbf{Latitude (0}~\textbf{05}~\textbf{001) and longitude} (0~06~001) of the station shall be reported in degrees with precision in 10\textsuperscript{--5} of a degree.
+
+Height of station ground above mean sea level (0~07~030) and height of barometer above mean sea level (0~07~031) shall be reported in metres with precision in tenths of a metre.
+
+Note: The official altitude of the aerodrome (HA in Volume A) shall not be used to report Height of station ground above mean sea level 0~07~030 in BUFR or CREX messages from aerodromes. Those are two different vertical coordinates. "Height of station ground above mean sea level" for each station should be made available to the encoding centre concerned, which may be a centre within the same NMHS or other NMC/RTH.
+\end{quote}
+
+\textbf{B/C1.3 Pressure information \textless3~02~031\textgreater{}}
+
+\textbf{B/C1.3.1 Pressure at the station level}
+
+\begin{quote}
+Pressure at the station level (0~10~004), i.e. at the level defined by 0~07~031 (height of barometer above mean sea level), shall be reported in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C1.3.1.1} The station pressure shall be included in reports for global exchange from land stations, together with either the mean sea level pressure or, in accordance with Regulation B/C1.3.5.1, with the geopotential height of a standard pressure level.
+
+\begin{quote}
+Note: Inclusion of the station pressure at other times is left to the decision of individual Members.
+
+{[}12.2.4{]}
+\end{quote}
+
+\textbf{B/C1.3.2 Pressure} \textbf{reduced to mean sea level}
+
+\begin{quote}
+Pressure reduced to mean sea level (0~10~051) shall be reported in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C1.3.2.1} Whenever air pressure at mean sea level can be computed with reasonable accuracy, this pressure shall be reported.
+
+\begin{quote}
+Notes:
+
+(1) For a station situated in a region of normal synoptic network density, the pressure at mean sea level is considered not to be computed with reasonable accuracy when it introduces a deformation into the analysis of the horizontal pressure field, which is purely local and recurring.
+
+(2) For a station lying in a data-sparse area of the synoptic network, reasonable accuracy will be obtained when using a reduction method, which has proved to be satisfactory in a region of normal network density and under similar geographic conditions.
+
+{[}12.2.3.4.1{]}
+\end{quote}
+
+\textbf{B/C1.3.3 Three-hour pressure change and characteristic of pressure tendency}
+
+\begin{quote}
+Amount of pressure change at station level, during the three hours preceding the time of observation (0~10~061), either positive, zero \emph{or negative}, shall be reported in pascals (with precision in tens of pascals).
+\end{quote}
+
+\textbf{B/C1.3.3.1} Unless specified otherwise by regional decision, pressure tendency shall be included whenever the three-hourly pressure tendency is available. {[}12.2.3.5.1{]}
+
+\textbf{B/C1.3.3.2} The characteristic of pressure tendency (Code table 0~10~063) over the past three hours shall, whenever possible, be determined on the basis of pressure samples at equi-spaced intervals not exceeding one hour.
+
+\begin{quote}
+Note: Algorithms for selecting the appropriate code figure are included in the \emph{Guide to Meteorological Instruments and Methods of Observation} (WMO-No. 8).
+
+{[}12.2.3.5.2{]}
+\end{quote}
+
+\textbf{B/C1.3.3.3} Where it is not possible to apply the algorithms specified in Regulation B/C1.3.3.2 in reports from automatic weather stations, the characteristic of pressure tendency shall be reported as 2 when the tendency is positive, as 7 when the tendency is negative, and as 4 when the atmospheric pressure is the same as three hours before. {[}12.2.3.5.3{]}
+
+\textbf{B/C1.3.4 24-hour pressure change}
+
+\begin{quote}
+If specified by regional decision, amount of surface pressure change at station level, during 24 hours preceding the time of observation (0~10~062), either positive, zero or negative, shall be reported in pascals (with precision in tens of pascals). {[}12.4.7.1.2(k), (l){]}
+\end{quote}
+
+\textbf{B/C1.3.5 Geopotential height of the standard level}
+
+\begin{quote}
+Geopotential height of the standard level (0~10~009) shall be reported in geopotential metres. The standard isobaric level is specified by the preceding entry Pressure (0~07~004).
+\end{quote}
+
+\textbf{B/C1.3.5.1} By regional decision, a high-level station, which cannot give pressure at mean sea level to a satisfactory degree of accuracy, shall report both the station-level pressure and the geopotential height of an agreed standard isobaric surface. {[}12.2.3.4.2{]}
+
+\textbf{B/C1.4 Basic synoptic ``instantaneous'' data \textless3~02~035\textgreater{}}
+
+\textbf{B/C1.4.1 Temperature and humidity data \textless3~02~032\textgreater{}}
+
+\textbf{B/C1.4.1.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for temperature and humidity measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of temperature and humidity sensors above ground at the point where the sensors are located.
+\end{quote}
+
+\textbf{B/C1.4.1.2 Dry-bulb air temperature}
+
+\begin{quote}
+Dry-bulb air temperature (0~12~101) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius)
+
+Notes:
+
+(1) Temperature data shall be reported with precision in hundredths of a degree even if they are measured with the accuracy in tenths of a degree. This requirement is based on the fact that conversion from the Kelvin to the Celsius scale has often resulted into distortion of the data values.
+
+(2) Temperature t (in degrees Celsius) shall be converted into temperature T (in kelvin) using equation: T = t + 273.15.
+\end{quote}
+
+\textbf{B/C1.4.1.2.1} When the data are not available as a result of a temporary instrument failure, this quality shall be included as a missing value. {[}12.2.3.2{]}
+
+\textbf{B/C1.4.1.3 Dewpoint temperature}
+
+\begin{quote}
+Dewpoint temperature (0~12~103) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Note: Notes 1 and 2 under Regulation B/C1.4.1.2 shall apply.
+\end{quote}
+
+\textbf{B/C1.4.1.3.1} When the data are not available as a result of a temporary instrument failure, this quality shall be included as a missing value. {[}12.2.3.3.2{]}
+
+\textbf{B/C1.4.1.4 Relative humidity}
+
+\begin{quote}
+Relative humidity (0~13~003) shall be reported in units of a per cent.
+\end{quote}
+
+\textbf{B/C1.4.1.4.1} \emph{Both dewpoint temperature and relative humidity shall be reported when available.}
+
+\textbf{B/C1.4.2 Visibility data \textless3~02~033\textgreater{}}
+
+\textbf{B/C1.4.2.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for visibility measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of visibility sensors above ground at the point where the sensors are located. If visibility is estimated by a human observer, average height of observer's eyes above station ground shall be reported.
+\end{quote}
+
+\textbf{B/C1.4.2.2 Horizontal visibility}
+
+\begin{quote}
+Horizontal visibility (0~20~001) at surface shall be reported in metres (with precision in tens of metres).
+\end{quote}
+
+\textbf{B/C1.4.2.2.1} When the horizontal visibility is not the same in different directions, the shortest distance shall be given for visibility. {[}12.2.1.3.1{]}
+
+\textbf{B/C1.4.2.2.2} Horizontal visibility greater than 81~900 m shall be expressed by 0~20~001 set to 81~900 m; if TDCF data are converted from TAC data, 0~20~001 set to 81~900 m shall indicate horizontal visibility greater than 70~000 m.
+
+\textbf{B/C1.4.3 Precipitation past 24 hours \textless3~02~034\textgreater{}}
+
+\textbf{B/C1.4.3.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for precipitation measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of the rain gauge rim above ground at the point where the rain gauge is located.
+\end{quote}
+
+\textbf{B/C1.4.3.2 Total amount of precipitation during the 24-hour period}
+
+\begin{quote}
+Total amount of precipitation during the 24-hour period ending at the time of observation (0~13~023) shall be reported in kilograms per square metre (with precision in tenths of a kilogram per square metre). {[}12.4.9{]}
+\end{quote}
+
+\textbf{B/C1.4.3.2.1} The precipitation over the past 24 hours shall be included (not missing) at least once a day at one appropriate time of the main standard times (0000, 0600, 1200, 1800 UTC). {[}12.4.1{]}
+
+\textbf{B/C1.4.3.2.2} Precipitation, when it can be and has to be reported, shall be reported as\\
+0.0 kg\emph{~}m\textsuperscript{--2} if no precipitation were observed during the referenced period. {[}12.2.5.4{]}
+
+\textbf{B/C1.4.3.2.3} Trace shall be reported as ``--0.1 kg~m\textsuperscript{--2}''.
+
+\textbf{B/C1.4.4 General cloud information \textless3~02~004\textgreater{}}
+
+\textbf{B/C1.4.4.1 Total cloud cover}
+
+\begin{quote}
+\emph{Total cloud cover (0~20~010) shall embrace the total fraction of the celestial dome covered by clouds irrespective of their genus. It shall be reported} in \emph{units of a per cent}.
+
+Note: Total cloud cover shall be reported as 113 when sky is obscured by fog and/or other meteorological phenomena.
+\end{quote}
+
+\textbf{B/C1.4.4.1.1} Total cloud cover shall be reported as actually seen by the observer during the observation. {[}12.2.2.2.1{]}
+
+\textbf{B/C1.4.4.1.2} Altocumulus perlucidus or Stratocumulus perlucidus (``mackerel sky'') shall be reported \emph{as 99\% or less} (unless overlying clouds appear to cover the whole sky) since breaks are always present in this cloud form even if it extends over the whole celestial dome. {[}12.2.2.2.2{]}
+
+\textbf{B/C1.4.4.1.3} Total cloud cover shall be reported as zero when blue sky or stars are seen through existing fog or other analogous phenomena without any trace of cloud being seen. {[}12.2.2.2.3{]}
+
+\textbf{B/C1.4.4.1.4} When clouds are observed through fog or analogous phenomena, their amount shall be evaluated and reported as if these phenomena were non-existent. {[}12.2.2.2.4{]}
+
+\textbf{B/C1.4.4.1.5} Total cloud cover shall not include the amount resulting from rapidly dissipating condensation trails. {[}12.2.2.2.5{]}
+
+\textbf{B/C1.4.4.1.6} Persistent condensation trails and cloud masses which have obviously developed from condensation trails shall be reported as cloud. {[}12.2.2.2.6{]}
+
+\textbf{B/C1.4.4.2 Vertical significance (surface observations)} -- Code table 0~08~002
+
+\begin{quote}
+To specify vertical significance (0~08~002) within the sequence 3~02~004, a code figure shall be selected in the following way:
+
+(a) If low clouds are observed, then code figure 7 (Low cloud) shall be used.
+
+(b) If there are no low clouds but middle clouds are observed, then code figure 8 (Middle clouds) shall be used.
+
+(c) If there are no low and there are no middle clouds but high clouds are observed, then code figure 0 shall be used.
+
+(d) If sky is obscured by fog and/or other phenomena, then code figure 5 (Ceiling) shall be used.
+
+(e) If there are no clouds (clear sky), then code figure 62 (Value not applicable) shall be used.
+
+(f) If the cloud cover is not discernible for reasons other than (d) above or observation is not made, then code figure 63 (Missing value) shall be used.
+\end{quote}
+
+\textbf{B/C1.4.4.3 Cloud amount (of low or middle clouds}) -- Code table 0~20~011
+
+\begin{quote}
+\emph{Amount of all the low clouds (clouds of the genera Stratocumulus, Stratus, Cumulus, and Cumulonimbus) present or, if no low clouds are present, the amount of all the middle clouds (clouds of the genera Altocumulus, Altostratus, and Nimbostratus) present}.
+\end{quote}
+
+\textbf{B/C1.4.4.3.1} Cloud amount shall be reported as follows:
+
+\begin{quote}
+(a) If there are low clouds, then the total amount of all low clouds, as actually seen by the observer during the observation, shall be reported for the cloud amount.
+
+(b) If there are no low clouds but there are middle clouds, then the total amount of the middle clouds shall be reported for the cloud amount.
+
+(c) If there are no low clouds and there are no middle clouds but there are high clouds (clouds of the genera Cirrus, Cirrocumulus, and Cirrostratus), then the cloud amount shall be reported as zero.
+
+{[}12.2.7.2.1{]}
+
+(d) If no clouds are observed (clear sky), then the cloud amount shall be reported as 0.
+
+(e) If sky is obscured by fog and/or other meteorological phenomena, then the cloud amount shall be reported as 9.
+
+(f) If cloud cover is indiscernible for reasons other than fog or other meteorological phenomena, or observation is not made, the cloud amount shall be reported as missing.
+\end{quote}
+
+\textbf{B/C1.4.4.3.2} Amount of Altocumulus perlucidus or Stratocumulus perlucidus (``mackerel sky'') shall be reported using code figure 7 or less since breaks are always present in this cloud form even if it extends over the whole celestial dome. {[}12.2.7.2.2{]}
+
+\textbf{B/C1.4.4.3.3} When the clouds reported for cloud amount are observed through fog or an analogous phenomenon, the cloud amount shall be reported as if these phenomena were not present. {[}12.2.7.2.3{]}
+
+\textbf{B/C1.4.4.3.4} If the clouds reported for cloud amount include contrails, then the cloud amount shall include the amount of persistent contrails. Rapidly dissipating contrails shall not be included in the value for the cloud amount. {[}12.2.7.2.4{]}
+
+\textbf{B/C1.4.4.4 Height of base of lowest cloud}
+
+\begin{quote}
+\emph{Height above surface of the base (0}~\emph{20~013) of the lowest cloud seen shall be reported} in metres (with precision in tens of metres).
+
+Note: The term~«~height above surface~»~shall be considered as being the height above the official aerodrome elevation or above station elevation at a non-aerodrome station.
+\end{quote}
+
+\textbf{B/C1.4.4.4.1} When the station is in fog, a sandstorm or in blowing snow but the sky is discernible, the base of the lowest cloud shall refer to the base of the lowest cloud observed, if any. When, under the above conditions, the sky is not discernible, the base of the lowest cloud shall be replaced by vertical visibility. {[}12.4.10.5{]}
+
+\textbf{B/C1.4.4.4.2} \emph{When no cloud is reported (total cloud cover = 0),} the base of the lowest cloud \emph{shall be reported as a missing value.}
+
+\textbf{B/C1.4.4.4.3} \emph{When, by national decision, clouds with bases below the station are reported from the station and clouds with bases below and tops above the station are observed,} the base of the lowest cloud \emph{shall be reported having a negative value if the base of cloud is discernible, or as a missing value.}
+
+\textbf{B/C1.4.4.4.4} \emph{If synoptic data are produced in BUFR or CREX by conversion from a TAC report, the following approach shall be used: Height of base of the lowest cloud 0}~\emph{20}~\emph{013 shall be derived from the h\textsubscript{s}h\textsubscript{s} in the first group 8 in section 3, i.e. from the h\textsubscript{s}h\textsubscript{s} of the lowest cloud. If and only if groups 8 are not reported in section 3, 0}~\emph{20}~\emph{013 may be derived from h. The lower limit of the range defined for h\textsubscript{s}h\textsubscript{s} and for h shall be used. However, if groups 8 are not reported in section 3 and h = 9 and N\textsubscript{h} ≠ 0, then 0}~\emph{20}~\emph{013 shall be 4}~\emph{000 m; if groups 8 are not reported in section 3 and h = 9 and N\textsubscript{h} = 0, then 0}~\emph{20}~\emph{013 shall be 8}~\emph{000 m.}
+
+\textbf{B/C1.4.4.5 Cloud type of low, middle and high clouds} -- Code table 0~20~012
+
+\begin{quote}
+Clouds of the genera Stratocumulus, Stratus, Cumulus, and Cumulonimbus (low clouds) shall be reported for the first entry 0~20~012, clouds of the genera Altocumulus, Altostratus, and Nimbostratus (middle clouds) shall be reported for the second entry 0~20~012 and clouds of the genera Cirrus, Cirrocumulus, and Cirrostratus (high clouds) shall be reported for the third entry 0~20~012.
+\end{quote}
+
+\textbf{B/C1.4.4.5.1} The reporting of type of low, middle and high clouds shall be as specified in the \emph{International Cloud Atlas} (WMO-No. 407), Volume I. {[}12.2.7.3{]}
+
+\textbf{B/C1.4.5 Individual cloud layers or masses}
+
+\textbf{B/C1.4.5.1 Number of individual cloud layers or masses}
+
+\begin{quote}
+The number of individual cloud layers or masses shall be indicated by Delayed descriptor replication factor 0~31~001 in BUFR and by a four-digit number in the Data Section corresponding to the position of the replication descriptor in the Data Description Section of CREX.
+
+Notes:
+
+(1) The number of cloud layers or masses shall never be set to missing value.
+
+(2) The number of cloud layers or masses shall be set to a positive value, not a missing value indicator, in a NIL report.
+
+(3) If data compression is to be used, BUFR Regulation 94.6.3, Note 2, sub-note ix shall apply.
+\end{quote}
+
+\textbf{B/C1.4.5.1.1} When \emph{reported} from a manned station, the number of individual cloud layers or masses shall in the absence of Cumulonimbus clouds not exceed three. Cumulonimbus clouds, when observed, shall always be reported, so that the total number of individual cloud layers or masses can be four. The selection of layers (or masses) to be reported shall be made in accordance with the following criteria:
+
+\begin{quote}
+(a) The lowest individual layer (or mass) of any amount (cloud amount at least one octa or less, but not zero);
+
+(b) The next higher individual layer (or mass) the amount of which is greater than two octas;
+
+(c) The next higher individual layer (or mass) the amount of which is greater than four octas;
+
+(d) Cumulonimbus clouds, whenever observed and not reported under (a), (b) and (c) above.
+
+{[}12.4.10.1{]}
+\end{quote}
+
+\textbf{B/C1.4.5.1.2} When the sky is clear, the number of individual cloud layers or masses shall be set to zero.
+
+\textbf{B/C1.4.5.1.3} The order of reporting the individual cloud layers or masses shall always be from lower to higher levels. {[}12.4.10.2{]}
+
+\textbf{B/C1.4.5.2 Individual cloud layer or mass \textless3~02~005\textgreater{}}
+
+\begin{quote}
+Each cloud layer or mass shall be represented by the following four parameters: Vertical significance (0~08~002), amount of individual cloud layer or mass (0~20~011), type of cloud layer or mass (0~20~012) and height of base of individual cloud layer or mass (0~20~013).
+\end{quote}
+
+\textbf{B/C1.4.5.2.1 Vertical significance (surface observations)} -- Code table 0~08~002
+
+\begin{quote}
+To specify vertical significance (0~08~002) within the sequence 3~02~005, a code figure shall be selected in the following way:
+
+(a) Code figure 1 shall be used in the first non-Cumulonimbus layer;
+
+(b) Code figure 2 shall be used in the second non-Cumulonimbus layer;
+
+(c) Code figure 3 shall be used in the third non-Cumulonimbus layer;
+
+(d) Code figure 4 shall be used in any Cumulonimbus layer;
+
+(e) If sky is obscured by fog and/or other phenomena, then code figure 5 (Ceiling) shall be used;
+
+(f) If the cloud cover is not discernible for reasons other than (e) above or observation is not made, then code figure 63 (Missing value) shall be used;
+
+(g) If a station operates in the automatic mode and is sufficiently equipped, code figure 21, 22, 23 and 24 shall be used to identify the first, the second, the third and the fourth instrument detected cloud layer, respectively;
+
+(h) If a station operates in the automatic mode and no clouds are detected by the cloud detection system, code figure 20 shall be used.
+\end{quote}
+
+\textbf{B/C1.4.5.2.2 Cloud amount, type and height of base}
+
+\textbf{B/C1.4.5.2.2.1} When the sky is clear, in accordance with Regulation B/C1.4.5.1.2 cloud amount, genus, and height shall not be included. {[}12.4.10.4{]}
+
+\textbf{B/C1.4.5.2.2.2} In determining cloud amounts (Code table 0~20~011) to be reported for individual layers or masses, the observer shall estimate, by taking into consideration the evolution of the sky, the cloud amounts of each individual layer or mass at the different levels, as if no other clouds existed. {[}12.4.10.3{]}
+
+\textbf{B/C1.4.5.2.2.3} Type of a cloud layer or mass (Code table 0~20~012) shall be reported using code figures 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 59 and 63.
+
+\textbf{B/C1.4.5.2.2.4} If, notwithstanding the existence of fog, sandstorm, duststorm, blowing snow or other obscuring phenomena, the sky is discernible, the partially obscuring phenomena shall be disregarded. If, under the above conditions, the sky is not discernible, the cloud type shall be reported using code figure 59 and the cloud height shall be replaced by vertical visibility.
+
+\begin{quote}
+Note: The vertical visibility is defined as the vertical visual range into an obscuring medium.
+
+{[}12.4.10.5{]}
+\end{quote}
+
+\textbf{B/C1.4.5.2.2.5} If two or more types of cloud occur with their bases at the same level and this level is one to be reported in accordance with Regulation B/C1.4.5.1.1, the selection for cloud type and amount shall be made with the following criteria:
+
+\begin{quote}
+(a) If these types do not include Cumulonimbus then cloud genus shall refer to the cloud type that represents the greatest amount, or if there are two or more types of cloud all having the same amount, the highest applicable code figure for cloud genus shall be reported. Cloud amount shall refer to the total amount of cloud whose bases are all at the same level;
+
+(b) If these types do include Cumulonimbus then one layer shall be reported to describe only this type with cloud genus indicated as Cumulonimbus and the cloud amount as the amount of the Cumulonimbus. If the total amount of the remaining type(s) of cloud (excluding Cumulonimbus) whose bases are all at the same level is greater than that required by Regulation B/C1.4.5.1.1, then another layer shall be reported with type being selected in accordance with (a) and amount referring to the total amount of the remaining cloud (excluding Cumulonimbus).
+
+{[}12.4.10.6{]}
+\end{quote}
+
+\textbf{B/C1.4.5.2.2.6} Regulations B/C1.4.4.1.3 to B/C1.4.4.1.6, inclusive, shall apply. {[}12.4.10.7{]}
+
+\textbf{B/C1.4.5.2.2.7} \emph{Height above surface of the cloud base (0~20~013) shall be reported} in metres (with precision in tens of metres).
+
+\begin{quote}
+Note: The term~«~height above surface~»~shall be considered as being the height above the official aerodrome elevation or above station elevation at a non-aerodrome station.
+\end{quote}
+
+\textbf{B/C1.5 Clouds with bases below station level \textless3~02~036\textgreater{}}
+
+\textbf{B/C1.5.1 Number of cloud layers with bases below station level}
+
+\begin{quote}
+The number of cloud layers \textbf{with bases below station level} shall be indicated by Delayed descriptor replication factor 0~31~001 in BUFR and by a four-digit number in the Data Section corresponding to the position of the replication descriptor in the Data Description Section of CREX.
+
+Notes:
+
+(1) The number of cloud layers \textbf{with bases below station level} shall never be set to a missing value.
+
+(2) The number of cloud layers \textbf{with bases below station level} shall be set to a positive value in a NIL report.
+
+(3) If data compression is to be used, BUFR Regulation 94.6.3, Note 2, sub-note ix shall apply.
+\end{quote}
+
+\textbf{B/C1.5.1.1} Inclusion of these data shall be determined by national decision. The number of cloud layers with bases below station level shall be always set to zero in reports from a station at which observations of clouds with bases below station level are not executed.
+
+\textbf{B/C1.5.1.2} When no cloud layers \textbf{with bases below station are observed}, the number of cloud layers \textbf{with bases below station level} shall be set to zero.
+
+\textbf{B/C1.5.1.3} If the station is in continuous or almost continuous cloud, the number of cloud layers \textbf{with bases below station level} shall be set to one, with all parameters reported as missing except for vertical significance 0~08~002 that shall be set to 10 (cloud layer with a base below and tops above station level). {[}12.5.4{]}
+
+\textbf{B/C1.5.1.4} If clouds with bases below station level are not discernible due to fog and/or other phenomena or observation is not made, then the number of cloud layers \textbf{with bases below station level} shall be set to one, with all parameters reported as missing except for vertical significance 0~08~002 that shall be set to 11.
+
+\textbf{B/C1.5.1.5} When two or more cloud layers with their bases below station level occur at different levels, two or more cloud layers shall be reported. {[}12.5.5{]}
+
+\textbf{B/C1.5.1.6} Clouds with bases below and tops above station level shall be reported as the first layer within the \emph{sequence 3~02~036}, provided that the station is out of cloud sufficiently frequently to enable the various features to be recognized. Other low clouds present with tops below station level shall be reported as the following layers (one or more) within the \emph{sequence 3~02~036.} \emph{{[}12.5.3{]}}
+
+\begin{quote}
+Notes:
+
+(1) Clouds with bases below and tops above station level shall be reported also in \emph{sequences 3~02~004 and 3~02~005. {[}}12.5.3{]}
+
+(2) Clouds with tops below station level shall be reported only in sequence 3\emph{~}02\emph{~}036, and any co-existent clouds with bases above station level shall be reported only \emph{in sequences 3~02~004 and 3~02~005. {[}}12.5.2{]}
+\end{quote}
+
+\textbf{B/C1.5.2 Individual cloud layer with base below station level}
+
+\begin{quote}
+Each cloud layer \textbf{with base below station level} shall be represented by the following five parameters: Vertical significance (0\emph{~}08~002), amount of \emph{clouds with base below station level} (0\emph{~}20~011), type of \emph{clouds with base below station level} (0\emph{~}20~012), a\emph{ltitude of the upper surface of clouds (0~20~014) and cloud top description (0~20~017).}
+\end{quote}
+
+\textbf{B/C1.5.2.1 Vertical significance (surface observations)} -- Code table 0\emph{~}08\emph{~}002
+
+\begin{quote}
+Code figure 10 shall be used for cloud layers with bases below and tops above station level; code figure 11 shall be used for cloud layers with bases and tops below station level.
+\end{quote}
+
+\textbf{B/C1.5.2.2 Amount of \emph{clouds with base below station level}} -- Code table 0\emph{~}20\emph{~}011
+
+\textbf{B/C1.5.2.2.1} Regulations B/C1.4.4.1.1 to B/C1.4.4.1.6, inclusive, shall apply. {[}12.5.8{]}
+
+\textbf{B/C1.5.2.2.2} Spaces occupied by mountains emerging from the cloud layers shall be counted as occupied by clouds. {[}12.5.9{]}
+
+\textbf{B/C1.5.2.3 Type of \emph{clouds with base below station level}} -- Code table 0\emph{~}20\emph{~}012
+
+\begin{quote}
+Type of clouds with bases below station level shall be reported using code figures 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 and 63.
+\end{quote}
+
+\textbf{B/C1.5.2.4 Height of top of \emph{clouds}} \textbf{above mean sea level}
+
+\begin{quote}
+\emph{Height of top of clouds (0~20~014) shall be used to report the height above mean sea level of the upper surface of clouds, and shall be expressed} in metres (with precision in tens of metres).
+\end{quote}
+
+\textbf{B/C1.5.2.4.1} Height of top of clouds with bases below and tops above station level shall be reported, provided that the upper surface of clouds can be observed. {[}12.5.3 (b){]}
+
+\textbf{B/C1.5.2.5 Cloud top d\emph{escription }}-- Code table 0\emph{~}20\emph{~}017
+
+\textbf{B/C1.5.2.5.1} Description of top of clouds with bases below and tops above station level shall be reported, provided that the station is out of cloud sufficiently frequently to enable the features to be recognized.
+
+\textbf{B/C1.5.2.5.2} Rapidly dissipating condensation trails shall not be reported\emph{.} However, the top of persistent condensation trails and cloud masses which have obviously developed from condensation trails (and whose bases are below station level) shall be reported in \emph{Sequence 3~02~036}. {[}12.5.6{]}, {[}12.5.7{]}
+
+\textbf{B/C1.6 Direction of cloud drift \textless3~02~047\textgreater{}}
+
+\begin{quote}
+This information is required from land stations mainly in the tropics. {[}12.4.7.5{]}
+\end{quote}
+
+\textbf{B/C1.6.1 Vertical significance (surface observations)} -- Code table 0\emph{~}08\emph{~}002
+
+\begin{quote}
+To specify vertical significance (0~08~002) within the sequence 3~02~047, code figures shall be selected in the following way:
+
+(a) Code figure 7 (Low cloud) shall be used in the first replication;
+
+(b) Code figure 8 (Middle clouds) shall be used in the second replication;
+
+(c) Code figure 9 (High cloud) shall be used in the third replication.
+\end{quote}
+
+\textbf{B/C1.6.2 True direction from which clouds are moving}
+
+\begin{quote}
+True direction from which low, middle, or high clouds are moving (0\emph{~}20~054) shall be reported in degrees true as follows:
+
+(a) True direction from which the low clouds are moving shall be included in the first replication;
+
+(b) True direction from which the middle clouds are moving shall be included in the second replication;
+
+(c) True direction from which the high clouds are moving shall be included in the third replication.
+\end{quote}
+
+\textbf{B/C1.7 Direction and elevation of cloud \textless3\emph{~}02\emph{~}048\textgreater{}}
+
+\begin{quote}
+This information is required from~land stations mainly in the tropics. {[}12.4.7.5{]}
+\end{quote}
+
+\textbf{B/C1.7.1} \textbf{Direction of cloud}
+
+\begin{quote}
+True direction (0~05~021), from which orographic clouds or clouds with vertical development are seen, shall be \emph{reported in degrees true}. The cloud genus shall be specified by the third entry of the sequence 3\emph{~}02~048, i.e. by Cloud type -- Code table 0~20~012.
+
+Note: It is considered sufficient to report direction of cloud in degrees true, although 0~05~021 (Bearing or azimuth) is defined with higher accuracy (hundredths of a degree true).
+\end{quote}
+
+\textbf{B/C1.7.2 Elevation of cloud}
+
+\begin{quote}
+Elevation angle (0~07~021) of the top of the cloud shall be reported in degrees. The cloud genus shall be specified by the following entry, i.e. by Cloud type -- Code table 0~20~012.
+
+Note: It is considered sufficient to report elevation of the top of cloud in degrees, although 0~07~021 (Elevation angle) is defined with higher accuracy (hundredths of a degree).
+\end{quote}
+
+\textbf{B/C1.8 State of ground, snow depth, ground minimum temperature \textless3\emph{~}02\emph{~}037\textgreater{}}
+
+\textbf{B/C1.8.1 State of ground} (with or without snow) -- Code table 0\emph{~}20\emph{~}062
+
+\begin{quote}
+State of ground without snow or with snow shall be reported using Code table 0~20~062. The synoptic hour at which this datum is reported shall be determined by regional decision. In addition to the synoptic hour, this datum should be reported at other synoptic hours, i.e. four times a day.
+\end{quote}
+
+\textbf{B/C1.8.2 Total snow depth}
+
+\begin{quote}
+Total snow depth (0~13~013) shall be reported in metres (with precision in hundredths of a metre). The synoptic hour at which this datum is reported shall be determined by regional decision. In addition to the synoptic hour, this datum should be reported at other synoptic hours, i.e. four times a day.
+\end{quote}
+
+\textbf{B/C1.8.2.1} When total snow depth has to be reported, it is reported as 0.00 m if no snow, ice and other forms of solid precipitation on the ground are observed at the time of observation. A snow depth value of ``--0.01 m'' shall indicate a little (less than 0.005 m) snow. A snow depth value of ``--0.02 m'' shall indicate ``snow cover not continuous''.
+
+\textbf{B/C1.8.2.2} The measurement shall include snow, ice and all other forms of solid precipitation on the ground at the time of observation. {[}12.4.6.1{]}
+
+\textbf{B/C1.8.2.3} When the depth is not uniform, the average depth over a representative area shall be reported. {[}12.4.6.2{]}
+
+\textbf{B/C1.8.3 Ground minimum temperature, past 12 hours}
+
+\begin{quote}
+Ground minimum temperature from the previous 12 hours (0~12~113) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Notes:
+
+(1) Ground minimum temperature shall be reported with precision in hundredths of a degree even if they are measured with the accuracy in tenths of a degree. This requirement is based on the fact that conversion from the Kelvin to the Celsius scale has often resulted into distortion of the data values.
+
+(2) Ground minimum temperature t (in degrees Celsius) shall be converted into ground minimum temperature T (in kelvin) using equation: T = t + 273.15.
+
+(3) The period of time covered by ground minimum temperature and the synoptic hour at which this temperature is reported shall be determined by regional decision. If ground minimum temperature is to be reported from the period of previous night, then ``ground minimum temperature, past 12 hours'' (0~12~113) shall be reported as a missing value. In this case, ground minimum temperature of the previous night (0~12~122) shall be reported as shown in Common sequences 3~07~081, 3~07~082 and 3~07~083 suitable for SYNOP data in compliance with reporting practices in RA I, RA II and RA III, respectively.
+\end{quote}
+
+\textbf{B/C1.9 ``Instantaneous'' data required by regional or national reporting practices}
+
+\begin{quote}
+If regional or national reporting practices require inclusion of additional ``instantaneous'' parameters, the sequence descriptor 3~07~080 shall be supplemented by the required element descriptors being preceded by a relevant time period descriptor set to zero, i.e. 0~04~024 = 0 or 0~04~025 = 0.
+
+Note: ``Instantaneous'' parameter is a parameter that is not coupled to a time period descriptor, e.g. 0~04~024, 0~04~025.
+\end{quote}
+
+\textbf{B/C1.9.1 ``Instantaneous'' data required by reporting practices in RA I}
+
+\begin{quote}
+Regulations for reporting additional ``instantaneous'' parameters, required by regional reporting practices in RA I, are shown in the annex to B/C1.
+\end{quote}
+
+\textbf{B/C1.9.2 ``Instantaneous'' data required by reporting practices in RA II}
+
+\begin{quote}
+Regulations for reporting additional ``instantaneous'' parameters, required by regional reporting practices in RA II, are shown in the annex to B/C1.
+\end{quote}
+
+\textbf{B/C1.9.3 ``Instantaneous'' data required by reporting practices in RA III}
+
+\begin{quote}
+Regulations for reporting additional ``instantaneous'' parameters, required by regional reporting practices in RA III, are shown in the annex to B/C1.
+\end{quote}
+
+\textbf{B/C1.9.4 ``Instantaneous'' data required by reporting practices in RA IV}
+
+\begin{quote}
+Regulations for reporting additional ``instantaneous'' parameters, required by regional reporting practices in RA IV, are shown in the annex to B/C1.
+\end{quote}
+
+\textbf{B/C1.9.5 ``Instantaneous'' data required by reporting practices in RA V}
+
+\begin{quote}
+No regional requirements are indicated for reporting SYNOP data in RA V.
+\end{quote}
+
+\textbf{B/C1.9.6 ``Instantaneous'' data required by reporting practices in RA VI}
+
+\begin{quote}
+Regulations for reporting additional ``instantaneous'' parameters, required by regional reporting practices in RA VI, are shown in the annex to B/C1.
+\end{quote}
+
+\textbf{B/C1.10 Basic synoptic ``period'' data \textless3~02~043\textgreater{}}
+
+\textbf{B/C1.10.1 Present and past weather \textless3~02~038\textgreater{}}
+
+\textbf{B/C1.10.1.1} Present weather (Code table 0~20~003) and past weather (1) (Code table 0~20~004) and past weather (2) (Code table 0~20~005) shall be reported as non-missing values if present and past conditions are known. In case of a report from a manually operated station after a period of closure or at start up, when past weather conditions for the period applicable to the report are unknown, past weather (1) and past weather (2) reported as missing shall indicate that previous conditions are unknown. This regulation shall also apply to automatic reporting stations with the facility to report present and past weather. {[}12.2.6.1{]}
+
+\textbf{B/C1.10.1.2} Code figures 0, 1, 2, 3, 100, 101, 102 and 103 for present weather and code figures 0, 1, 2 and 10 for past weather (1) and past weather (2) shall be considered to represent phenomena without significance. {[}12.2.6.2{]}
+
+\textbf{B/C1.10.1.3} Present and past weather shall be \emph{reported if observation was made (data available), regardless significance of the phenomena.}
+
+\begin{quote}
+Note: \emph{If data are produced and collected in traditional codes and present weather and past weather is omitted in a SYNOP report (no significant phenomena observed), code figure 508 shall be used for present weather and code figure 10 for past weather} (1) and past weather (2) when converted \emph{into BUFR or CREX.}
+\end{quote}
+
+\textbf{B/C1.10.1.4} If no observation was made (data not available)\emph{, code figure 509 shall be used for present weather and both past weather} (1) and past weather (2) \emph{shall be reported as missing.}
+
+\textbf{B/C1.10.1.5} \textbf{Present weather from a manned weather station}
+
+\textbf{B/C1.10.1.5.1} If more than one form of weather is observed, the highest applicable code figure from the range \textless00 to 99\textgreater{} shall be selected for present weather. Code figure 17 shall have precedence over code figures 20--49. Other weather may be reported using additional entries 0~20~003 or 0~20~021 to 0~20~026 applying Regulation B/C1.9. {[}12.2.6.4.1{]}
+
+\textbf{B/C1.10.1.5.2} In coding 01, 02, or 03, there is no limitation on the magnitude of the change of the cloud amount. Code figures 00, 01, and 02 can each be used when the sky is clear at the time of observation. In this case, the following interpretation of the specifications shall apply:
+
+\begin{quote}
+-- 00 is used when the preceding conditions are not known;
+
+-- 01 is used when the clouds have dissolved during the past hour;
+
+-- 02 is used when the sky has been continuously clear during the past hour.
+
+{[}12.2.6.4.2{]}
+\end{quote}
+
+\textbf{B/C1.10.1.5.3} When the phenomenon is not predominantly water droplets, the appropriate code figure shall be selected without regard to visibility. {[}12.2.6.4.3{]}
+
+\textbf{B/C1.10.1.5.4} The code figure 05 shall be used when the obstruction to vision consists predominantly of lithometeors. {[}12.2.6.4.4{]}
+
+\textbf{B/C1.10.1.5.5} National instructions shall be used to indicate the specifications for code figures 07 and 09. {[}12.2.6.4.5{]}
+
+\textbf{B/C1.10.1.5.6} The visibility restrictions on code figure 10 shall be 1~000 metres or more. The specification refers only to water droplets and ice crystals. {[}12.2.6.4.6{]}
+
+\textbf{B/C1.10.1.5.7} For code figures 11 or 12 to be reported, the apparent visibility shall be less than 1~000 metres. {[}12.2.6.4.7{]}
+
+\textbf{B/C1.10.1.5.8} For code figure 18, the following criteria for reporting squalls shall be used:
+
+\begin{quote}
+(a) When wind speed is measured: A sudden increase of wind speed of at least eight metres per second, the speed rising to 11 metres per second or more and lasting for at least one minute;
+
+(b) When the Beaufort scale is used for estimating wind speed: A sudden increase of wind speed by at least three stages of the Beaufort scale, the speed rising to force 6 or more and lasting for at least one minute.
+
+{[}12.2.6.4.8{]}
+\end{quote}
+
+\textbf{B/C1.10.1.5.9} Code figures 20--29 shall never be used when precipitation is observed at the time of observation. {[}12.2.6.4.9{]}
+
+\textbf{B/C1.10.1.5.10} For code figure 28, visibility shall have been less than 1~000 metres.
+
+\begin{quote}
+Note: The specification refers only to visibility restrictions which occurred as a result of water droplets or ice crystals.
+
+{[}12.2.6.4.10{]}
+\end{quote}
+
+\textbf{B/C1.10.1.5.11} For synoptic coding purposes, a thunderstorm shall be regarded as being at the station from the time thunder is first heard, whether or not lightning is seen or precipitation is occurring at the station. A thunderstorm shall be reported if thunder is heard within the normal observational period preceding the time of\\
+the report. A thunderstorm shall be regarded as having ceased at the time thunder is last heard and the cessation is confirmed if thunder is not heard for 10--15~minutes after this time. {[}12.2.6.4.11{]}
+
+\textbf{B/C1.10.1.5.12} The necessary uniformity in reporting code figures 36, 37, 38, and 39, which may be desirable within certain regions, shall be obtained by means of national instructions. {[}12.2.6.4.12{]}
+
+\textbf{B/C1.10.1.5.13} A visibility restriction «~less than 1~000 metres~» shall be applied to code figures 42--49. In the case of code figures 40 or 41, the apparent visibility in the fog or ice fog patch or bank shall be less than 1~000 metres. Code figures 40--47 shall be used when the obstructions to vision consist predominantly of water droplets or ice crystals, and 48 or 49 when the obstructions consist predominantly of water droplets. {[}12.2.6.4.13{]}
+
+\textbf{B/C1.10.1.5.14} When referring to precipitation, the phrase «~at the station~» in the code table shall mean «~at the point where the observation is normally taken~». {[}12.2.6.4.14{]}
+
+\textbf{B/C1.10.1.5.15} The precipitation shall be encoded as intermittent if it has been discontinuous during the preceding hour, without presenting the character of a shower. {[}12.2.6.4.15{]}
+
+\textbf{B/C1.10.1.5.16} The intensity of precipitation shall be determined by the intensity at the time of the observation. {[}12.2.6.4.16{]}
+
+\textbf{B/C1.10.1.5.17} Code figures 80--90 shall be used only when the precipitation is of the shower type and takes place at the time of the observation.
+
+\begin{quote}
+Note: Showers are produced by convective clouds. They are characterized by their abrupt beginning and end and by the generally rapid and sometimes great variations in the intensity of the precipitation. Drops and solid particles falling in a shower are generally larger than those falling in non-showery precipitation. Between showers openings may be observed unless stratiform clouds fill the intervals between the cumuliform clouds.
+
+{[}12.2.6.4.17{]}
+\end{quote}
+
+\textbf{B/C1.10.1.5.18} In reporting code figure 98, the observer shall be allowed considerable latitude in determining whether precipitation is or is not occurring, if it is not actually visible. {[}12.2.6.4.18{]}
+
+\textbf{B/C1.10.1.6 Present weather from an automatic weather station}
+
+\textbf{B/C1.10.1.6.1} The highest applicable code figure shall be selected. {[}12.2.6.5.1{]}
+
+\textbf{B/C1.10.1.6.2} In coding code figures 101, 102, and 103, there is no limitation on the magnitude of the change of the cloud amount. Code figures 100, 101, and 102 can each be used when the sky is clear at the time of observation. In this case, the following interpretation of the specifications shall apply:
+
+\begin{quote}
+-- Code figure 100 is used when the preceding conditions are not known;
+
+-- Code figure 101 is used when the clouds have dissolved during the past hour;
+
+-- Code figure 102 is used when the sky has been continuously clear during the past hour.
+
+{[}12.2.6.5.2{]}
+\end{quote}
+
+\textbf{B/C1.10.1.6.3} When the phenomenon is not predominantly water droplets, the appropriate code figure shall be selected without regard to the visibility. {[}12.2.6.5.3{]}
+
+\textbf{B/C1.10.1.6.4} The code figures 104 and 105 shall be used when the obstruction to vision consists predominantly of lithometeors. {[}12.2.6.5.4{]}
+
+\textbf{B/C1.10.1.6.5} The visibility restriction on code figure 110 shall be 1~000 metres or more. The specification refers only to water droplets and ice crystals. {[}12.2.6.5.5{]}
+
+\textbf{B/C1.10.1.6.6} For code figure 118, the following criteria for reporting squalls shall be used:
+
+\begin{quote}
+A sudden increase of wind speed of at least eight metres per second, the speed rising to 11 metres per second or more and lasting for at least one minute.
+
+{[}12.2.6.5.6{]}
+\end{quote}
+
+\textbf{B/C1.10.1.6.7} Code figures 120--126 shall never be used when precipitation is observed at the time of observation. {[}12.2.6.5.7{]}
+
+\textbf{B/C1.10.1.6.8} For code figure 120, visibility shall have been less than 1~000 metres.
+
+\begin{quote}
+Note: The specification refers only to visibility restrictions which occurred as a result of water droplets or ice crystals.
+
+{[}12.2.6.5.8{]}
+\end{quote}
+
+\textbf{B/C1.10.1.6.9} For synoptic coding purposes, a thunderstorm shall be regarded as being at the station from the time thunder is first detected, whether or not lightning is detected or precipitation is occurring at the station. A thunderstorm shall be reported in present weather if thunder is detected within the normal observational period preceding the time of the report. A thunderstorm shall be regarded as having ceased at the time thunder is last detected and the cessation is confirmed if thunder is not detected for 10--15 minutes after this time. {[}12.2.6.5.9{]}
+
+\textbf{B/C1.10.1.6.10} A visibility restriction «~less than 1~000 metres~» shall be applied to code figures 130--135. {[}12.2.6.5.10{]}
+
+\textbf{B/C1.10.1.6.11} The precipitation shall be encoded as intermittent if it has been discontinuous during the preceding hour, without presenting the character of a shower. {[}12.2.6.5.11{]}
+
+\textbf{B/C1.10.1.6.12} The intensity of precipitation shall be determined by the intensity at the time of observation. {[}12.2.6.5.12{]}
+
+\textbf{B/C1.10.1.6.13} Code figures 180--189 shall be used only when the precipitation is intermittent or of the shower type and takes place at the time of observation.
+
+\begin{quote}
+Note: Showers are produced by convective clouds. They are characterized by their abrupt beginning and end and by the generally rapid and sometimes great variations in the intensity of the precipitation. Drops and solid particles falling in a shower are generally larger than those falling in non-showery precipitation. Between showers openings may be observed unless stratiform clouds fill the intervals between the cumuliform clouds.
+
+{[}12.2.6.5.13{]}
+\end{quote}
+
+\textbf{B/C1.10.1.7 Past weather reported from a manned weather station}
+
+\textbf{B/C1.10.1.7.1 Time period}
+
+\begin{quote}
+The time period (0~04~024) covered by past weather (1) and past weather (2) shall be expressed as \emph{a negative value} in hours:
+
+(a) Six hours, for observations at 0000, 0600, 1200, and 1800 UTC;
+
+(b) Three hours for observations at 0300, 0900, 1500, and 2100 UTC;
+
+(c) Two hours for intermediate observations if taken every two hours;
+
+(d) \emph{One hour for intermediate observations if taken every hour}.
+
+{[}12.2.6.6.1{]}
+\end{quote}
+
+\textbf{B/C1.10.1.7.2} The code figures for past weather (1) and past weather (2) shall be selected in such a way that past and present weather together give as complete a description as possible of the weather in the time interval concerned. For example, if the type of weather undergoes a complete change during the time interval concerned, the code figures selected for past weather (1) and past weather (2) shall describe the weather prevailing before the type of weather indicated by present weather began. {[}12.2.6.6.2{]}
+
+\textbf{B/C1.10.1.7.3} When the past weather (1) and past weather (2) are used in hourly reports, Regulation B/C1.10.1.7.1 (d) shall apply. {[}12.2.6.6.3{]}
+
+\textbf{B/C1.10.1.7.4} If, using Regulation B/C1.10.1.7.2, more than one code figure may be given to past weather (1), the highest figure shall be reported for past weather (1) and the second highest code figure shall be reported for past weather (2). {[}12.2.6.6.4{]}
+
+\textbf{B/C1.10.1.7.5} If the weather during the period has not changed so that only one code figure may be selected for past weather, then that code figure shall be reported for both past weather (1) and past weather (2). {[}12.2.6.6.5{]}
+
+\textbf{B/C1.10.1.8 Past weather reported from an automatic weather station}
+
+\textbf{B/C1.10.1.8.1 Time period}
+
+\begin{quote}
+The time period (0~04~024) covered by past weather (1) and past weather (2) shall be expressed as \emph{a negative value} in hours:
+
+(a) Six hours for observations at 0000, 0600, 1200, and 1800 UTC;
+
+(b) Three hours for observations at 0300, 0900, 1500, and 2100 UTC;
+
+(c) Two hours for intermediate observations if taken every two hours;
+
+(d) \emph{One hour for intermediate observations if taken every hour}.
+
+{[}12.2.6.7.1{]}
+\end{quote}
+
+\textbf{B/C1.10.1.8.2} The code figures for past weather (1) and past weather (2) shall be selected so that the maximum capability of the automatic station to discern past weather is utilized, and so that past and present weather together give as complete a description as possible of the weather in the time interval concerned. {[}12.2.6.7.2{]}
+
+\textbf{B/C1.10.1.8.3} In cases where the automatic station is capable only of discerning very basic weather conditions, the lower code figures representing basic and generic phenomena may be used. If the automatic station has higher discrimination capabilities, the higher code figures representing more detailed explanation of the phenomena shall be used. For each basic type of phenomenon, the highest code figure within the discrimination capability of the automatic station shall be reported. {[}12.2.6.7.3{]}
+
+\textbf{B/C1.10.1.8.4} If the type of weather during the time interval concerned undergoes complete and discernible changes, the code figures selected for past weather (1) and past weather (2) shall describe the weather prevailing before the type of weather indicated by present weather began. The highest figure shall be reported for past weather (1) and the second highest code figure shall be reported for past weather (2). {[}12.2.6.7.4{]}
+
+\textbf{B/C1.10.1.8.5} If a discernible change in weather has not occurred during the period, so that only one code figure may be selected for the past weather, then that code figure shall be reported for both past weather (1) and past weather (2). For example, rain during the entire period shall be reported as code figure 14 for both past weather (1) and past weather (2) in the case of an automatic station incapable of differentiating types of precipitation, or code figure 16 for both past weather (1) and past weather (2) in the case of a station with the higher discrimination capability. {[}12.2.6.7.5{]}
+
+\textbf{B/C1.10.2 Sunshine data (from 1 hour and 24-hour period) \textless1}~\textbf{01}~\textbf{002\textgreater\textless3}~\textbf{02}~\textbf{039\textgreater{}}
+
+\textbf{B/C1.10.2.1 Period of reference for sunshine duration}
+
+\begin{quote}
+Time period in hours (0~04~024) shall be included as follows:
+
+(a) one hour in the first replication (reported as --1);
+
+(b) 24 hours in the second replication (reported as --24).
+\end{quote}
+
+\textbf{B/C1.10.2.2 Duration of sunshine}
+
+\begin{quote}
+Duration of sunshine from the time period specified by the preceding parameter 0~04~024, shall be reported in minutes.
+\end{quote}
+
+\textbf{B/C1.10.2.2.1} The duration of sunshine over the previous hour shall be reported by national decision. When reported, it shall be included in the first replication.
+
+\textbf{B/C1.10.2.2.2} The duration of sunshine over the previous 24 hours shall, by regional decision, be reported at all stations capable of doing so and included at either 0000 UTC, 0600 UTC, 1200 UTC or 1800 UTC. When reported, it shall be included in the second replication. {[}12.4.7.4.2{]}
+
+\textbf{B/C1.10.3 Precipitation measurement \textless3~02~040\textgreater{}}
+
+\textbf{B/C1.10.3.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for precipitation measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of the rain gauge rim above ground at the point where the rain gauge is located.
+\end{quote}
+
+\textbf{B/C1.10.3.2 Period of reference for amount precipitation}
+
+\begin{quote}
+Time period (0~04~024) for amount of precipitation shall be reported as \emph{a negative value} in hours. It shall be determined:
+
+(a) by regional decision (e.g. --6, --12, --24) in the first replication;
+
+(b) by national decision (e.g. --1, --3) in the second replication.
+\end{quote}
+
+\textbf{B/C1.10.3.3 Total amount of precipitation}
+
+\begin{quote}
+Total amount of precipitation, which has fallen during the period of reference for amount of precipitation, shall be reported in kilograms per square metre (with precision in tenths of a kilogram per square metre).
+\end{quote}
+
+\textbf{B/C1.10.3.3.1} Precipitation, when it can be and has to be reported, shall be reported as\\
+0.0 kg~m\textsuperscript{--2} if no precipitation were observed during \textbf{the} referenced period. {[}12.2.5.4{]}
+
+\textbf{B/C1.10.3.3.2} Trace shall be reported as ``--0.1 kg~m\textsuperscript{--2}''.
+
+\textbf{B/C1.10.4 Extreme temperature data \textless3~02~041\textgreater{}}
+
+\textbf{B/C1.10.4.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for temperature measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of temperature sensor(s) above ground at the point where the sensors are located.
+\end{quote}
+
+\textbf{B/C1.10.4.2 Periods of reference for extreme temperatures}
+
+\begin{quote}
+Time period for maximum temperature and time period for minimum temperature (0~04~024) shall be determined by regional decision and reported as \emph{negative values} in hours. {[}12.4.4{]}
+
+Notes:
+
+(1) If the period for maximum temperature or the period for minimum temperature ends at the nominal time of report, the second value of 0~04~024 shall be reported as 0.
+
+(2) If the period for maximum temperature or the period for minimum temperature does not end at the nominal time of report, the first value of 0~04~024 shall indicate the beginning of the period of reference and the second value of 0~04~024 shall indicate the end of the period of reference. E.g. to report the maximum temperature for the previous calendar day from a station in RA IV, value of the first 0~04~024 shall be set to --30 and value of the second 0~04~024 shall be set to --6, provided that the nominal time of the report 12 UTC corresponds to 6 a.m. local time.
+\end{quote}
+
+\textbf{B/C1.10.4.3 Maximum and minimum temperature}
+
+\begin{quote}
+Maximum and minimum temperature shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius). Extreme temperature data shall be reported with precision in hundredths of a degree even if they are measured with the accuracy in tenths of a degree.
+
+Note: Notes 1 and 2 under Regulation B/C1.4.1.2 shall apply.
+\end{quote}
+
+\textbf{B/C1.10.5 Wind data \textless3~02~042\textgreater{}}
+
+\textbf{B/C1.10.5.1 Height of sensor above local ground}
+
+\begin{quote}
+Height of sensor above local ground (0~07~032) for wind measurement shall be reported in metres (with precision in hundredths of a metre).
+
+This datum represents the actual height of the sensors above ground at the point where the sensors are located.
+\end{quote}
+
+\textbf{B/C1.10.5.2 Type of instrumentation for wind measurement} -- Flag table 0~02~002
+
+\begin{quote}
+This datum shall be used to specify whether the wind speed was measured by certified instruments (bit No. 1 set to 1) or estimated on the basis of the Beaufort wind scale (bit No. 1 set to 0), and to indicate the original units for wind speed measurement. Bit No. 2 set to 1 indicates that wind speed was originally measured in knots and bit No. 3 set to 1 indicates that wind speed was originally measured in kilometres per hour. Setting both bits No. 2 and No. 3 to 0 indicates that wind speed was originally measured in metres per second.
+
+In CREX, type of instrumentation for wind measurement (0~02~002) shall be reported in octal representation. For example, if wind speed was measured by instruments in knots (bit No. 1 and bit No. 2 set to 1), then this datum shall be reported as 14.
+\end{quote}
+
+\textbf{B/C1.10.5.3 Wind direction} \textbf{and speed}
+
+\begin{quote}
+The mean direction and speed of the wind over the 10-minute period immediately preceding the observation shall be reported. The time period (0~04~025) shall be included as --10. However, when the 10-minute period includes a discontinuity in the wind characteristics, only data obtained after the discontinuity shall be used for reporting the mean values, and hence the period (0~04~025) in these circumstances shall be correspondingly reduced. {[}12.2.2.3.1{]}
+
+The time period is preceded by a time significance qualifier (0~08~021) that shall be set to 2 (Time averaged).
+
+The wind direction (0~11~001) shall be reported in degrees true and the wind speed (0~11~002) shall be reported in metres per second (with precision in tenths of a metre per second).
+
+Note: Surface wind direction measured at a station within 1° of the North Pole or within 1° of the South Pole shall be reported in such a way that the azimuth ring shall be aligned with its zero coinciding with the Greenwich 0° meridian.
+\end{quote}
+
+\textbf{B/C1.10.5.3.1} In the absence of wind instruments, the wind speed shall be estimated on the basis of the Beaufort wind scale. The Beaufort number obtained by estimation is converted into metres per second by use of the relevant wind speed equivalent column on the Beaufort scale, and this speed is reported for wind speed. {[}12.2.2.3.2{]}
+
+\textbf{B/C1.10.5.3.2} Calm shall be reported by setting wind direction to 0 and wind speed to 0. Variable shall be reported by setting wind direction to 0 and wind speed to a positive \emph{non-missing} value.
+
+\textbf{B/C1.10.5.4 Maximum wind gust direction and speed}
+
+\begin{quote}
+Time period for maximum wind gust direction and speed (0~04~025) shall be determined by regional or national decision and reported as a negative value in minutes.
+
+Direction of the maximum wind gust (0~11~043) shall be reported in degrees true and speed of the maximum wind gust (0~11~041) shall be reported in metres per second (with precision in tenths of a metre per second).
+\end{quote}
+
+\textbf{B/C1.11 Evaporation data \textless3~02~044\textgreater{}}
+
+\textbf{B/C1.11.1 Period of reference for evaporation data}
+
+\begin{quote}
+Evaporation or evapotranspiration during the previous 24 hours shall be reported. Time period in hours (0~04~024) shall be included as --24.
+\end{quote}
+
+\textbf{B/C1.11.2 Indicator of type of instrument for evaporation measurement or the type of crops --} Code table 0~02~004
+
+\textbf{B/C1.11.3 Evaporation or evapotranspiration}
+
+\begin{quote}
+Amount of either evaporation or evapotranspiration (0~13~033) shall be reported in kilograms per square metre (with precision in tenths of a kilogram per square metre) at 0000 UTC, 0600 UTC or 1200 UTC. {[}12.4.7.2.2{]}
+\end{quote}
+
+\textbf{B/C1.12 Radiation data (from 1 hour and 24-hour period) \textless1~01~002\textgreater\textless3~02~045\textgreater{}}
+
+\textbf{B/C1.12.1 Period of reference for radiation data}
+
+\begin{quote}
+Radiation integrated over the previous hour and over the previous 24 hours may be reported. Time period in hours (0~04~024) shall be included as follows:
+
+(a) one hour in the first replication (reported as --1);
+
+(b) 24 hours in the second replication (reported as --24).
+\end{quote}
+
+\textbf{B/C1.12.2 Amount of radiation}
+
+\begin{quote}
+\textbf{If included, amount of radiation integrated over the time period specified by the preceding parameter 0~04~024 shall be reported in joules per square metre (with precision in thousands of a joule per square metre for radiation type (a) and (b); with precision in ten-thousands of a joule per square metre for radiation type (c); with precision in hundreds of a joule per square metre for radiation types (d) to (f)).}
+\end{quote}
+
+\textbf{B/C1.12.2.1} The radiation data may take one or more of the following forms:
+
+\begin{quote}
+(a) Long-wave radiation (0~14~002); the positive sign shall be used to specify downward long-wave radiation and the negative sign to specify upward long-wave radiation;
+
+(b) Short-wave radiation (0~14~004);
+
+(c) Net radiation (0~14~016); the corresponding sign shall be used to specify positive and negative net radiation;
+
+(d) Global solar radiation (0~14~028);
+
+(e) Diffuse solar radiation (0~14~029);
+
+(f) Direct solar radiation (0~14~030).
+
+\textbf{{[}12.4.7.4.3{]}, {[}12.4.7.4.4{]}}
+
+Note: Data width and/or reference value of radiation descriptors were changed with introduction of the Version number 14 of WMO FM 94 BUFR Tables.
+\end{quote}
+
+\textbf{B/C1.13 Temperature change \textless3~02~046\textgreater{}}
+
+\begin{quote}
+This information is required by regional or national decision from islands or other widely separated stations.
+\end{quote}
+
+\textbf{B/C1.13.1 Period of reference for temperature change}
+
+\begin{quote}
+The temperature change shall be reported for the period of time between the time of the observation and the time of the occurrence of temperature change. To construct the required period, time period 0~04~024 shall be included twice; the first one corresponding to period covered by past weather (1) and past weather (2), the second one specified by the time of the occurrence of temperature change. Both values of 0~04~024 shall be negative and expressed in hours.
+
+Note: The period is the number of whole hours, disregarding the minutes. For example, if the time of occurrence is 45 minutes after the time of the observation, the time period is considered to be zero hours. If the time of occurrence is 1 hour or more, but less than 2 hours after the observation, the time period go shall be considered to be 1 hour, etc.
+\end{quote}
+
+\textbf{B/C1.13.2 Temperature change over period specified}
+
+\begin{quote}
+Temperature change (0~12~049) shall be reported in kelvin in BUFR, in degrees Celsius in CREX.
+\end{quote}
+
+\textbf{B/C1.13.2.1} For a change of temperature to be reported, the change shall be equal to or more than 5\textsuperscript{o}C and occur in less than 30 minutes during the period covered by past weather (1) and past weather (2). {[}12.4.7.3{]}
+
+\textbf{B/C1.14 ``Period'' data required by regional or national reporting practices}
+
+\begin{quote}
+If regional reporting practices in a Region require inclusion of additional ``period'' parameters, the corresponding ``regional'' common sequence (see the annex to B/C1) shall be supplemented by relevant descriptors. If national reporting practices require inclusion of additional ``period'' parameters, either the common sequence 3~07~080 or any of the common sequences 3~07~081 to 3~07~086, whichever is the most convenient, shall be supplemented by relevant descriptors
+
+Notes:
+
+(1) ``Period'' parameter is a parameter that is coupled to a time period descriptor, e.g. 0~04~024, 0~04~025.
+
+(2) No additional ``period'' parameters are currently required by regional regulations for SYNOP data in the \emph{Manual on Codes} (WMO-No. 306), Volume II.
+\end{quote}
+
+\textbf{ANNEX to B/C1} -- \textbf{Regional regulations for reporting SYNOP data in TDCF}
+
+\textbf{Regional regulations for reporting SYNOP data in BUFR/CREX for RA I}
+
+\textbf{TM~307081 -- BUFR template for synoptic reports from fixed land stations suitable for SYNOP data in compliance with reporting practices in RA I}
+
+\textbf{3 07 081:}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & Unit, scale\tabularnewline
+\textbf{3 01 090} & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 02 031} & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 035} & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+\textbf{3 02 036} & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{3 02 047} & \textbf{Direction of cloud drift} &\tabularnewline
+\textbf{0 08 002} & \textbf{Vertical significance (surface observations) (= missing to cancel the previous value)} & Code table, 0\tabularnewline
+\textbf{3 02 048} & \textbf{Direction and elevation of cloud} &\tabularnewline
+\textbf{3 02 037} & \textbf{State of ground, snow depth, ground minimum temperature (past 12 hours)} &\tabularnewline
+\textbf{0 12 122} & Ground minimum temperature of the preceding night \textbf{s\textsubscript{n}T\textsubscript{g}T\textsubscript{g}} & K, 2\tabularnewline
+\textbf{0 13 056} & Character and intensity of precipitation \textbf{R\textsubscript{c}} & Code table, 0\tabularnewline
+\textbf{0 13 057} & Time of beginning or end of precipitation \textbf{R\textsubscript{t}} & Code table, 0\tabularnewline
+\textbf{0 20 101} & Locust (acridian) name \textbf{L\textsubscript{n}} & Code table, 0\tabularnewline
+\textbf{0 20 102} & Locust (maturity) colour \textbf{L\textsubscript{c}} & Code table, 0\tabularnewline
+\textbf{0 20 103} & Stage of development of locusts \textbf{L\textsubscript{d}} & Code table, 0\tabularnewline
+\textbf{0 20 104} & Organization state of swarm or band of locusts \textbf{L\textsubscript{g}} & Code table, 0\tabularnewline
+\textbf{0 20 105} & \vtop{\hbox{\strut Size of swarm or band of locusts and duration of}\hbox{\strut passage of swarm \textbf{s\textsubscript{L}}}} & Code table, 0\tabularnewline
+\textbf{0 20 106} & Locust population density \textbf{d\textsubscript{L}} & Code table, 0\tabularnewline
+\textbf{0 20 107} & Direction of movements of locust swarm \textbf{D\textsubscript{L}} & Code table, 0\tabularnewline
+\textbf{0 20 108} & Extent of vegetation \textbf{v\textsubscript{e}} & Code table, 0\tabularnewline
+\textbf{3 02 043} & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+\textbf{3 02 044} & \textbf{Evaporation data} &\tabularnewline
+\textbf{1 01 002} & \textbf{Replicate 1 descriptor 2 times} &\tabularnewline
+\textbf{3 02 045} & \textbf{Radiation data (from 1 hour and 24-hour period)} &\tabularnewline
+\textbf{3 02 046} & \textbf{Temperature change} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Regulations:}
+
+\textbf{General}
+
+(i) BUFR template TM~307081 shall not be mandatory for Members in Region I. Either the template TM~307080 or any of the templates TM~307081, TM~307182, TM~307083 to TM~307086, whichever is the most convenient, may be used.
+
+(ii) Regulations \textbf{B/C1.1} to \textbf{B/C1.9}, inclusive, shall apply.
+
+(iii) Regulations \textbf{B/C1.10} to \textbf{B/C1.14}, inclusive, shall apply.
+
+\textbf{\\
+B/C1.9.1 ``Instantaneous'' data required by reporting practices in RA I}
+
+\textbf{B/C1.9.1.1 Ground minimum temperature of the preceding night}
+
+\begin{quote}
+Ground minimum temperature of the preceding night (0~12~122) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Notes:
+
+(1) Notes 1, 2 and 3 under Regulation B/C1.8.3 shall apply.
+
+(2) This datum shall be reported by all Members at 0600 UTC. {[}1/12.6.1{]}
+\end{quote}
+
+\textbf{B/C1.9.1.2 Character, intensity and time of beginning or end of precipitation}
+
+\begin{quote}
+Character and intensity of precipitation (Code table 0~13~056) and Time of beginning or end of precipitation (Code table 0~13~057) shall be reported by all Members at 0600 UTC to meet requirements of agrometerological monitoring in the Region. {[}1/12.6.1{]} Inclusion of these data into reports at 0000 and 1200 UTC shall be left to national decision. {[}1/12.6.3{]}
+\end{quote}
+
+\textbf{B/C1.9.1.3 Locust control-related observations}
+
+\begin{quote}
+Following data shall be reported by all Members capable of doing so:
+
+(a) Locust (acridian) name (Code table 0~20~101);
+
+(b) Locust (maturity) color (Code table 0~20~102);
+
+(c) Stage of development of locusts (Code table 0~20~103);
+
+(d) Organization state of swarm or band of locusts (Code table 0~20~104);
+
+(e) Size of swarm or band of locusts and duration of passage of swarm (Code table 0~20~105);
+
+(f) Locust population density (Code table 0~20~106);
+
+(g) Direction of movements of locust swarm (Code table 0~20~107);
+
+(h) Extent of vegetation (Code table 0~20~108).
+
+{[}1/12.14.1{]}
+\end{quote}
+
+\textbf{Regional regulations for reporting SYNOP data in BUFR/CREX for RA II}
+
+\textbf{TM 307182 -- BUFR template for synoptic reports from fixed land stations suitable for SYNOP data in compliance with reporting practices in RA II}
+
+\textbf{3 07 182:}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & Unit, scale\tabularnewline
+\textbf{3 01 090} & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 02 031} & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 035} & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+\textbf{3 02 036} & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{3 02 047} & \textbf{Direction of cloud drift} &\tabularnewline
+\textbf{0 08 002} & \textbf{Vertical significance (surface observations) (= missing to cancel the previous value)} & Code table, 0\tabularnewline
+\textbf{3 02 048} & \textbf{Direction and elevation of cloud} &\tabularnewline
+\textbf{3 02 037} & \textbf{State of ground, snow depth, ground minimum temperature (past 12 hours)} &\tabularnewline
+\textbf{0 12 120} & Ground temperature \textbf{s\textsubscript{n}T'\textsubscript{g}T'\textsubscript{g}} & K, 2\tabularnewline
+\textbf{0 12 122} & Ground minimum temperature of the preceding night \textbf{s\textsubscript{n}T\textsubscript{g}T\textsubscript{g}} & K, 2\tabularnewline
+\textbf{3 02 043} & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+\textbf{3 02 044} & \textbf{Evaporation data} &\tabularnewline
+\textbf{1 01 002} & \textbf{Replicate 1 descriptor 2 times} &\tabularnewline
+\textbf{3 02 045} & \textbf{Radiation data (from 1 hour and 24-hour period)} &\tabularnewline
+\textbf{3 02 046} & \textbf{Temperature change} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Regulations:}
+
+\textbf{General}
+
+(i) BUFR template TM~307182 shall not be mandatory for Members in Region II. Either the template TM~307080 or any of the templates TM~307081, TM~307182, TM~307083 to TM~307086, whichever is the most convenient, may be used.
+
+(ii) Regulations \textbf{B/C1.1} to \textbf{B/C1.9}, inclusive, shall apply.
+
+(iii) Regulations \textbf{B/C1.10} to \textbf{B/C1.14}, inclusive, shall apply.
+
+(iv) BUFR template TM~307182 is recommended to be used instead of TM~307082 to allow reporting of Ground temperature (0~12~120).
+
+\textbf{B/C1.9.2 ``Instantaneous'' data required by reporting practices in RA II}
+
+\textbf{B/C1.9.2.1 Ground temperature}
+
+\begin{quote}
+Ground temperature measured at the time of observation (0~12~120) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Notes:
+
+(1) Notes 1 and 2 under Regulation B/C1.8.3 shall apply.
+
+(2) Inclusion of this datum into reports at least at 0000 and 1200 UTC shall be left to national decision. {[}2/12.6.1{]}
+\end{quote}
+
+\textbf{\\
+B/C1.9.2.2 Ground minimum temperature of the preceding night}
+
+\begin{quote}
+Ground minimum temperature of the preceding night (0~12~122) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Note: Notes 1, 2 and 3 under Regulation B/C1.8.3 shall apply.
+\end{quote}
+
+\textbf{Regional regulations for reporting SYNOP data in BUFR/CREX for RA III}
+
+\textbf{TM 307083 -- BUFR template for synoptic reports from fixed land stations suitable for SYNOP data in compliance with reporting practices in RA III}
+
+\textbf{3 07 083:}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & Unit, scale\tabularnewline
+\textbf{3 01 090} & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 02 031} & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 035} & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+\textbf{3 02 036} & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{3 02 047} & \textbf{Direction of cloud drift} &\tabularnewline
+\textbf{0 08 002} & \textbf{Vertical significance (surface observations) (= missing to cancel the previous value)} & Code table, 0\tabularnewline
+\textbf{3 02 048} & \textbf{Direction and elevation of cloud} &\tabularnewline
+\textbf{3 02 037} & \textbf{State of ground, snow depth, ground minimum temperature (past 12 hours)} &\tabularnewline
+\textbf{0 12 122} & Ground minimum temperature of the preceding night \textbf{s\textsubscript{n}T\textsubscript{g}T\textsubscript{g}} & K, 2\tabularnewline
+\textbf{3 02 043} & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+\textbf{3 02 044} & \textbf{Evaporation data} &\tabularnewline
+\textbf{1 01 002} & \textbf{Replicate 1 descriptor 2 times} &\tabularnewline
+\textbf{3 02 045} & \textbf{Radiation data (from 1 hour and 24-hour period)} &\tabularnewline
+\textbf{3 02 046} & \textbf{Temperature change} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Regulations:}
+
+\textbf{General}
+
+(i) BUFR template TM~307083 shall not be mandatory for Members in Region III. Either the template TM~307080 or any of the templates TM~307081, TM~307182, TM~307083 to TM~307086, whichever is the most convenient, may be used.
+
+(ii) Regulations \textbf{B/C1.1} to \textbf{B/C1.9}, inclusive, shall apply.
+
+(iii) Regulations \textbf{B/C1.10} to \textbf{B/C1.14}, inclusive, shall apply.
+
+\textbf{B/C1.9.3 ``Instantaneous'' data required by reporting practices in RA III}
+
+\textbf{B/C1.9.3.1 Ground minimum temperature of the preceding night}
+
+\begin{quote}
+Ground minimum temperature of the preceding night (0~12~122) shall be reported in kelvin (with precision in hundredths of a kelvin); if produced in CREX, in degrees Celsius (with precision in hundredths of a degree Celsius).
+
+Notes:
+
+(1) Notes 1, 2 and 3 under Regulation B/C1.8.3 shall apply.
+
+(2) This datum shall be included into reports at 1200 UTC, if possible. {[}3/12.7.2{]}
+\end{quote}
+
+\textbf{Regional regulations for reporting SYNOP data in BUFR/CREX for RA IV}
+
+\textbf{TM 307084 -- BUFR template for synoptic reports from fixed land stations suitable for SYNOP data in compliance with reporting practices in RA IV}
+
+\textbf{3 07 084:}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+& & Unit, scale\tabularnewline
+\textbf{3 01 090} & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 02 031} & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 035} & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+\textbf{3 02 036} & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{3 02 047} & \textbf{Direction of cloud drift} &\tabularnewline
+\textbf{0 08 002} & \textbf{Vertical significance (surface observations) (= missing to cancel the previous value)} & \textbf{Code table, 0}\tabularnewline
+\textbf{3 02 048} & \textbf{Direction and elevation of cloud} &\tabularnewline
+\textbf{3 02 037} & \textbf{State of ground, snow depth, ground minimum temperature (past 12 hours)} &\tabularnewline
+0 20 055 & \textbf{State of sky in the tropics} C\textsubscript{S} & \textbf{Code table, 0}\tabularnewline
+\textbf{1 01 000} & \textbf{Delayed} replication of 1 descriptor &\tabularnewline
+\textbf{0 31 001} & Delayed descriptor replication factor & Numeric, 0\tabularnewline
+\textbf{2 05 001} & Signify character & \textbf{CCITT IA5, 0}\tabularnewline
+\textbf{3 02 043} & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+\textbf{3 02 044} & \textbf{Evaporation data} &\tabularnewline
+\textbf{1 01 002} & \textbf{Replicate 1 descriptor 2 times} &\tabularnewline
+\textbf{3 02 045} & \textbf{Radiation data (from 1 hour and 24-hour period)} &\tabularnewline
+\textbf{3 02 046} & \textbf{Temperature change} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Regulations:}
+
+\textbf{General}
+
+(i) BUFR template TM~307084 shall not be mandatory for Members in Region IV. Either the template TM~307080 or any of the templates TM~307081, TM~307182, TM~307083 to TM~307086, whichever is the most convenient, may be used.
+
+(ii) Regulations \textbf{B/C1.1} to \textbf{B/C1.9}, inclusive, shall apply.
+
+(iii) Regulations \textbf{B/C1.10} to \textbf{B/C1.14}, inclusive, shall apply.
+
+\textbf{B/C1.9.4 ``Instantaneous'' data required by reporting practices in RA IV}
+
+\textbf{B/C1.9.4.1 State of sky in tropics}
+
+\begin{quote}
+State of sky in tropics (Code table 0~02~055) shall be reported only by stations in the southern part of Region IV, below 1~000 m elevation and within 500~kilometres of the shore, and only during the part of the year in which tropical weather is observed. Direction of cloud drift shall be reported using sequence 3~02~047. {[}4/12.4.2{]}
+\end{quote}
+
+\textbf{\\
+B/C1.9.4.2 Additional information in plain language}
+
+\begin{quote}
+Information in plain language shall be reported as a character field, using delayed replication of the operator descriptor 2~05~001. The value of the delayed replication factor 0~31~001 shall correspond with the number of characters required for the reported information (space characters included). For example, if the word TORNADO is included in the report (tornado has been observed at, or within sight of, the station {[}4/12.14.1{]}), delayed replication factor 0~31~001 shall be set to 7.
+\end{quote}
+
+\textbf{Regional regulations for reporting SYNOP data in BUFR/CREX for RA VI}
+
+\textbf{TM 307086 -- BUFR template for synoptic reports from fixed land stations suitable for SYNOP data in compliance with reporting practices in RA VI}
+
+\textbf{3 07 086:}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\endhead
+& & & Unit, scale\tabularnewline
+\textbf{3 01 090} & & \textbf{Surface station identification; time, horizontal and vertical coordinates} &\tabularnewline
+\textbf{3 02 031} & & \textbf{Pressure information} &\tabularnewline
+\textbf{3 02 035} & & \textbf{Basic synoptic ``instantaneous'' data} &\tabularnewline
+\textbf{3 02 036} & & \textbf{Clouds with bases below station level} &\tabularnewline
+\textbf{0 08 002} & & \textbf{Vertical significance (surface observations) (= missing to cancel the previous value)} & \textbf{Code table, 0}\tabularnewline
+\textbf{3 02 037} & & \textbf{State of ground, snow depth, ground minimum temperature} &\tabularnewline
+\textbf{3 02 066} & & \textbf{Dangerous weather phenomena} &\tabularnewline
+& & \textbf{Groups 919M\textsubscript{W}D\textsubscript{a}} \textbf{and 96119 in SYNOP} &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 023}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Other weather phenomena \textbf{M\textsubscript{W}}
+
+(1 = Dust/sand whirl, 9 = Funnel cloud not touching surface, 10 = Funnel cloud touching surface,\\
+12 = Waterspout)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 024}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Intensity of phenomena
+
+(1 = Light, 2 = Moderate, 3 = Heavy, 4 = Violent)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Code table, 0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 027}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Phenomenon occurrence
+
+(1 = At time of observation, 3 = In time period for past weather)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+& \textbf{0 20 054} & True direction from which a phenomenon or clouds are moving or in which they are observed \textbf{D\textsubscript{a}} & Degree true, 0\tabularnewline
+& & \textbf{Group 918s\textsubscript{q}D\textsubscript{p} in SYNOP} &\tabularnewline
+& \textbf{0 20 023} & Other weather phenomena (2 = Squalls) \textbf{s\textsubscript{q}} & Flag table, 0\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 027}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Phenomenon occurrence
+
+(1 = At time of observation, 3 = In time period for past weather)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+& \textbf{0 20 054} & True direction from which a phenomenon or clouds are moving or in which they are observed \textbf{D\textsubscript{p}} & Degree true, 0\tabularnewline
+& & \textbf{Group 929S\textsubscript{8}S'\textsubscript{8}} \textbf{in SYNOP} &\tabularnewline
+& \textbf{0 20 025} & Obscuration (13 = Snow) & Flag table, 0\tabularnewline
+& \textbf{0 20 026} & Character of obscuration (5 = Low drifting, 6 = Blowing) S\textsubscript{8} & Code table, 0\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 027}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Phenomenon occurrence
+
+(1 = At time of observation, 3 = In time period for past weather)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+& \textbf{0 20 040} & \textbf{Evolution of drift of snow} S'\textsubscript{8} & Code table, 0\tabularnewline
+& & \textbf{Group 932RR} &\tabularnewline
+& \textbf{0 20 066} & Maximum diameter of hailstones \textbf{RR} & m, 3\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 027}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Phenomenon occurrence
+
+(1 = At time of observation, 3 = In time period for past weather)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+& & \textbf{Groups 934RR -- 937RR in SYNOP} &\tabularnewline
+& \textbf{0 20 021} & Type of precipitation (15 = Glaze, 16 = Rime, 20 = Wet snow) & Flag table, 0\tabularnewline
+& \textbf{0 20 067} & Diameter of deposit \textbf{RR} & m, 3\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\textbf{0 20 027}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Phenomenon occurrence
+
+(1 = At time of observation, 3 = In time period for past weather)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Flag table, 0\strut
+\end{minipage}\tabularnewline
+\textbf{3 02 043} & & \textbf{Basic synoptic ``period'' data} &\tabularnewline
+\textbf{3 02 044} & & \textbf{Evaporation data} &\tabularnewline
+\textbf{1 01 002} & & \textbf{Replicate 1 descriptor 2 times} &\tabularnewline
+\textbf{3 02 045} & & \textbf{Radiation data (from 1 hour and 24-hour period)} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Note: Groups 56D\textsubscript{L}D\textsubscript{M}D\textsubscript{H}, 57CD\textsubscript{a}e\textsubscript{C} and 54g\textsubscript{0}s\textsubscript{n}d\textsubscript{T} are not used in RA VI and therefore the corresponding sequence descriptors 3~02~047, 3~02~048 and 3~02~046 are not included in the RA VI regional template for SYNOP data.
+
+\textbf{Regulations:}
+
+\textbf{General}
+
+(i) BUFR template TM~307086 shall not be mandatory for Members in Region VI. Either the template TM~307080 or any of the templates TM~307081, TM~307182, TM~307083 to TM~307086, whichever is the most convenient, may be used.
+
+(ii) Regulations \textbf{B/C1.1} to \textbf{B/C1.9}, inclusive, shall apply.
+
+(iii) Regulations \textbf{B/C1.10} to \textbf{B/C1.14}, inclusive, shall apply.
+
+\textbf{B/C1.9.6 ``Instantaneous'' data required by reporting practices in RA VI}
+
+\textbf{B/C1.9.6.1 Dangerous weather phenomena}
+
+\begin{quote}
+Sequence 3~02~066 should be used for regional exchange of data on dangerous phenomena. Reporting of other phenomena shall be left to national decision. {[}6/12.12.2{]}
+\end{quote}
+
+\textbf{B/C1.9.6.1.1 Tornado, waterspout, whirlwinds and dust devils}
+
+\begin{quote}
+Tornadoes, waterspouts, whirlwinds and dust devils between observation times shall be reported using two parameters: Other weather phenomena (Flag table 0~20~023) and Intensity of phenomena (Code table 0~20~024). Occurrence of the phenomenon (Flag table 0~20~027) shall be specified by setting bit No. 3 to 1 (In time period for past weather).
+\end{quote}
+
+\textbf{B/C1.9.6.1.2 Squall}
+
+\begin{quote}
+Squalls between observation times shall be reported using Flag table 0~20~023 (bit No. 2 set to 1). Occurrence of the phenomenon (Flag table 0~20~027) shall be specified by setting bit No. 3 to 1 (In time period for past weather). True direction from which the squall approaches the station (0~20~054) shall be reported in degrees true. \textbf{If more detailed information on occurrence and the nature and/or type of the squall is to be reported, 3}~\textbf{07~086 should be supplemented by two consecutive 0}~\textbf{04~024, by special phenomena 0}~\textbf{20~063 (using code figures 50 to 59) and by 0}~\textbf{20~054 (true direction from which the squall approaches the station).}
+\end{quote}
+
+\textbf{B/C1.9.6.1.3 Drifting and blowing snow}
+
+\begin{quote}
+Drifting and blowing snow shall be reported using two parameters: Obscuration (Flag table 0~20~025) and Character of obscuration (Code table 0~20~026). Occurrence of the phenomenon (Flag table 0~20~027) shall be specified by setting to 1 either bit No. 1 (At time of observation) or bit No. 3 (In time period for past weather) or both. Evolution of drift of snow shall be reported using Code table 0~20~040.
+\end{quote}
+
+\textbf{B/C1.9.6.1.4 Maximum diameter of hailstones}
+
+\begin{quote}
+Maximum diameter of hailstones (0~20~066) shall be reported in metres (with precision in thousandths of a metre). Occurrence of the phenomenon (Flag table 0~20~027) shall be specified by setting to 1 either bit No. 1 (At time of observation) or bit No. 3 (In time period for past weather) or both.
+\end{quote}
+
+\textbf{B/C1.9.6.1.5 Frozen deposit}
+
+\begin{quote}
+Diameter of frozen deposit (0~20~067) shall be reported in metres (with precision in thousandths of a metre). The preceding entry Type of precipitation (Flag table 0~20~021) shall specify type of the frozen deposit, i.e. bit No. 15 set to 1 shall indicate deposit of glaze, bit No. 16 set to 1 shall indicate deposit of rime and bit No. 20 set to 1 shall indicate deposit of wet snow; compound deposit shall be indicated by at least two of the above mentioned bits set to 1. Occurrence of the phenomenon (Flag table 0~20~027) shall be specified by setting to 1 either bit No.~1 (At time of observation) or bit No. 3 (In time period for past weather) or both.
+\end{quote}
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_

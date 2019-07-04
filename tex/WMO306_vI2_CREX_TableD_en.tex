@@ -1,0 +1,2328 @@
+\textbf{CREX Table D} \emph{-- List of common sequences}
+
+\begin{quote}
+F X Category of sequences
+
+D 00 CREX table entries sequences
+
+D 01 Location and identification sequences
+
+D 02 Meteorological sequences common to surface data
+
+D 03 Meteorological sequences common to vertical soundings data
+
+D 04 Meteorological sequences common to satellite observations (\emph{not to be used in CREX for\\
+transmission})
+
+D 05 Meteorological or hydrological sequences common to hydrological observations
+
+D 06 Meteorological or oceanographic sequences common to oceanographic observations
+
+D 07 Surface report sequences (land)
+
+D 08 Surface report sequences (sea)
+
+D 09 Vertical sounding sequences (conventional data)
+
+D 10 Vertical sounding sequences (satellite data) (\emph{not to be used in CREX for transmission})
+
+D 11 Single level report sequences (conventional data)
+
+D 12 Single level report sequences (satellite data) (\emph{not to be used in CREX for transmission})
+
+D 13 Sequences common to image data (\emph{not to be used in CREX for transmission})
+
+D 14 Reserved
+
+D 15 Oceanographic report sequences
+
+D 16 Synoptic feature sequences
+
+D 18 Radiological report sequences
+
+D 21 Radar report sequences (\emph{not to be used in CREX for transmission})
+
+D 22 Chemical and aerosol sequences
+
+D 35 Monitoring information
+\end{quote}
+
+Notes:
+
+(1) From a conceptual point of view, Table D is \emph{not necessary}:
+
+\begin{quote}
+(a) The Data description section can fully and completely describe the data using only element descriptors, operator descriptors and the rules of description;
+
+(b) Such a means of defining the data would involve considerable overheads in terms of the length of the\\
+Data description section. Table D is a device to reduce these overheads;
+
+(c) Each entry within Table D contains a list of descriptors. Each sequence descriptor that references to\\
+Table D may be ``expanded'' by replacing it with the list corresponding to that entry. The process of ``expansion'' is well defined, provided it results in a set of element descriptors and operator descriptors;
+
+(d) Descriptors listed in entries to Table D may themselves refer to Table D, provided no circularity results on repeated expansion;
+
+(e) The initial Table D has been limited to lists of descriptors likely to be used frequently. Every attempt has been made not to produce initial tables that are too comprehensive. \emph{Minor differences of reporting practice can be accommodated by not endeavouring to reduce each observation type to a single descriptor.} Indeed, much more flexibility is retained if the Data description section is envisaged as containing three or four descriptors.
+\end{quote}
+
+(2) It should be noted that, initially, effort has been concentrated on the requirements for observational data. Extensions forecast data, time series data, products, etc., follow logically and can be added at an appropriate future date.
+
+(4) Underwater soundings are included, with some minor omissions, to illustrate the facility to describe data of slightly different contents.
+
+(7) Categories 48 to 63 are reserved for local use; all other categories are reserved for future development.
+
+(8) Entries 192 to 255 within all categories are reserved for local use.
+
+\emph{Editorial note: Notes are numbered so as to be consistent with the BUFR Table D for convenience.}
+
+\textbf{Category 00 -- \emph{CREX table entries sequences}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 00 010 & D 00 003 & F, X, Y of descriptor to be added or defined &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 00 030 & Descriptor defining sequence &\tabularnewline
+& & &\tabularnewline
+& & (Code table definition) &\tabularnewline
+D 00 015 & B 00 030 & Descriptor defining sequence &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & Up to 9999 entries\tabularnewline
+& B 00 024 & Code figure &\tabularnewline
+& B 00 025 & Code figure meaning &\tabularnewline
+& & &\tabularnewline
+& & (Flag table definition) &\tabularnewline
+D 00 016 & B 00 030 & Descriptor defining sequence &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 00 026 & Bit number &\tabularnewline
+& B 00 027 & Bit number meaning &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes:
+
+(1) These entries include the facility to update the Table A code figure and data description.
+
+(2) It is better to use different Class 00 descriptors for the defining and defined elements, in the same way as different descriptors correspond to pressure considered as a coordinate and pressure measured at a given point; otherwise special rules would be needed to interpret such message. Entries B 00 010 to B 00 012 define F, X and Y for Tables B and D; entry B 00 030 is a descriptor used as data and provides the F, X and Y values defining a sequence for Table D entries.
+
+(3) It could be argued that, as only additions are possible, only complete lines should be allowed; but it is conceivable that local areas will require changes as well as additions, so it is better and in any case clearer to provide descriptions for all the fields.
+
+\textbf{Category 01 -- \emph{Location and identification sequences}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Description of a feature in 3-D or 2-D) &\tabularnewline
+D 01 027 & B 08 007 & Dimensional significance & \vtop{\hbox{\strut = 0 Point, = 1 Line,}\hbox{\strut = 2 Area, = 3 Volume}}\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor (see Note 5) &\tabularnewline
+& D 01 028 & Horizontal section of a feature described as a polygon, circle, line or point &\tabularnewline
+& B 08 007 & Dimensional significance & Set to missing (cancel)\tabularnewline
+\bottomrule
+\end{longtable}
+
+Note:
+
+(5) This replication factor shall have a value of ``1'' when a 2-D feature is being described, whereas 3-D features may be described via any one of the following methods:
+
+\begin{quote}
+(a) Via two or more horizontal sections in successive ascending flight levels. In this case, each section shall be described by an identical number of latitude/longitude points listed in identical order (i.e. where each point x of section n is to be joined via a straight line to point x of section n+1), in order to ensure that the overall shape of the 3-D feature is unambiguously described. In this case, all values reported for B~33~042 shall be ``missing''.
+
+(b) Via a single horizontal section with an appropriate value reported for B 33 042, as follows. In all such cases, the corresponding horizontal section description applies throughout the entire region.
+
+(i) A value of ``0'' to indicate a region above (but not including) the reported flight level and with unspecified upper bound.
+
+(ii) A value of ``1'' to indicate a region above (and including) the reported flight level and with unspecified upper bound.
+
+(iii) A value of ``2'' to indicate a region below (but not including) the reported flight level and extending to the surface.
+
+(iv) A value of ``3'' to indicate a region below (and including) the reported flight level and extending to the surface.
+
+(c) Via two replications of the same horizontal section at the same reported flight level, in order to indicate a region extending both below and above (and including!) the reported flight level. In this case, the values reported for the two replications of B 33 042 shall be as follows:
+
+(i) Values of ``3'' and ``1'', respectively, to indicate a region beginning from below a reported flight level, but continuing through that level upward to some unspecified point above (e.g. TOP ABV FL100).
+
+(ii) Values of ``1'' and ``3'', respectively, to indicate a region beginning from above a reported flight level, but continuing through that level downward to some unspecified point below (e.g. CIGS BLW FL010).
+\end{quote}
+
+\textbf{Category 02 -- \emph{Meteorological sequences common to surface data}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Basic surface report) &\tabularnewline
+D 02 013 & D 02 006 & Pressure and 24-hour pressure change &\tabularnewline
+& D 02 003 & Wind, temperature, humidity, visibility, weather &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer &\tabularnewline
+& & &\tabularnewline
+& & (Basic synoptic ``instantaneous'' data) &\tabularnewline
+D 02 035 & D 02 032 & Temperature and humidity data &\tabularnewline
+& D 02 033 & Visibility data &\tabularnewline
+& D 02 034 & Precipitation past 24 hours &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& D 02 004 & General cloud information &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer & Individual cloud layer or mass\tabularnewline
+& & &\tabularnewline
+& & (Clouds with bases below station level) &\tabularnewline
+D 02 036 & R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) &\tabularnewline
+& B 20 011 & Cloud amount &\tabularnewline
+& B 20 012 & Cloud type &\tabularnewline
+& B 20 014 & Height of top of cloud &\tabularnewline
+& B 20 017 & Cloud top description &\tabularnewline
+& & &\tabularnewline
+& & (Ship ``instantaneous'' data) &\tabularnewline
+D 02 054 & D 02 052 & Ship temperature and humidity data &\tabularnewline
+& D 02 053 & Ship visibility data &\tabularnewline
+& B 07 033 & Height of sensor above water surface & Set to missing (cancel)\tabularnewline
+& D 02 034 & Precipitation past 24 hours &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& D 02 004 & General cloud information &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer &\tabularnewline
+& & &\tabularnewline
+& & (``Instantaneous'' data of sequence D 07 096) &\tabularnewline
+D 02 084 & D 02 031 & Pressure information &\tabularnewline
+& D 02 072 & Temperature and humidity data &\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& R 01 005 & Replicate 1 descriptor 5 times &\tabularnewline
+& D 07 063 & Depth below land surface and soil temperature &\tabularnewline
+& B 07 061 & Depth below land surface & Set to missing (cancel)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 02 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 02 084 & & \emph{Visibility data} &\tabularnewline
+(\emph{continued}) & R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 069 & Visibility data &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& B 07 033 & Height of sensor above water surface & Set to missing (cancel)\tabularnewline
+& & \emph{Marine data} &\tabularnewline
+& R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 20 031 & Ice deposit (thickness) &\tabularnewline
+& B 20 032 & Rate of ice accretion (estimated) &\tabularnewline
+& B 02 038 & \vtop{\hbox{\strut Method of water temperature and/or salinity}\hbox{\strut measurement}} &\tabularnewline
+& B 22 043 & Sea/water temperature & Scale: 2\tabularnewline
+& D 02 021 & Waves &\tabularnewline
+& & \emph{State of ground and snow depth measurement} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 078 & State of ground and snow depth measurement &\tabularnewline
+& B 12 113 & Ground minimum temperature, past 12 hours & Scale: 2\tabularnewline
+& & \emph{Cloud data} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 004 & General cloud information &\tabularnewline
+& R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) &\tabularnewline
+& B 20 011 & Cloud amount &\tabularnewline
+& B 20 012 & Cloud type &\tabularnewline
+& B 33 041 & Attribute of following value &\tabularnewline
+& B 20 013 & Height of base of cloud &\tabularnewline
+& D 02 036 & Clouds with bases below station level &\tabularnewline
+& & \emph{Direction of cloud drift 6D\textsubscript{L}D\textsubscript{M}D\textsubscript{H}} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 047 & Direction of cloud drift &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) & Set to missing (cancel)\tabularnewline
+& & \emph{Direction and elevation of cloud 57CD\textsubscript{a}e\textsubscript{c}} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 048 & Direction and elevation of cloud &\tabularnewline
+& & &\tabularnewline
+& & (``Period'' data of sequence D 07 096) &\tabularnewline
+& & \emph{Present and past weather data} &\tabularnewline
+D 02 085 & R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 20 003 & Present weather &\tabularnewline
+& R 03 002 & Replicate 3 descriptors 2 times &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 02 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+D 02 085\\
+(\emph{continued})\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+B 04 024\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Time period or displacement
+
+\begin{quote}
+= --1 hour in the first replication,\\
+= --x hours in the second replication,\\
+x corresponding to the time period of W\textsubscript{1}W\textsubscript{2} in the SYNOP report
+\end{quote}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+/see left column\strut
+\end{minipage}\tabularnewline
+& B 20 004 & Past weather (1) &\tabularnewline
+& B 20 005 & Past weather (2) &\tabularnewline
+& & \emph{Intensity of precipitation, size of precipitation\\
+element} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 175 & Intensity of precipitation, size of precipitation element &\tabularnewline
+& & \emph{Precipitation, obscuration and other phenomena} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 04 025 & Time period or displacement & = --10 minutes\tabularnewline
+& D 02 076 & Precipitation, obscuration and other phenomena &\tabularnewline
+& & \emph{Lightning data} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 04 025 & Time period or displacement & = --10 minutes\tabularnewline
+& B 13 059 & Number of flashes (thunderstorm) &\tabularnewline
+& & \emph{Wind data} &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) &\tabularnewline
+& B 07 033 & Height of sensor above water surface &\tabularnewline
+& B 08 021 & Time significance & = 2 Time averaged\tabularnewline
+& B 04 025 & Time period or displacement & = --10 minutes, or number of minutes after a significant change of wind\tabularnewline
+& B 11 001 & Wind direction &\tabularnewline
+& B 11 002 & Wind speed &\tabularnewline
+& B 08 021 & Time significance & Set to missing\tabularnewline
+& R 03 003 & Replicate 3 descriptors 3 times &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+B 04 025\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Time period or displacement
+
+\begin{quote}
+= --10 minutes in the first replication,\\
+= --60 minutes in the second replication,\\
+= --60x3 or 60x6 minutes in the third replication
+\end{quote}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+/ see left column\strut
+\end{minipage}\tabularnewline
+& B 11 043 & Maximum wind gust direction &\tabularnewline
+& B 11 041 & Maximum wind gust speed &\tabularnewline
+& B 04 025 & Time period or displacement & = --10 minutes\tabularnewline
+& B 11 016 & Extreme counterclockwise wind direction of a variable wind &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 02 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 02 085 & B 11 017 & Extreme clockwise wind direction of a variable wind &\tabularnewline
+(\emph{continued}) & & \emph{Extreme temperature data} &\tabularnewline
+& D 02 077 & Extreme temperature data &\tabularnewline
+& B 07 033 & Height of sensor above water surface & Set to missing (cancel)\tabularnewline
+& D 02 041 & Extreme temperature data &\tabularnewline
+& & \emph{Precipitation measurement} &\tabularnewline
+& R 06 000 & Delayed replication of 6 descriptors &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) &\tabularnewline
+& B 02 175 & Method of precipitation measurement &\tabularnewline
+& B 02 178 & Method of liquid content measurement of precipitation &\tabularnewline
+& R 02 005 & Replicate 2 descriptors 5 times &\tabularnewline
+& B 04 024 & Time period or displacement & \vtop{\hbox{\strut = --1 hour in the first replication,}\hbox{\strut = --3, --6, --12 and --24 hours in the other replications}}\tabularnewline
+& B 13 011 & Total precipitation/total water equivalent &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& & \emph{Evaporation data} &\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& B 02 185 & Method of evaporation measurement &\tabularnewline
+& R 01 002 & Replicate 1 descriptor 2 times &\tabularnewline
+& D 02 044 & Evaporation data &\tabularnewline
+& & \emph{Total sunshine data} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& R 01 002 & Replicate 1 descriptor 2 times &\tabularnewline
+& D 02 039 & Sunshine data (from 1 hour and 24-hour period) &\tabularnewline
+& & \emph{Radiation data} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& R 01 002 & Replicate 1 descriptor 2 times &\tabularnewline
+& D 02 045 & Radiation data (from 1 hour and 24-hour period) &\tabularnewline
+& & \emph{Temperature change group 54g\textsubscript{0}s\textsubscript{n}d\textsubscript{T}} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 046 & Temperature change &\tabularnewline
+& & \emph{First-order statistics of P, W, T, U data} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 083 & First-order statistics of P, W, T, U data &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 05 -- \emph{Meteorological or hydrological sequences common to hydrological observations}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (SADC-HYCOS measurement array definition) &\tabularnewline
+D 05 003 & D 01 012 & Hour, minute & First single measurement minus increment\tabularnewline
+& B 04 065 & Short time increment & Time interval between measurements\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 05 001 & SADC-HYCOS single measurement &\tabularnewline
+& & &\tabularnewline
+& & (MEDHYCOS measurement) &\tabularnewline
+D 05 006 & B 13 072 & Downstream water level &\tabularnewline
+& B 13 082 & Water temperature &\tabularnewline
+& B 13 019 & Total precipitation past 1 hour &\tabularnewline
+& C 07 005 & Units replacement & Kelvin\tabularnewline
+& C 01 004 & Data width replacement & 4 characters long\tabularnewline
+& B 12 001 & Temperature/air temperature &\tabularnewline
+& B 13 073 & Maximum water level &\tabularnewline
+& B 13 060 & Total accumulated precipitation &\tabularnewline
+& & &\tabularnewline
+& & (MEDHYCOS report) &\tabularnewline
+D 05 007 & D 01 029 & Identification &\tabularnewline
+& D 01 012 & Hour, minute & Time of first measurement\tabularnewline
+& B 04 065 & Short time increment & Time interval between measurements\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 05 006 & MEDHYCOS measurement & Single measurement\tabularnewline
+& & &\tabularnewline
+& & (AOCHYCOS -- Chad measurement) &\tabularnewline
+D 05 008 & D 05 006 & MEDHYCOS measurement & Same as MEDHYCOS type measurement\tabularnewline
+& C 07 005 & Units replacement & Kelvin\tabularnewline
+& C 01 004 & Data width replacement & 4 characters long\tabularnewline
+& B 12 030 & Soil temperature & At --50 cm\tabularnewline
+& & &\tabularnewline
+& & (AOCHYCOS -- Chad report) &\tabularnewline
+D 05 009 & D 01 029 & Identification &\tabularnewline
+& D 01 012 & Hour, minute & Time of first measurement\tabularnewline
+& B 04 065 & Short time increment & Time interval between measurements\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 05 008 & AOCHYCOS -- Chad measurement & Single measurement\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 05 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (MEDHYCOS report type 2) &\tabularnewline
+D 05 011 & D 01 029 & Identification &\tabularnewline
+& D 01 012 & Hour, minute & Time of first measurement\tabularnewline
+& B 04 065 & Short time increment & Time interval between measurements\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 05 010 & MEDHYCOS -- Measurement type 2 & Single measurement\tabularnewline
+& & &\tabularnewline
+& & (MEDHYCOS report with meteorology and water quality data) &\tabularnewline
+D 05 018 & D 01 029 & Identification &\tabularnewline
+& D 01 012 & Hour, minute & Time of first measurement\tabularnewline
+& B 04 065 & Short time increment & Hour increment\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& D 05 008 & AOCHYCOS -- Chad measurement & Same as AOCHYCOS type measurement\tabularnewline
+& D 05 016 & Meteorological parameters associated with hydrological data &\tabularnewline
+& D 05 017 & Water quality measurement &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 06 -- \emph{Meteorological or oceanographic sequences common to }}
+
+\emph{\textbf{oceanographic observations}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Depth, temperature) &\tabularnewline
+D 06 001 & B 02 032 & Indicator for digitization &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 07 062 & Depth below sea/water surface &\tabularnewline
+& B 22 042 & Sea/water temperature &\tabularnewline
+& & &\tabularnewline
+& & (Depth, temperature, salinity) &\tabularnewline
+D 06 004 & B 02 032 & Indicator for digitization &\tabularnewline
+& B 02 033 & Method of salinity/depth measurement &\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& B 07 062 & Depth below sea/water surface &\tabularnewline
+& B 22 043 & Sea/water temperature &\tabularnewline
+& B 22 062 & Salinity &\tabularnewline
+& & &\tabularnewline
+D 06 005 & B 02 031 & Duration and time of current measurement &\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& B 07 062 & Depth below sea/water surface &\tabularnewline
+& B 22 004 & Direction of current &\tabularnewline
+& B 22 031 & Speed of current &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of water level and residual in the time series) &\tabularnewline
+D 06 013 & D 06 012 & Sequence for representation of sensor type, significant qualifier for sensor and status of operation &\tabularnewline
+& D 01 011 & Year, month, day & Reference date for the time series\tabularnewline
+& D 01 013 & Hour, minute, second & Reference time for the time series\tabularnewline
+& B 22 120 & Tide station automated water level check &\tabularnewline
+& B 22 121 & Tide station manual water level check &\tabularnewline
+& B 04 015 & Time increment & Added to reset the reference time\tabularnewline
+& B 04 065 & Short time increment & Added to each data value in the time series\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 22 038 & Tidal elevation with respect to local chart datum &\tabularnewline
+& B 22 040 & Meteorological residual tidal elevation (surge or offset) &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of water level in the time series, similar to D 06 013 but with no residual) &\tabularnewline
+D 06 014 & D 06 012 & Sequence for representation of sensor type, significant qualifier for sensor and status of operation &\tabularnewline
+& D 01 011 & Year, month, day & Reference date for the time series\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 06 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+\vtop{\hbox{\strut D 06 014}\hbox{\strut (\emph{continued})}} & D 01 013 & Hour, minute, second & Reference time for the time series\tabularnewline
+& B 22 120 & Tide station automated water level check &\tabularnewline
+& B 22 121 & Tide station manual water level check &\tabularnewline
+& B 04 015 & Time increment & Added to reset the reference time\tabularnewline
+& B 04 065 & Short time increment & Added to each data value in the time series\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 22 038 & Tidal elevation with respect to local chart datum &\tabularnewline
+& & &\tabularnewline
+& & (Tide report identification, water level checks, time increments) &\tabularnewline
+D 06 019 & B 01 075 & Tide station identification & Alphanumeric\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& B 22 042 & Sea/water temperature &\tabularnewline
+& B 22 120 & Tide station automated water level check &\tabularnewline
+& B 22 121 & Tide station manual water level check &\tabularnewline
+& C 01 002 & Data width replacement & 2 characters long\tabularnewline
+& B 04 015 & Time increment (see Note 1) &\tabularnewline
+& B 04 065 & Short time increment &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of DART buoy standard hourly report) &\tabularnewline
+D 06 030 & D 06 027 & \vtop{\hbox{\strut Sequence for representation of DART buoy identi-}\hbox{\strut fication, transmitter ID, type of tsunameter and the time the message is transmitted to the ground system}} &\tabularnewline
+& D 06 029 & Sequence for representation of tsunameter sampling information for water column heights in the time series report &\tabularnewline
+& R 11 000 & Delayed replication of 11 descriptors &\tabularnewline
+& B 33 002 & Quality information & Message status\tabularnewline
+& D 01 011 & Year, month, day & Reference date/time for the time series\tabularnewline
+& D 01 013 & Hour, minute, second &\tabularnewline
+& B 25 025 & Battery voltage & BPR CPU\tabularnewline
+& B 25 025 & Battery voltage & Acoustic modem DSP\tabularnewline
+& B 25 026 & Battery voltage (large range) & Acoustic modem\tabularnewline
+& B 22 185 & BPR transmission count &\tabularnewline
+& B 04 015 & Time increment & Added to reset the reference time\tabularnewline
+& B 04 065 & Short time increment & Added to each data value in the time series\tabularnewline
+& R 01 004 & Replicate 1 descriptor 4 times &\tabularnewline
+& B 22 182 & Water column height &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 06 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Sequence for representation of DART buoy tsunami event reports and extended tsunami event reports) &\tabularnewline
+D 06 031 & D 06 027 & Sequence for representation of DART buoy identification, transmitter ID, type of tsunameter and the time the message is transmitted to the ground system &\tabularnewline
+& D 06 029 & Sequence for representation of tsunameter sampling information for water column heights in the time series report &\tabularnewline
+& B 01 053 & Tsunameter report sequence number triggered by a tsunami event &\tabularnewline
+& B 33 002 & Quality information & Message status\tabularnewline
+& D 01 011 & Year, month, day & Time when tsunami is detected\tabularnewline
+& D 01 013 & Hour, minute, second &\tabularnewline
+& D 01 011 & Year, month, day & Reference date/time for the time series\tabularnewline
+& D 01 013 & Hour, minute, second &\tabularnewline
+& B 22 185 & BPR transmission count &\tabularnewline
+& B 22 182 & Water column height & Determination of actual value reported in the time series\tabularnewline
+& B 04 016 & Time increment & Added to reset the reference time\tabularnewline
+& B 04 066 & Short time increment & Added to each data value in the time series\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 22 184 & Water column height deviation from the reference value &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of detailed spectral wave measurements) &\tabularnewline
+D 06 040 & B 22 078 & Duration of wave record &\tabularnewline
+& B 22 082 & Maximum non-directional spectral wave density &\tabularnewline
+& R 06 000 & Delayed replication of 6 descriptors & Number of frequency bins\tabularnewline
+& B 22 080 & Waveband central frequency &\tabularnewline
+& B 22 069 & Spectral wave density &\tabularnewline
+& B 22 086 & Mean direction from which waves are coming &\tabularnewline
+& B 22 087 & Principal direction from which waves are coming &\tabularnewline
+& B 22 088 & First normalized polar coordinate from Fourier coefficients &\tabularnewline
+& B 22 089 & Second normalized polar coordinate from Fourier coefficients &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 06 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & \vtop{\hbox{\strut (Depth and temperature profile (high accuracy}\hbox{\strut /precision))}} &\tabularnewline
+D 06 041 & B 02 032 & Indicator for digitization & = 0 Fixed sensor depths\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & Number of depths\tabularnewline
+& B 07 062 & Depth below sea/water surface &\tabularnewline
+& B 22 043 & Sea/water temperature &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Note:
+
+(1) Range of value for parameter B 04 015 limited from --99 to 99; CREX common sequence D 06 019 being the original sequence with 2 characters only for the corresponding descriptor.
+
+\textbf{Category 07 -- \emph{Surface report sequences (land)}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Low altitude station) &\tabularnewline
+D 07 003 & D 07 001 & Low altitude station & Location (high accuracy) and basic report\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer &\tabularnewline
+& & &\tabularnewline
+& & (Low altitude station) &\tabularnewline
+D 07 004 & D 07 002 & Low altitude station & Location (coarse accuracy) and basic report\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer &\tabularnewline
+& & &\tabularnewline
+& & (Horizontal visibility) &\tabularnewline
+D 07 012 & R 03 000 & Delayed replication of 3 descriptors & Up to 3\tabularnewline
+& B 08 023 & First-order statistics &\tabularnewline
+& B 05 021 & Bearing or azimuth & Direction of visibility observed\tabularnewline
+& B 20 001 & Horizontal visibility & VVVV\tabularnewline
+& & &\tabularnewline
+& & (Runway visual range) &\tabularnewline
+D 07 013 & R 06 000 & Delayed replication of 6 descriptors & Up to 4\tabularnewline
+& B 01 064 & Runway designator & D\textsubscript{R}D\textsubscript{R}\tabularnewline
+& B 08 014 & Qualifier for runway visual range &\tabularnewline
+& B 20 061 & Runway visual range (RVR) & V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}\tabularnewline
+& B 08 014 & Qualifier for runway visual range &\tabularnewline
+& B 20 061 & Runway visual range (RVR) & V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}\tabularnewline
+& B 20 018 & Tendency of runway visual range & i\tabularnewline
+& & &\tabularnewline
+& & (Significant present or forecast weather) &\tabularnewline
+D 07 014 & R 01 000 & Delayed replication of 1 descriptor & Up to 3\tabularnewline
+& B 20 019 & Significant present or forecast weather & w´w´\tabularnewline
+& & &\tabularnewline
+& & (Clouds group(s)) &\tabularnewline
+D 07 015 & R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 005 & Cloud layer & N\textsubscript{s}N\textsubscript{s}N\textsubscript{s}, CC, h\textsubscript{s}h\textsubscript{s}h\textsubscript{s}\tabularnewline
+& B 20 002 & Vertical visibility & VVh\textsubscript{s}h\textsubscript{s}h\textsubscript{s}\tabularnewline
+& & &\tabularnewline
+& & (Significant recent weather phenomena) &\tabularnewline
+D 07 016 & R 01 000 & Delayed replication of 1 descriptor & Up to 3\tabularnewline
+& B 20 020 & Significant recent weather phenomena & REw´w´\tabularnewline
+& & &\tabularnewline
+& & (Wind shear on runway(s)) &\tabularnewline
+D 07 017 & R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 11 070 & Designator of the runway affected by wind shear (including ALL) & WS RWYD\textsubscript{R}D\textsubscript{R}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Trend-type landing forecast) &\tabularnewline
+D 07 018 & B 08 016 & Change qualifier of a trend-type forecast or an aerodrome forecast & TTTTT\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & Up to 2\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+B 08 017\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Qualifier of the time when the forecast change
+
+is expected\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+FM, TL, AT\strut
+\end{minipage}\tabularnewline
+& D 01 012 & Hour, minute & GG, gg\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors & Up to 1\tabularnewline
+& B 07 006 & Height above station &\tabularnewline
+& B 11 001 & Wind direction & ddd\tabularnewline
+& B 11 002 & Wind speed & ff\tabularnewline
+& B 11 041 & Maximum wind gust speed & f\textsubscript{m}f\textsubscript{m}\tabularnewline
+& B 20 009 & General weather indicator (TAF/METAR) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor & Up to 1\tabularnewline
+& B 20 001 & Horizontal visibility & VVVV\tabularnewline
+& D 07 014 & Significant present or forecast weather & w´w´\tabularnewline
+& & &\tabularnewline
+& & (METAR/SPECI visibility) &\tabularnewline
+D 07 046 & B 20 060 & Prevailing horizontal visibility & VVVV or VVVVNDV\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & Up to 2\tabularnewline
+& B 05 021 & Bearing or azimuth & Direction of minimum visibility observed D\textsubscript{v}\tabularnewline
+& B 20 059 & Minimum horizontal visibility & V\textsubscript{N}V\textsubscript{N}V\textsubscript{N}V\textsubscript{N}\tabularnewline
+& & &\tabularnewline
+& & (METAR/SPECI/TAF clouds), replacing D 07 015 &\tabularnewline
+D 07 047 & R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) &\tabularnewline
+& B 20 011 & Cloud amount & N\textsubscript{s}N\textsubscript{s}N\textsubscript{s}\tabularnewline
+& B 20 012 & Cloud type & CC\tabularnewline
+& B 20 013 & Height of base of cloud & h\textsubscript{s}h\textsubscript{s}h\textsubscript{s} -- m\tabularnewline
+& B 20 092 & Height of base of cloud & h\textsubscript{s}h\textsubscript{s}h\textsubscript{s} -- ft\tabularnewline
+& B 20 002 & Vertical visibility & VVh\textsubscript{s}h\textsubscript{s}h\textsubscript{s} -- m\tabularnewline
+& B 20 091 & Vertical visibility & VVh\textsubscript{s}h\textsubscript{s}h\textsubscript{s} -- ft\tabularnewline
+& & &\tabularnewline
+& & (Trend type forecast), replacing D 07 018 &\tabularnewline
+D 07 048 & B 08 016 & Change qualifier of a trend-type forecast or an aerodrome forecast & TTTTT NOSIG\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & = 0, 1 or 2\tabularnewline
+& B 08 017 & Qualifier of the time when the forecast change is expected & TT\tabularnewline
+& D 01 012 & Hour, minute & GGgg\tabularnewline
+& R 12 000 & Delayed replication of 12 descriptors & = 0 or 1\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & = 10 m (if the actual value is not available)\tabularnewline
+& B 11 001 & Wind direction & ddd\tabularnewline
+& B 08 054 & Qualifier for wind speed or wind gusts & P\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 07 048 & B 11 083 & Wind speed (see Note 5) & ff -- km/h\tabularnewline
+(\emph{continued}) & B 11 084 & Wind speed (see Note 5) & ff -- kt\tabularnewline
+& B 11 002 & Wind speed (see Note 5) & ff -- m/s\tabularnewline
+& B 08 054 & Qualifier for wind speed or wind gusts & P\tabularnewline
+& B 11 085 & Maximum wind gust speed (see Note 6) & f\textsubscript{m}f\textsubscript{m} -- km/h\tabularnewline
+& B 11 086 & Maximum wind gust speed (see Note 6) & f\textsubscript{m}f\textsubscript{m} -- kt\tabularnewline
+& B 11 041 & Maximum wind gust speed (see Note 6) & f\textsubscript{m}f\textsubscript{m} -- m/s\tabularnewline
+& B 08 054 & Qualifier for wind speed or wind gusts & Set to missing (cancel)\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& B 20 009 & General weather indicator (TAF/METAR) & CAVOK NSW NSC\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor & = 0 or 1\tabularnewline
+& B 20 060 & Prevailing horizontal visibility & VVVV\tabularnewline
+& D 07 014 & Significant present and forecast weather & Weather intensity and phenomena w´w´\tabularnewline
+& D 07 047 & METAR/SPECI/TAF clouds, replacing D 07 015 & N\textsubscript{s}N\textsubscript{s}N\textsubscript{s}h\textsubscript{s}h\textsubscript{s}h\textsubscript{s}\tabularnewline
+& & &\tabularnewline
+& & (Sea conditions) &\tabularnewline
+D 07 049 & R 02 000 & Delayed replication of 2 descriptors & = 0 or 1\tabularnewline
+& B 22 043 & Sea/water temperature & T\textsubscript{s}T\textsubscript{s}\tabularnewline
+& B 22 021 & Height of waves & S´\tabularnewline
+& & &\tabularnewline
+& & (Runway state) &\tabularnewline
+D 07 050 & R 01 000 & Delayed replication of 1 descriptor & = 0 or 1\tabularnewline
+& B 20 085 & General condition of runway & SNOCLO\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 01 064 & Runway designator & D\textsubscript{R}D\textsubscript{R}\tabularnewline
+& B 20 085 & General condition of runway & CLRD//\tabularnewline
+& R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 01 064 & Runway designator & D\textsubscript{R}D\textsubscript{R}\tabularnewline
+& B 20 086 & Runway deposits & E\textsubscript{R}\tabularnewline
+& B 20 087 & Runway contamination & C\textsubscript{R}\tabularnewline
+& B 20 088 & Depth of runway deposits & e\textsubscript{R}e\textsubscript{R}\tabularnewline
+& B 20 089 & Runway friction coefficient & B\textsubscript{R}B\textsubscript{R}\tabularnewline
+& & &\tabularnewline
+& & (Full METAR/SPECI), replacing D 07 021 &\tabularnewline
+D 07 051 & D 07 045 & Main part of METAR/SPECI, replacing D 07 011 &\tabularnewline
+& D 07 046 & METAR/SPECI visibility & \vtop{\hbox{\strut VVVV or}\hbox{\strut VVVVNDV V\textsubscript{N}V\textsubscript{N}V\textsubscript{N}V\textsubscript{N}D\textsubscript{V}}}\tabularnewline
+& D 07 013 & Runway visual range & RD\textsubscript{R}D\textsubscript{R}/V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}V\textsubscript{R}\tabularnewline
+& D 07 014 & Significant present and forecast weather & Weather intensity and phenomena w´w´\tabularnewline
+& D 07 047 & METAR/SPECI/TAF clouds, replacing D 07 015 & N\textsubscript{s}N\textsubscript{s}N\textsubscript{s}h\textsubscript{s}h\textsubscript{s}h\textsubscript{s}\tabularnewline
+& D 07 016 & Significant recent weather phenomena & REw´w´\tabularnewline
+& D 07 017 & Wind shear on runway(s) & WS RD\textsubscript{R}D\textsubscript{R}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 07 051 & D 07 049 & Sea conditions & WT\textsubscript{s}T\textsubscript{s}/SS´\tabularnewline
+(\emph{continued}) & D 07 050 & Runway state & RD\textsubscript{R}D\textsubscript{R}/E\textsubscript{R}C\textsubscript{R}e\textsubscript{R}e\textsubscript{R}B\textsubscript{R}B\textsubscript{R}\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor & = 0 to 3 normally\tabularnewline
+& D 07 048 & Trend type forecast, replacing D 07 018 &\tabularnewline
+& & &\tabularnewline
+& & (Aerodrome forecast -- full TAF) &\tabularnewline
+D 07 056 & D 07 052 & Aerodrome forecast identification and time interval &\tabularnewline
+& D 07 053 & Forecast weather at an aerodrome &\tabularnewline
+& D 07 054 & Forecast of extreme temperatures &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 07 055 & Change indicator and forecast changes &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of synoptic reports from fixed land stations suitable for SYNOP data and for maritime data from coastal stations) &\tabularnewline
+D 07 079 & D 01 090 & Surface station identification; time, horizontal and vertical coordinates &\tabularnewline
+& D 02 031 & Pressure information &\tabularnewline
+& D 02 035 & Basic synoptic ``instantaneous'' data &\tabularnewline
+& D 02 036 & Clouds with bases below station level &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 047 & Direction of cloud drift &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 048 & Direction and elevation of cloud &\tabularnewline
+& D 02 037 & State of ground, snow depth, ground minimum temperature &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 22 061 & State of the sea &\tabularnewline
+& B 20 058 & Visibility seawards from a coastal station &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 056 & Sea/water temperature & Sea/water surface temperature, method of measurement, depth below water surface\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 055 & Icing and ice &\tabularnewline
+& D 02 043 & Basic synoptic ``period'' data &\tabularnewline
+& D 02 044 & Evaporation data &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 045 & Radiation data (from 1 hour and 24-hour period) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 046 & Temperature change &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Sequence for representation of synoptic reports from a fixed land station suitable for SYNOP data in compliance with reporting practices in RA IV) &\tabularnewline
+D 07 084 & D 01 090 & Surface station identification; time, horizontal and vertical coordinates &\tabularnewline
+& D 02 031 & Pressure information &\tabularnewline
+& D 02 035 & Basic synoptic ``instantaneous'' data &\tabularnewline
+& D 02 036 & Clouds with bases below station level &\tabularnewline
+& D 02 047 & Direction of cloud drift &\tabularnewline
+& B 08 002 & Vertical significance (surface observations) & Set to missing (cancel)\tabularnewline
+& D 02 048 & Direction and elevation of cloud &\tabularnewline
+& D 02 037 & State of ground, snow depth, ground minimum temperature &\tabularnewline
+& B 20 055 & State of sky in the tropics &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& C 05 001 & Character insertion & Character field of 1~character\tabularnewline
+& D 02 043 & Basic synoptic ``period'' data &\tabularnewline
+& D 02 044 & Evaporation data &\tabularnewline
+& R 01 002 & Replicate 1 descriptor 2 times &\tabularnewline
+& D 02 045 & Radiation data (from 1 hour and 24-hour period) &\tabularnewline
+& D 02 046 & Temperature change &\tabularnewline
+& & &\tabularnewline
+& & (``Instantaneous'' parameters of sequence D 07 089) &\tabularnewline
+& & \emph{Surface station identification, time, horizontal and\\
+vertical coordinates} &\tabularnewline
+D 07 087 & D 01 001 & WMO block and station number & IIiii\tabularnewline
+& B 02 001 & Type of station & i\textsubscript{x}\tabularnewline
+& D 01 011 & Year, month, day & YY\tabularnewline
+& D 01 012 & Hour, minute & GG, gg\tabularnewline
+& D 01 023 & Latitude/longitude (coarse accuracy) &\tabularnewline
+& B 07 030 & Height of station ground above mean sea level &\tabularnewline
+& B 07 031 & Height of barometer above mean sea level &\tabularnewline
+& & \emph{Pressure data} &\tabularnewline
+& D 02 001 & Pressure and 3-hour pressure change & \vtop{\hbox{\strut P\textsubscript{o}P\textsubscript{o}P\textsubscript{o}P\textsubscript{o}, PPPP, ppp,}\hbox{\strut a}}\tabularnewline
+& B 10 062 & 24-hour pressure change & p\textsubscript{24}p\textsubscript{24}p\textsubscript{24}\tabularnewline
+& B 07 004 & Pressure & Standard level a\textsubscript{3\\
+}= 925, 850, 700, .. hPa \textbar{} Set to missing for lowland stations\tabularnewline
+& B 10 009 & Geopotential height & \vtop{\hbox{\strut Standard level hhh \textbar{}}\hbox{\strut Set to missing for lowland stations}}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 07 087 & & \emph{Temperature and humidity} &\tabularnewline
+(\emph{continued}) & B 07 032 & Height of sensor above local ground (or deck of marine platform) & Temperature measurement\tabularnewline
+& B 12 101 & Temperature/air temperature & s\textsubscript{n}TTT \textbar{} Scale: 2\tabularnewline
+& B 12 103 & Dewpoint temperature & s\textsubscript{n}T\textsubscript{d}T\textsubscript{d}T\textsubscript{d} \textbar{} Scale: 2\tabularnewline
+& B 13 003 & Relative humidity &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& & \emph{Visibility} &\tabularnewline
+& B 20 001 & Horizontal visibility & VV\tabularnewline
+& & \emph{Cloud data} &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+D 02 004\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+General cloud information
+
+\begin{quote}
+Cloud cover (total) N:\\
+If N = 9, then B 20 010 = 113, if N = /, then B~20~010 = missing \textbf{\textbar{}} Vertical significance: If C\textsubscript{L} are observed, then B 08 002 = 7 \textbf{\textbar{}} Low cloud:\\
+If C\textsubscript{L} are not observed and C\textsubscript{M} are observed, then B 08 002 = 8 \textbf{\textbar{}} Middle cloud: If only C\textsubscript{H} are observed, B 08 002 = 0, if N = 9, then B 08 002 = 5, if N = 0, then B 08 002 = 62, if N = /, then B~08~002 = missing \textbf{\textbar{}} Cloud amount (of low or middle clouds) N\textsubscript{h}: If N = 0, then B 20 011 = 0, if N~= 9, then B 20 011 = 9, if N = /, then B 20 011 = missing \textbf{\textbar{}} Height of base of cloud h: If N = 0 or /, then B 20 013 = missing \textbf{\textbar{}} Cloud type (low clouds) C\textsubscript{L}: B 20 012 = C\textsubscript{L} + 30, if N = 0, then B 20 012 = 30, if N = 9 or /, then B 20 012 = 62 \textbf{\textbar{}} Cloud type (middle clouds) C\textsubscript{M}: B 20 012 = C\textsubscript{M} + 20, if N = 0, then B 20 012 = 20, if N = 9 or / or C\textsubscript{M} = /, then B~20 012 = 61 \textbf{\textbar{}}\\
+Cloud type (high clouds) C\textsubscript{H}: B 20 012 = C\textsubscript{H} + 10, if N = 0, then B 20 012 = 10, if N = 9 or / or C\textsubscript{H} = /, then B 20 012 = 60
+\end{quote}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+/see left column\strut
+\end{minipage}\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+D 02 005\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Cloud layer
+
+\begin{quote}
+Vertical significance: In any Cb layer, B 08 002 = 4, else in the first replication, if N = 9, then B~08~002 = 5, if N = /, then B 08 002 = missing, else B~08~002 = 1, in the other replications B~08~002 = 2, 3, 4 \textbf{\textbar{}}\\
+Cloud amount N\textsubscript{s}: In the first replication, if N = /, then B 20 011 = missing, else B 20 011 = N\textsubscript{s}, in the other replications B 20 011 = N\textsubscript{s} \textbf{\textbar{}} Cloud type C:\\
+If N = 9 or /, then B 20 012 = missing, else B~20~012 = C \textbf{\textbar{}} Height of base of cloud h\textsubscript{s}h\textsubscript{s}
+\end{quote}\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+/see left column\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (CREX template for surface observations from one-hour period with national and WMO station identification) &\tabularnewline
+D 07 091 & D 01 089 & National station identification &\tabularnewline
+& D 01 090 & Surface station identification; time, horizontal and vertical coordinates &\tabularnewline
+& B 08 010 & Surface qualifier (temperature data) &\tabularnewline
+& D 01 091 & Surface station instrumentation &\tabularnewline
+& D 02 001 & Pressure and 3-hour pressure change &\tabularnewline
+& B 07 004 & Pressure & Standard level\tabularnewline
+& B 10 009 & Geopotential height & Standard level\tabularnewline
+& D 02 072 & Temperature and humidity data &\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& R 01 005 & Replicate 1 descriptor 5 times &\tabularnewline
+& D 07 063 & Depth below land surface and soil temperature &\tabularnewline
+& B 07 061 & Depth below land surface & Set to missing (cancel)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 069 & Visibility data &\tabularnewline
+& B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& B 07 033 & Height of sensor above water surface & Set to missing (cancel)\tabularnewline
+& R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 20 031 & Ice deposit (thickness) &\tabularnewline
+& B 20 032 & Rate of ice accretion (estimated) &\tabularnewline
+& B 02 038 & Method of water temperature and/or salinity measurement &\tabularnewline
+& B 22 043 & Sea/water temperature & Scale: 2\tabularnewline
+& D 02 021 & Waves &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 078 & State of ground and snow depth measurement &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 073 & Cloud data &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 074 & Present and past weather &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 175 & Intensity of precipitation, size of precipitation element &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 04 025 & Time period or displacement & = --10 (minutes)\tabularnewline
+& D 02 076 & Precipitation, obscuration and other phenomena &\tabularnewline
+& D 02 071 & Wind data from one-hour period &\tabularnewline
+& D 02 077 & Extreme temperature data &\tabularnewline
+& B 07 033 & Height of sensor above water surface & Set to missing (cancel)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 07 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 07 091 & D 02 079 & Precipitation measurement &\tabularnewline
+(\emph{continued}) & B 07 032 & Height of sensor above local ground (or deck of marine platform) & Set to missing (cancel)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 080 & Evaporation measurement &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 081 & Total sunshine data &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 082 & Radiation data &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 04 025 & Time period or displacement & = --10 (minutes)\tabularnewline
+& B 13 059 & Number of flashes (thunderstorm) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 083 & First-order statistics of P, W, T, U data &\tabularnewline
+& B 33 005 & Quality information (AWS data) &\tabularnewline
+& B 33 006 & Internal measurement status information (AWS) &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes:
+
+\emph{(5) Within D 07 045, D 07 048 and D 07 053, wind speed shall be reported in the same units as in the original TAC data and:}
+
+\emph{B 11 083 shall be set to missing, if wind speed is reported in knots or m s\textsuperscript{--1} in TAC data,}
+
+\emph{B 11 084 shall be set to missing, if wind speed is reported in km h\textsuperscript{--1} or m s\textsuperscript{--1} in TAC data.}
+
+\emph{(6) Within D 07 045, D 07 048 and D 07 053, maximum wind speed (gusts) shall be reported in the same units as in the original TAC data and:}
+
+\emph{B 11 085 shall be set to missing, if maximum wind speed is reported in knots or m s\textsuperscript{--1} in TAC data,}
+
+\emph{B 11 086 shall be set to missing, if maximum wind speed is reported in km h\textsuperscript{--1} or m s\textsuperscript{--1} in TAC data.}
+
+\textbf{Category 08 -- \emph{Surface report sequences (sea)}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (TRACKOB template) &\tabularnewline
+D 08 010 & B 01 011 & Ship or mobile land station identifier &\tabularnewline
+& R 13 000 & Delayed replication of 13 descriptors &\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& D 01 021 & Latitude/longitude (high accuracy) &\tabularnewline
+& B 04 080 & Averaging period for following value &\tabularnewline
+& B 22 049 & Sea-surface temperature &\tabularnewline
+& B 04 080 & Averaging period for following value &\tabularnewline
+& B 22 059 & Sea-surface salinity &\tabularnewline
+& B 04 080 & Averaging period for following value &\tabularnewline
+& B 22 005 & Direction of sea-surface current &\tabularnewline
+& B 02 042 & Indicator for sea-surface current speed &\tabularnewline
+& B 22 032 & Speed of sea-surface current &\tabularnewline
+& B 02 042 & Indicator for sea-surface current speed & Cancel\tabularnewline
+& B 04 080 & Averaging period for following value & Cancel\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 09 -- \emph{Vertical sounding sequences (conventional data)}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 001 & D 01 037 & Land station for vertical soundings & Identification, etc. (land station, high accuracy position)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 011 & Wind at height &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 002 & D 01 038 & Land station for vertical soundings & Identification, etc. (land station, coarse accuracy position)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 011 & Wind at height &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 003 & D 01 037 & Land station for vertical soundings & Identification, etc. (land station, high accuracy position)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 012 & Wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 004 & D 01 038 & Land station for vertical soundings & Identification, etc. (land station, coarse accuracy position)\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 012 & Wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with relative humidity) &\tabularnewline
+D 09 005 & D 01 037 & Land station for vertical soundings & Identification, etc. (land station, high accuracy position)\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 013 & Geopotential, temperature, humidity, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with relative humidity) &\tabularnewline
+D 09 006 & D 01 038 & Land station for vertical soundings & Identification, etc. (land station, coarse accuracy position)\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 013 & Geopotential, temperature, humidity, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with dewpoint data) &\tabularnewline
+D 09 007 & D 01 037 & Land station for vertical soundings & Identification, etc. (land station, high accuracy position)\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 014 & Geopotential, temperature, dewpoint temperature, wind at pressure level &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 09 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Vertical sounding with dewpoint data) &\tabularnewline
+D 09 008 & D 01 038 & Land station for vertical soundings & Identification, etc. (land station, coarse accuracy position)\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 014 & Geopotential, temperature, dewpoint temperature, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 011 & D 01 039 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 011 & Wind at height &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 012 & D 01 039 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 012 & Wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with relative humidity) &\tabularnewline
+D 09 013 & D 01 039 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 013 & Geopotential, temperature, humidity, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with dewpoint data) &\tabularnewline
+D 09 014 & D 01 039 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 014 & Geopotential, temperature, dewpoint temperature, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 015 & D 01 040 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 011 & Wind at height &\tabularnewline
+& & &\tabularnewline
+& & (Vertical wind profile) &\tabularnewline
+D 09 016 & D 01 040 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 012 & Wind at pressure level &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 09 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Vertical sounding with relative humidity) &\tabularnewline
+D 09 017 & D 01 040 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 013 & Geopotential, temperature, humidity, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Vertical sounding with dewpoint data) &\tabularnewline
+D 09 018 & D 01 040 & Ship for vertical soundings & Ship's identification, etc.\tabularnewline
+& D 02 004 & General cloud information & Significant cloud layer\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 014 & Geopotential, temperature, dewpoint temperature, wind at pressure level &\tabularnewline
+& & &\tabularnewline
+& & (Wind profiler -- wind data sounding) &\tabularnewline
+D 09 019 & D 01 031 & Identification and type of station, date/time, location (high accuracy), height of station &\tabularnewline
+& B 02 003 & Type of measuring equipment used &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 03 011 & Wind at height &\tabularnewline
+& & &\tabularnewline
+& & (Wind profiler -- Cartesian coordinates) &\tabularnewline
+D 09 020 & D 01 031 & Identification and type of station, date/time, location (high accuracy), height of station &\tabularnewline
+& B 02 003 & Type of measuring equipment used &\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 07 003 & Geopotential &\tabularnewline
+& B 11 003 & u-component &\tabularnewline
+& B 11 004 & v-component &\tabularnewline
+& B 11 005 & w-component &\tabularnewline
+& & &\tabularnewline
+& & (Ozone sonde flight data) (see Note 1) &\tabularnewline
+D 09 030 & B 15 004 & Ozone sounding correction factor (CF) &\tabularnewline
+& B 15 005 & Ozone p &\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 04 015 & Time increment & Since launch time, if needed, in minutes\tabularnewline
+& B 08 006 & Ozone vertical sounding significance &\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 15 003 & Measured ozone partial pressure (sounding) &\tabularnewline
+& & &\tabularnewline
+& & (Ozone sonde flight data) &\tabularnewline
+D 09 031 & B 15 004 & Ozone sounding correction factor (CF) &\tabularnewline
+& B 15 005 & Ozone p &\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 04 025 & Time period or displacement & Since launch time in minutes\tabularnewline
+& B 08 006 & Ozone vertical sounding significance &\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 15 003 & Measured ozone partial pressure (sounding) &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 09 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Sequence for representation of CLIMAT TEMP and CLIMAT TEMP SHIP data) &\tabularnewline
+D 09 054 & D 01 001 & WMO block and station numbers & Identification of launch site\tabularnewline
+& B 01 011 & Ship or mobile land station identifier & Ship's call sign\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& D 01 021 & Latitude/longitude (high accuracy) &\tabularnewline
+& B 07 030 & Height of station ground above mean sea level &\tabularnewline
+& B 07 031 & Height of barometer above mean sea level &\tabularnewline
+& B 07 007 & Height & Release of sonde above mean sea level\tabularnewline
+& & \emph{Monthly mean data} &\tabularnewline
+& B 04 023 & Time period or displacement & Number of days in the month\tabularnewline
+& B 04 059 & Times of observation used to compute the reported mean values &\tabularnewline
+& R 15 000 & Delayed replication of 15 descriptors &\tabularnewline
+& B 08 001 & Vertical sounding significance &\tabularnewline
+& B 08 023 & First-order statistics & = 4 Mean value\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 10 009 & Geopotential height &\tabularnewline
+& B 12 101 & Temperature/air temperature &\tabularnewline
+& B 12 103 & Dewpoint temperature &\tabularnewline
+& B 08 023 & First-order statistics & = 32 Vector mean\tabularnewline
+& B 11 001 & Wind direction &\tabularnewline
+& B 11 002 & Wind speed &\tabularnewline
+& B 08 023 & First-order statistics & Set to missing\tabularnewline
+& B 11 019 & Steadiness of wind &\tabularnewline
+& B 08 050 & Qualifier for number of missing values in calculation of statistic & = 2 Temperature\tabularnewline
+& B 08 020 & Total number of missing entities (with respect to accumulation or average) & Days\tabularnewline
+& B 08 050 & Qualifier for number of missing values in calculation of statistic & = 9 Wind\tabularnewline
+& B 08 020 & Total number of missing entities (with respect to accumulation or average) & Days\tabularnewline
+& & &\tabularnewline
+& & (Sequence for representation of PILOT in the area of ASECNA) &\tabularnewline
+D 09 071 & D 01 001 & WMO block and station numbers &\tabularnewline
+& B 02 014 & Tracking technique/status of system used &\tabularnewline
+& B 02 003 & Type of measuring equipment used &\tabularnewline
+& D 01 113 & Date/time of launch &\tabularnewline
+& D 01 114 & Horizontal and vertical coordinates of launch site &\tabularnewline
+& D 01 023 & Latitude/longitude (coarse accuracy) &\tabularnewline
+& B 07 030 & Height of station ground above mean sea level &\tabularnewline
+& B 07 007 & Height & Release of balloon\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 09 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 09 071 & B 07 009 & Geopotential height &\tabularnewline
+(\emph{continued}) & B 11 001 & Wind direction &\tabularnewline
+& B 11 002 & Wind speed &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Note:
+
+(1) Sequence D 09 030 is deprecated because of incorrect usage of descriptor B 04 015; sequence D 09 031 should be used instead.
+
+\textbf{Category 11 -- \emph{Single level report sequences (conventional data)}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (ACARS supplementary reported variables) &\tabularnewline
+D 11 004 & R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 11 034 & Vertical gust velocity &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 11 035 & Vertical gust acceleration &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 11 075 & Mean turbulence intensity (eddy dissipation rate) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 11 076 & Peak turbulence intensity (eddy dissipation rate) &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 33 025 & ACARS interpolated values indicator &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& B 33 026 & Moisture quality &\tabularnewline
+& & &\tabularnewline
+& & (Aircraft ascent/descent profile without latitude/longitude indicated at each level) &\tabularnewline
+D 11 008 & B 01 008 & Aircraft registration number or other identification &\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 013 & Hour, minute, second &\tabularnewline
+& D 01 021 & Latitude/longitude (high accuracy) &\tabularnewline
+& B 08 004 & Phase of aircraft flight &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 11 006 & AMDAR data or aircraft data for one level without latitude/longitude &\tabularnewline
+& & &\tabularnewline
+& & (Aircraft ascent/descent profile with latitude/longitude given for each level) &\tabularnewline
+D 11 009 & B 01 008 & Aircraft registration number or other identification &\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 013 & Hour, minute, second &\tabularnewline
+& D 01 021 & Latitude/longitude (high accuracy) &\tabularnewline
+& B 08 004 & Phase of aircraft flight &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 11 007 & Aircraft data for one level with latitude/longitude indicated &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 15 -- \emph{Oceanographic report sequences}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Sequence for representation of data derived from a ship-based lowered instrument measuring subsurface sea/water temperature, salinity and current profiles) &\tabularnewline
+D 15 007 & D 01 003 & Ship's call sign and motion &\tabularnewline
+& & \emph{Extended identification} &\tabularnewline
+& B 01 019 & Long station or site name &\tabularnewline
+& B 01 103 & IMO Number. Unique Lloyd's register & Values are restricted to between 0 and 9999999\tabularnewline
+& B 01 087 & WMO marine observing platform extended identifier & Set to missing, if ship's call sign is reported\tabularnewline
+& & \emph{Cruise/ship line information} &\tabularnewline
+& B 01 036 & Agency in charge of operating the observing platform &\tabularnewline
+& B 01 115 & Identifier of the cruise or mission under which the data were collected & Set to missing, if no cruise identifier is reported\tabularnewline
+& B 01 080 & Ship line number according to SOOP &\tabularnewline
+& B 05 036 & Ship transect number according to SOOP &\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& D 01 021 & Latitude/longitude (high accuracy) &\tabularnewline
+& & \emph{Profile information} &\tabularnewline
+& B 01 079 & Unique identifier for the profile &\tabularnewline
+& B 01 023 & Observation sequence number & Cast/station number along the line/transect\tabularnewline
+& B 22 063 & Total water depth &\tabularnewline
+& & \emph{Surface pressure} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 001 & Pressure and 3-hour pressure change &\tabularnewline
+& & \emph{Waves} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 021 & Waves &\tabularnewline
+& & \emph{Temperature and humidity data} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 052 & Ship temperature and humidity data &\tabularnewline
+& & \emph{Wind data} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 059 & Ship wind data &\tabularnewline
+& & \emph{Surface temperature, salinity and current} &\tabularnewline
+& B 22 067 & Instrument type for water temperature/salinity profile measurement &\tabularnewline
+& B 02 171 & Instrument serial number for water temperature profile measurement &\tabularnewline
+& D 02 090 & Sea/water temperature high precision & Surface temperature\tabularnewline
+& D 06 033 & Surface salinity &\tabularnewline
+& D 06 034 & Surface current &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 15 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 15 007 (\emph{continued}) & B 02 171 & Instrument serial number for water temperature profile measurement & Set to missing (cancel)\tabularnewline
+& B 22 067 & Instrument type for water temperature/salinity profile measurement & Set to missing (cancel)\tabularnewline
+& & \emph{Temperature and salinity profile data} &\tabularnewline
+& B 02 038 & Method of water temperature and/or salinity measurement &\tabularnewline
+& B 22 067 & Instrument type for water temperature/salinity profile measurement &\tabularnewline
+& B 22 068 & Water temperature profile recorder types &\tabularnewline
+& B 02 171 & Instrument serial number for water temperature profile measurement &\tabularnewline
+& B 02 033 & Method of salinity/depth measurement &\tabularnewline
+& B 02 032 & Indicator for digitization &\tabularnewline
+& B 22 056 & Direction of profile &\tabularnewline
+& B 03 011 & Method of depth calculation &\tabularnewline
+& D 06 035 & Temperature and salinity profile &\tabularnewline
+& & \emph{Current profile data} &\tabularnewline
+& R 07 000 & Delayed replication of 7 descriptors &\tabularnewline
+& B 02 032 & Indicator for digitization &\tabularnewline
+& B 03 010 & Method of sea/water current measurement &\tabularnewline
+& B 02 031 & Duration and time of current measurement &\tabularnewline
+& B 02 040 & Method of removing velocity and motion of platform from current &\tabularnewline
+& B 22 056 & Direction of profile &\tabularnewline
+& B 03 011 & Method of depth calculation &\tabularnewline
+& D 06 036 & Current profile &\tabularnewline
+& & \emph{Dissolved oxygen profile data} &\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 02 032 & Indicator for digitization &\tabularnewline
+& B 03 012 & Instrument type/sensor for dissolved oxygen measurement &\tabularnewline
+& B 03 011 & Method of depth calculation &\tabularnewline
+& D 06 037 & Dissolved oxygen profile data &\tabularnewline
+& & &\tabularnewline
+& & (Sequence for the representation of data from moored buoys) &\tabularnewline
+& & \emph{Buoy identification and location} &\tabularnewline
+D 15 008 & D 01 126 & Sequence for representation of moored buoy identification &\tabularnewline
+& & \emph{Standard meteorological data} &\tabularnewline
+& D 06 038 & Sequence for representation of standard surface marine meteorological observations from moored buoys & For buoys equipped with more than 1~anemometer the height of sensor should relate to the one being used\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 15 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 15 008 & & \emph{Optional ancillary meteorological data} &\tabularnewline
+(\emph{continued}) & R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 091 & Sequence for representation of ancillary meteorological observations &\tabularnewline
+& & \emph{Optional radiation measurements} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 02 082 & Radiation data &\tabularnewline
+& & \emph{Optional basic wave measurements} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 06 039 & Sequence for representation of basic wave measurements &\tabularnewline
+& & \emph{Optional spectral wave measurements} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 06 040 & Sequence for representation of detailed spectral wave measurements &\tabularnewline
+& & \emph{Optional temperature profile measurements} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 02 005 & Precision of temperature observation &\tabularnewline
+& D 06 041 & \vtop{\hbox{\strut Depth and temperature profile (high accuracy/}\hbox{\strut precision)}} &\tabularnewline
+& & \emph{Optional temperature and salinity profile\\
+measurements} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 02 005 & Precision of temperature observation &\tabularnewline
+& D 06 004 & Depth, temperature, salinity &\tabularnewline
+& & \emph{Optional subsurface current measurements} &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 06 005 & Subsurface current measurements &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 16 -- \emph{Synoptic feature sequences}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Jet stream) &\tabularnewline
+D 16 003 & R 09 000 & Delayed replication of 9 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature & Jet stream value\tabularnewline
+& B 08 007 & Dimensional significance & Value for line\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 10 002 & Height & Flight level\tabularnewline
+& B 11 002 & Wind speed &\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Turbulence) &\tabularnewline
+D 16 004 & R 10 000 & Delayed replication of 10 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature & Value for turbulence\tabularnewline
+& B 08 007 & Dimensional significance & Value for area\tabularnewline
+& B 07 002 & Height or altitude & Flight level (base of layer)\tabularnewline
+& B 07 002 & Height or altitude & Flight level (top of layer)\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 11 031 & Degree of turbulence (see Note 1) &\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Storm) &\tabularnewline
+D 16 005 & R 08 000 & Delayed replication of 8 descriptors &\tabularnewline
+& B 08 005 & Meteorological attribute significance & Storm centre\tabularnewline
+& B 08 007 & Dimensional significance & Value for point\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 01 026 & WMO storm name & Use ``UNKNOWN'' for a sandstorm\tabularnewline
+& B 19 001 & Type of synoptic feature & Value for type of storm\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 005 & Meteorological attribute significance & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Cloud) &\tabularnewline
+D 16 006 & R 11 000 & Delayed replication of 11 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature & Value for cloud\tabularnewline
+& B 08 007 & Dimensional significance & Value for area\tabularnewline
+& B 07 002 & Height or altitude & Flight level (base of layer)\tabularnewline
+& B 07 002 & Height or altitude & Flight level (top of layer)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 16 006 & R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+(\emph{continued}) & B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 20 011 & Cloud amount (see Note 2) &\tabularnewline
+& B 20 012 & Cloud type &\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Front) &\tabularnewline
+D 16 007 & R 09 000 & Delayed replication of 9 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature (see Note 3) & Value for type of front\tabularnewline
+& B 08 007 & Dimensional significance & Value for line\tabularnewline
+& R 04 000 & Delayed replication of 4 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 19 005 & Direction of motion of feature &\tabularnewline
+& B 19 006 & Speed of motion of feature &\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Tropopause) &\tabularnewline
+D 16 008 & R 10 000 & Delayed replication of 10 descriptors &\tabularnewline
+& B 08 001 & Vertical sounding significance & Bit 3 set for tropopause\tabularnewline
+& B 08 007 & Dimensional significance & Value for point\tabularnewline
+& B 08 023 & First-order statistics (see Note 4) & Type of tropopause value\tabularnewline
+& R 03 000 & Delayed replication of 3 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 10 002 & Height &\tabularnewline
+& B 08 023 & First-order statistics & Cancel\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 001 & Vertical sounding significance & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Airframe icing area) &\tabularnewline
+D 16 009 & R 10 000 & Delayed replication of 10 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature & Value for airframe icing\tabularnewline
+& B 08 007 & Dimensional significance & Value for area\tabularnewline
+& B 07 002 & Height or altitude & Flight level (base of layer)\tabularnewline
+& B 07 002 & Height or altitude & Flight level (top of layer)\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 20 041 & Airframe icing & Type of airframe icing\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Name of feature) &\tabularnewline
+D 16 010 & R 07 000 & Delayed replication of 7 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature &\tabularnewline
+& B 08 007 & Dimensional significance & Value for point\tabularnewline
+& B 01 022 & Name of feature &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Volcano erupting) &\tabularnewline
+D 16 011 & R 16 000 & Delayed replication of 16 descriptors &\tabularnewline
+& B 08 011 & Meteorological feature & Value for special clouds\tabularnewline
+& B 01 022 & Name of feature & Volcano name\tabularnewline
+& B 08 007 & Dimensional significance & Value for point\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 08 021 & Time significance & Eruption starting time\tabularnewline
+& B 04 001 & Year &\tabularnewline
+& B 04 002 & Month &\tabularnewline
+& B 04 003 & Day &\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 04 005 & Minute &\tabularnewline
+& B 20 090 & Special clouds & Clouds from volcanic eruptions\tabularnewline
+& B 08 021 & Time significance & Cancel\tabularnewline
+& B 08 007 & Dimensional significance & Cancel\tabularnewline
+& B 08 011 & Meteorological feature & Cancel \textbar{} End of object\tabularnewline
+& & &\tabularnewline
+& & (Forecast data) &\tabularnewline
+D 16 022 & B 01 032 & Generating application & \vtop{\hbox{\strut NWP model name, etc. code table defined by originating/}\hbox{\strut generating centre}}\tabularnewline
+& B 02 041 & Method for estimating reports related to synoptic features &\tabularnewline
+& B 19 001 & Type of synoptic feature &\tabularnewline
+& B 19 010 & Method for tracking the centre of synoptic feature &\tabularnewline
+& R 18 000 & Delayed replication of 18 descriptors &\tabularnewline
+& B 08 021 & Time significance & Forecast\tabularnewline
+& B 04 014 & Time increment & Hours\tabularnewline
+& B 08 005 & Meteorological attribute significance & Surface synoptic feature\tabularnewline
+& D 01 023 & Latitude/longitude (coarse accuracy) &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 16 022 & B 19 005 & Direction of motion of feature &\tabularnewline
+(\emph{continued}) & B 19 006 & Speed of motion of feature &\tabularnewline
+& B 10 004 & Pressure &\tabularnewline
+& B 11 041 & Maximum wind gust speed & For example, used in the United States\tabularnewline
+& B 08 021 & Time significance & Forecast time averaged\tabularnewline
+& B 04 075 & Short time period or displacement & Minutes\tabularnewline
+& B 11 040 & Maximum wind speed (mean wind) &\tabularnewline
+& B 19 008 & Vertical extent of circulation &\tabularnewline
+& R 05 004 & Replicate 5 descriptors 4 times &\tabularnewline
+& B 05 021 & Bearing or azimuth & Starting\tabularnewline
+& B 05 021 & Bearing or azimuth & Ending\tabularnewline
+& R 02 002 & Replicate 2 descriptors 2 times &\tabularnewline
+& B 19 003 & Wind speed threshold &\tabularnewline
+& B 19 004 & Effective radius with respect to wind speeds above threshold &\tabularnewline
+& & &\tabularnewline
+& & (SIGMET, Outlook) &\tabularnewline
+D 16 033 & B 08 021 & Time significance & = 4 Forecast\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 01 027 & Description of a feature in 3-D or 2-D &\tabularnewline
+& B 08 021 & Time significance & Set to missing (cancel)\tabularnewline
+& & &\tabularnewline
+& & (Volcanic Ash SIGMET) &\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+D 16 034\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+B 08 079\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Product status\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+= 0 Normal issue,
+
+= 1 Correction\strut
+\end{minipage}\tabularnewline
+& D 16 030 & SIGMET header &\tabularnewline
+& B 08 011 & Meteorological feature & = 17 Volcano\tabularnewline
+& B 01 022 & Name of feature &\tabularnewline
+& B 08 007 & Dimensional significance & = 0 Point\tabularnewline
+& D 01 023 & Latitude/longitude (coarse accuracy) &\tabularnewline
+& B 08 007 & Dimensional significance & Set to missing (cancel)\tabularnewline
+& B 20 090 & Special clouds & = 5 Clouds from volcanic eruptions\tabularnewline
+& D 16 031 & SIGMET, Observed or forecast location and motion &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 16 032 & SIGMET, Forecast position &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 16 033 & SIGMET, Outlook &\tabularnewline
+& B 08 011 & Meteorological feature & Set to missing (cancel)\tabularnewline
+& B 08 079 & Product status & Set to missing (cancel)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Tropical cyclone SIGMET) &\tabularnewline
+D 16 036 & B 08 079 & Product status & \vtop{\hbox{\strut = 0 Normal issue,}\hbox{\strut = 1 Correction}}\tabularnewline
+& D 16 030 & SIGMET header &\tabularnewline
+& B 08 011 & Meteorological feature & = 22 Tropical cyclone\tabularnewline
+& B 01 027 & WMO long storm name &\tabularnewline
+& D 16 031 & SIGMET, Observed or forecast location and motion &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 16 032 & SIGMET, Forecast position &\tabularnewline
+& R 01 000 & Delayed replication of 1 descriptor &\tabularnewline
+& D 16 033 & SIGMET, Outlook &\tabularnewline
+& B 08 011 & Meteorological feature & Set to missing (cancel)\tabularnewline
+& B 08 079 & Product status & Set to missing (cancel)\tabularnewline
+& & &\tabularnewline
+& & (SAREP template -- Part A: Information on tropical cyclone) &\tabularnewline
+D 16 052 & D 01 005 & Originating centre/sub-centre &\tabularnewline
+& D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& B 01 007 & Satellite identifier &\tabularnewline
+& B 25 150 & Method of tropical cyclone intensity analysis using satellite data &\tabularnewline
+& R 22 000 & Delayed replication of 22 descriptors &\tabularnewline
+& B 01 027 & WMO long storm name &\tabularnewline
+& B 19 150 & Typhoon International Common Number (Typhoon Committee) &\tabularnewline
+& B 19 106 & Identification number of tropical cyclone &\tabularnewline
+& B 08 005 & Meteorological attribute significance & = 1\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 08 005 & Meteorological attribute significance & Cancel\tabularnewline
+& B 19 107 & Time interval over which the movement of the tropical cyclone has been calculated &\tabularnewline
+& B 19 005 & Direction of motion of feature &\tabularnewline
+& B 19 006 & Speed of motion of feature &\tabularnewline
+& B 19 108 & Accuracy of geographical position of the tropical cyclone &\tabularnewline
+& B 19 109 & Mean diameter of the overcast cloud of the tropical cyclone &\tabularnewline
+& B 19 110 & Apparent 24-hour change in intensity of the tropical cyclone &\tabularnewline
+& B 19 111 & Current Intensity (CI) number of the tropical cyclone &\tabularnewline
+& B 19 112 & Data Tropical (DT) number of the tropical cyclone &\tabularnewline
+& B 19 113 & Cloud pattern type of the DT-number &\tabularnewline
+& B 19 114 & Model Expected Tropical (MET) number of the tropical cyclone &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+\vtop{\hbox{\strut D 16 052}\hbox{\strut (\emph{continued})}} & B 19 115 & Trend of the past 24-hour change (+: Developed, --: Weakened) &\tabularnewline
+& B 19 116 & Pattern Tropical (PT) number of the tropical cyclone &\tabularnewline
+& B 19 117 & Cloud picture type of the PT-number &\tabularnewline
+& B 19 118 & Final Tropical (T) number of the tropical cyclone &\tabularnewline
+& B 19 119 & Type of the final T-number &\tabularnewline
+& & &\tabularnewline
+& & (Definition of squall line (by centre and several points: North points and South points) and forecasted trajectory and evolution) &\tabularnewline
+D 16 061 & D 01 011 & Year, month, day &\tabularnewline
+& D 01 012 & Hour, minute &\tabularnewline
+& & \emph{Position of squall line centre} &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& B 19 005 & Direction of motion of feature &\tabularnewline
+& B 19 006 & Speed of motion of feature &\tabularnewline
+& & \emph{Amplitude of feature from most external points to\\
+centre point -- North points} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& & \emph{Amplitude of feature from most external points to\\
+centre point -- South points} &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors &\tabularnewline
+& B 05 002 & Latitude (coarse accuracy) &\tabularnewline
+& B 06 002 & Longitude (coarse accuracy) &\tabularnewline
+& & \emph{Amplitude of feature from most external points to\\
+centre point -- Evolution} &\tabularnewline
+& B 04 074 & Short time period or displacement & Period of validity\tabularnewline
+& B 20 048 & Evolution of feature &\tabularnewline
+& B 11 041 & Maximum wind gust speed & Maximum burst expected\tabularnewline
+& B 13 055 & Intensity of precipitation & Intensity of rain expected\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes:
+
+(1) For MOD OCNL SEV code as 12 (extreme in clear air) or 13 (extreme in cloud).
+
+(2) Code table values:
+
+FRQ = code figure 8 (8 oktas)
+
+OCNL EMBD = code figure 6 (6 oktas)
+
+ISOL = code figure 2 (2 oktas) when the cloud = Cb.
+
+(3) Front direction (towards which the front is moving) must always be given as it is needed for plotting purposes. A front direction with a front speed of zero would indicate a slow front. A value in the code table exists to represent a quasi-stationary front.
+
+\emph{(continued)}
+
+\emph{\\
+(Category 16 -- continued)}
+
+(4) The statistic is to determine whether the following tropopause levels are minimum, maximum or spot values (missing code value).
+
+(5) Decibel (dB) is a logarithmic measure of the relative power, or of the relative values of two flux densities, especially of sound intensities and radio and radar power densities. In radar meteorology, the logarithmic scale (dBZ) is used for measuring radar reflectivity factor (obtained from the American Meteorological Society \emph{Glossary of Meteorology}).
+
+\textbf{Category 22 -- \emph{Chemical and aerosol sequences}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (METOP GOME--2) &\tabularnewline
+D 22 028 & B 01 007 & Satellite identifier &\tabularnewline
+& B 02 019 & Satellite instruments &\tabularnewline
+& B 04 001 & Year &\tabularnewline
+& B 04 002 & Month &\tabularnewline
+& B 04 003 & Day &\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 04 005 & Minute &\tabularnewline
+& B 04 006 & Second &\tabularnewline
+& B 05 001 & Latitude (high accuracy) &\tabularnewline
+& B 06 001 & Longitude (high accuracy) &\tabularnewline
+& B 27 001 & Latitude (high accuracy) &\tabularnewline
+& B 28 001 & Longitude (high accuracy) &\tabularnewline
+& B 27 001 & Latitude (high accuracy) &\tabularnewline
+& B 28 001 & Longitude (high accuracy) &\tabularnewline
+& B 27 001 & Latitude (high accuracy) &\tabularnewline
+& B 28 001 & Longitude (high accuracy) &\tabularnewline
+& B 27 001 & Latitude (high accuracy) &\tabularnewline
+& B 28 001 & Longitude (high accuracy) &\tabularnewline
+& B 10 001 & Height of land surface &\tabularnewline
+& B 14 019 & Surface albedo &\tabularnewline
+& B 07 025 & Solar zenith angle &\tabularnewline
+& B 10 080 & Viewing zenith angle &\tabularnewline
+& B 05 023 & Sun to satellite azimuth difference &\tabularnewline
+& B 20 010 & Cloud cover (total) &\tabularnewline
+& B 08 003 & Vertical significance (satellite observations) &\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 14 026 & Albedo at the top of clouds &\tabularnewline
+& B 20 014 & Height of top of cloud &\tabularnewline
+& B 13 093 & Cloud optical thickness &\tabularnewline
+& R 05 000 & Delayed replication of 5 descriptors &\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 07 004 & Pressure &\tabularnewline
+& B 08 043 & Atmospheric chemical or physical constituent type &\tabularnewline
+& B 08 044 & CAS registry number &\tabularnewline
+& B 15 021 & Integrated mass density &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Category 35 -- \emph{Monitoring information}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+& & (Specify monitoring station) &\tabularnewline
+D 35 001 & B 08 035 & Type of monitoring exercise &\tabularnewline
+& B 35 001 & Time frame for monitoring &\tabularnewline
+& B 08 036 & Type of centre or station performing monitoring &\tabularnewline
+& D 01 001 & WMO block and station numbers &\tabularnewline
+& & &\tabularnewline
+& & (Specify monitoring centre) &\tabularnewline
+D 35 002 & B 08 035 & Type of monitoring exercise &\tabularnewline
+& B 35 001 & Time frame for monitoring &\tabularnewline
+& B 08 036 & Type of centre or station performing monitoring &\tabularnewline
+& B 01 033 & Identification of originating/generating centre &\tabularnewline
+& & &\tabularnewline
+& & (Specify monitoring period) &\tabularnewline
+D 35 003 & B 08 021 & Time significance & (23) Monitoring period\tabularnewline
+& B 04 001 & Year &\tabularnewline
+& B 04 002 & Month &\tabularnewline
+& B 04 003 & Day &\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 04 073 & Short time period or displacement &\tabularnewline
+& & &\tabularnewline
+& & (Specify report type and single station being monitored) &\tabularnewline
+D 35 004 & B 08 021 & Time significance & (24) Agreed time limit for report reception\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 08 021 & Time significance & (25) Nominal reporting time\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 35 000 & FM and regional code number &\tabularnewline
+& D 01 001 & WMO block and station numbers &\tabularnewline
+& B 35 011 & Number of reports actually received &\tabularnewline
+& & &\tabularnewline
+& & (Specify report type and WMO block being monitored) &\tabularnewline
+D 35 005 & B 08 021 & Time significance & (24) Agreed time limit for report reception\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 08 021 & Time significance & (25) Nominal reporting time\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 35 000 & FM and regional code number &\tabularnewline
+& B 01 001 & WMO block number &\tabularnewline
+& B 35 011 & Number of reports actually received &\tabularnewline
+& & &\tabularnewline
+& & (Specify report type and WMO Region being monitored) &\tabularnewline
+D 35 006 & B 08 021 & Time significance & (24) Agreed time limit for report reception\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 08 021 & Time significance & (25) Nominal reporting time\tabularnewline
+\bottomrule
+\end{longtable}
+
+\emph{(continued)}
+
+\emph{\\
+(Category 35 -- continued)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+SEQUENCE\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+TABLE
+
+REFERENCES\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT NAME\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+ELEMENT DESCRIPTION\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+& F X Y & &\tabularnewline
+D 35 006 & B 04 004 & Hour &\tabularnewline
+(\emph{continued}) & B 35 000 & FM and regional code number &\tabularnewline
+& B 01 003 & WMO Region number/geographical area &\tabularnewline
+& B 35 011 & Number of reports actually received &\tabularnewline
+& & &\tabularnewline
+& & (Report type and multiple stations from one block being monitored) &\tabularnewline
+D 35 007 & B 08 021 & Time significance & (24) Agreed time limit for report reception\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 08 021 & Time significance & (25) Nominal reporting time\tabularnewline
+& B 04 004 & Hour &\tabularnewline
+& B 35 000 & FM and regional code number &\tabularnewline
+& B 01 001 & WMO block number &\tabularnewline
+& R 02 000 & Delayed replication of 2 descriptors & Count of stations\tabularnewline
+& B 01 002 & WMO station number &\tabularnewline
+& B 35 011 & Number of reports actually received &\tabularnewline
+& & &\tabularnewline
+& & (Monitoring a report type from multiple stations) &\tabularnewline
+D 35 010 & D 35 002 & Specify monitoring centre &\tabularnewline
+& D 35 003 & Specify monitoring period &\tabularnewline
+& D 35 007 & Report type and multiple stations from one block being monitored &\tabularnewline
+\bottomrule
+\end{longtable}
