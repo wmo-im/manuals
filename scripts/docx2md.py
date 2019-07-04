@@ -15,7 +15,7 @@ adocDir = sys.argv[2]
 docxFilenames = [f for f in glob(docxDir + "/*.docx")]
 
 for docxFilename in docxFilenames:
-    outFilename = adocDir + "/" + splitext(basename(docxFilename))[0] + ".adoc"
-    system(pandoc + " --from=docx --to=asciidoc --wrap=none --atx-headers \
+    outFilename = adocDir + "/" + splitext(basename(docxFilename))[0] + ".md"
+    system(pandoc + " --from=docx --to=markdown --wrap=none --atx-headers \
     --extract-media=extracted-media \
     -o "+outFilename +" "+docxFilename)
